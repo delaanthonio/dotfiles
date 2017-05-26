@@ -2,8 +2,11 @@
     link:
       create: true
       relink: true
+
 - clean: []
+
 - link:
     ~/.zshenv:
     ~/.zshrc:
+
 - shell: []
