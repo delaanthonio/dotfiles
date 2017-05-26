@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - link:
+    ~/.dotfiles: ''
     ~/.zshenv:
     ~/.zshrc:
 
