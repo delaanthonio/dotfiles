@@ -7,6 +7,7 @@
 
 - link:
     ~/.dotfiles: ''
+    ~/.gitignore_global:
     ~/.zshenv:
     ~/.zshrc:
 
