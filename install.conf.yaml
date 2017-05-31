@@ -10,6 +10,7 @@
     ~/.gitignore_global:
     ~/.oh-my-zsh: zsh/oh-my-zsh
     ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting: zsh/fast-syntax-highlighting
+    ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/zsh-autosuggestions
     ~/.zshenv:
     ~/.zshrc:
 
