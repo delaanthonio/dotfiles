@@ -39,7 +39,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases colored-man-pages emacs extract git gpg-agent pip pj pyenv ssh-agent tmux repo ubuntu)
+plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux repo ubuntu)
 
 source $ZSH/oh-my-zsh.sh
 
