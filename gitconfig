@@ -1,0 +1,77 @@
+[apply]
+	# Detect whitespace errors when applying a patch
+	whitespace = fix
+
+[alias]
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+
+	branches = branch -a
+
+	# Clone a repository including all submodules
+	c = clone --recursive
+
+	# Get the last commit
+	last = log -1 HEAD
+
+	#Revise commits
+	revise = rebase -i
+
+	remotes = remote -v
+
+	# Remove the old tag with this name and tag the latest commit with it.
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1 -a \"$1\"; }; r"
+
+	tags = tag -l
+
+	unstage = reset HEAD
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+
+[commit]
+	gpgsign = true
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[diff]
+	# Enable an experimental heuristic that shifts the hunk boundary in an
+	# attempt to make the resulting patch easier to read.
+	indentHeuristic = true
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
+
+[pretty]
+	line = "%C(auto)%h%d %s %C(yellow)by %C(blue)%an %C(green)%ar"
+	compact = "%C(auto)%h %s %C(green)%ar%n %C(auto)%d%n"
+	detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ar%n %C(auto)%d%n"
+
+[push]
+	default = matching
+
+# URL shorthands
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+	insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+	insteadOf = "gist:"
