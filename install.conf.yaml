@@ -8,6 +8,7 @@
 - link:
     ~/.dotfiles: ''
     ~/.gitignore_global:
+    ~/.oh-my-zsh: zsh/oh-my-zsh
     ~/.zshenv:
     ~/.zshrc:
 
