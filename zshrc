@@ -32,6 +32,9 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
 
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -39,7 +42,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux repo ubuntu zsh-autosuggestions)
+plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux ubuntu zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
