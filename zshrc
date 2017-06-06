@@ -49,6 +49,8 @@ plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
+elif (( $+commands[pacman] )); then
+    plugins+=(archlinux)
 fi
 
 source $ZSH/oh-my-zsh.sh
