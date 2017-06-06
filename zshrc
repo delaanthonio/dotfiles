@@ -1,6 +1,9 @@
 # Set name of the theme to load.
 ZSH_THEME="agnoster"
 
+# You may need to manually set your language environment
+LANG="en_US.UTF-8"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -42,7 +45,11 @@ export ZSH=$HOME/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux ubuntu zsh-autosuggestions)
+plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux zsh-autosuggestions)
+
+if (( $+commands[apt] )); then
+    plugins+=(ubuntu)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,4 +80,3 @@ alias bfg="java -jar bfg.jar"
 if [ -f ~/.zshenv ]; then
     source ~/.zshenv
 fi
-
