@@ -16,3 +16,6 @@
 [submodule "pyenv"]
 	path = pyenv
 	url = https://github.com/pyenv/pyenv
+[submodule "zsh/powerlevel9k"]
+	path = zsh/powerlevel9k
+	url = https://github.com/bhilburn/powerlevel9k.git

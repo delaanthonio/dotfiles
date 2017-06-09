@@ -1,5 +1,5 @@
 # Set name of the theme to load.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # You may need to manually set your language environment
 LANG="en_US.UTF-8"
