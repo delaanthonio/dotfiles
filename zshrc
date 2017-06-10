@@ -58,6 +58,8 @@ plugins+=(fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+source "$HOME/.dotfiles/sh/autoenv.sh"
+
 # Project Jump
 PROJECT_PATHS=(~/Projects ~/Projects/sd/)
 
