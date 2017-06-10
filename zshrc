@@ -45,7 +45,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git gpg-agent pip pj pyenv ssh-agent tmux systemd zsh-autosuggestions)
+plugins=(common-aliases colored-man-pages emacs extract fast-syntax-highlighting git pip pj pyenv systemd zsh-autosuggestions)
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
