@@ -61,7 +61,7 @@ source $ZSH/oh-my-zsh.sh
 source "$HOME/.dotfiles/sh/autoenv.sh"
 
 # Project Jump
-PROJECT_PATHS=(~/Projects ~/Projects/sd/)
+PROJECT_PATHS=(~/Projects)
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -69,7 +69,7 @@ PROJECT_PATHS=(~/Projects ~/Projects/sd/)
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias szsh='source ~/.zshrc'
+alias reload='source ~/.zshrc'
 
 alias ..2='cd ../../'
 alias ..3='cd ../../../'
@@ -80,8 +80,6 @@ alias et='emacsclient -t'
 alias ec='emacsclient -c'
 
 alias rnm='sudo service network-manager restart'
-
-alias bfg="java -jar bfg.jar"
 
 # Get environment vars in ~/.zshenv
 if [ -f ~/.zshenv ]; then
