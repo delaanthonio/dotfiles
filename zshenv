@@ -4,8 +4,8 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 export MANPATH="/usr/local/man:$MANPATH"
 
 export TERM="xterm-256color"
-export EDITOR="micro"
-export ALTERNATE_EDITOR="emacsclient"
+export EDITOR="emacsclient"
+export ALTERNATE_EDITOR="gedit"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
