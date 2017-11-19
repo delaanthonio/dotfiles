@@ -45,7 +45,17 @@ export ZSH=$HOME/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases colored-man-pages extract git pip pj pyenv systemd zsh-autosuggestions)
+plugins=(
+    common-aliases
+    colored-man-pages
+    extract
+    git
+    pip
+    pj
+    pyenv
+    systemd
+    zsh-autosuggestions
+)
 
 # Project Jump
 PROJECT_PATHS=(~/Projects)
@@ -54,7 +64,8 @@ if (( $+commands[apt] )); then
     plugins+=(ubuntu)
 elif (( $+commands[pacman] )); then
     plugins+=(archlinux)
-    alias y='yaourt'
+    alias ya='yaourt'
+    alias pa='pacaur'
 fi
 
 # Always load syntax highlighting plugin last
