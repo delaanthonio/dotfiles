@@ -13,9 +13,11 @@
     ~/.oh-my-zsh: zsh/oh-my-zsh
     ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting: zsh/fast-syntax-highlighting
     ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/zsh-autosuggestions
-    ~/.oh-my-zsh/custom/themes/powerlevel9k: zsh/powerlevel9k
     ~/.pyenv:
     ~/.zshenv:
     ~/.zshrc:
+
+    zsh/functions/prompt_pure_setup : zsh/pure/pure.zsh
+    zsh/functions/async : zsh/pure/async.zsh
 
 - shell: []

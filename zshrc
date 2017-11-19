@@ -1,5 +1,5 @@
 # Set name of the theme to load.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME=""
 
 # You may need to manually set your language environment
 LANG="en_US.UTF-8"
@@ -47,6 +47,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(common-aliases colored-man-pages extract git pip pj pyenv systemd zsh-autosuggestions)
 
+# Project Jump
+PROJECT_PATHS=(~/Projects)
+
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
 elif (( $+commands[pacman] )); then
@@ -59,10 +62,12 @@ plugins+=(fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-source "$HOME/.dotfiles/sh/autoenv.sh"
+# Pure Prompt
+fpath=("$HOME/.dotfiles/zsh/functions" $fpath)
+autoload -U promptinit; promptinit
+prompt pure
 
-# Project Jump
-PROJECT_PATHS=(~/Projects)
+source "$HOME/.dotfiles/sh/autoenv.sh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
