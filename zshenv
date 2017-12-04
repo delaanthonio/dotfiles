@@ -19,3 +19,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
+
+if [ -f ~/.zshenv_local ]; then
+    source ~/.zshenv_local
+fi
