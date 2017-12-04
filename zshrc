@@ -78,7 +78,10 @@ fpath=("$HOME/.dotfiles/zsh/functions" $fpath)
 autoload -U promptinit; promptinit
 prompt pure
 
-source "$HOME/.dotfiles/sh/autoenv.sh"
+# Direnv: https://direnv.net/
+if (( $+commands[direnv] )); then
+    eval "$(direnv hook zsh)"
+fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
