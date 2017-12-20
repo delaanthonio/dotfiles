@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: problem
+# key: prob
+# group: competitive coding
+# --
+
+#!/usr/bin/env python3
+"""Solution for: $0
+"""
+
+import sys
+
+def ${1:helper_fun}(${2:arg}) -> ${3:None}:
+    ${4:pass}
+
+def main():
+    """Print ${5:...}"""
+    ${6:pass}
+    result = $1($2)
+    print(result)
+
+
+if __name__ == '__main__':
+    main()

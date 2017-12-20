@@ -14,6 +14,7 @@
     ~/.oh-my-zsh/custom/plugins/fast-syntax-highlighting: zsh/fast-syntax-highlighting
     ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions: zsh/zsh-autosuggestions
     ~/.pyenv:
+    ~/.spacemacs.d:
     ~/.zshenv:
     ~/.zshrc:
 
