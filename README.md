@@ -4,7 +4,7 @@ My dotfiles
 ## Installation
 
 ```bash
-git clone --recursive https://github.com/beta1440/dotfiles
+git clone --recursive https://github.com/delaanthonio/dotfiles
 cd dotfiles
 make init
 ```
