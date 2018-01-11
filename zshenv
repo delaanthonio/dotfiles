@@ -13,9 +13,8 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
-export PATH="$HOME/.pyenv/bin:$PATH" # Add RVM to PATH for scripting
+export PATH="$PYENV_ROOT/bin:$PATH" # Add RVM to PATH for scripting
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
