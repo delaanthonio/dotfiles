@@ -13,9 +13,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = https://github.com/syl20bnr/spacemacs
-[submodule "pyenv"]
-	path = pyenv
-	url = https://github.com/pyenv/pyenv
 [submodule "zsh/pure"]
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure.git
