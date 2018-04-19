@@ -99,7 +99,9 @@ alias ..5='cd ../../../../../'
 alias et='emacsclient -t'
 alias ec='emacsclient -c'
 
-alias rnm='sudo service network-manager restart'
+alias hib='systemctl hibernate'
+alias sus='systemctl suspend'
+alias reb='systemctl reboot'
 
 # Get environment vars in ~/.zshenv
 if [ -f ~/.zshenv ]; then
