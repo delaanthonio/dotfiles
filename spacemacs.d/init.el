@@ -483,7 +483,6 @@ you should place your code here."
     :defer nil)
 
   (add-to-list 'flycheck-disabled-checkers 'python-flake8)
-  (add-hook 'python-mode-hook 'python-docstring-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
   ;; markdown
