@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((auto-completion :variables
+   '((
+      auto-completion :variables
                       auto-completion-complete-with-key-sequence "fd"
                       auto-completion-complete-with-key-sequence-delay 0.2
                       auto-completion-enable-snippets-in-popup t
@@ -49,8 +50,6 @@ values."
             helm-gtags-maximum-candidates 10
             :disabled-for emacs-lisp)
      helm
-     html
-     latex
      (markdown :variables markdown-live-preview-engine 'vmd)
      (python :variables
              python-test-runner 'pytest
@@ -67,17 +66,13 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     systemd
      yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(
-                                      flycheck-package
-                                      pkgbuild-mode
-                                      )
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -327,24 +322,15 @@ this is the place where most of your configurations should be done. unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; (define-aliases)
-
   (setq-default
    c-basic-offset 4
    compilation-ask-about-save nil
-
-   ;; js2-basic-offset 2
-   ;; js-indent-level 2
-
-   ;; git-magit-status-fullscreen t
 
    indent-tabs-mode nil
    powerline-default-separator 'slant
    tab-width  4
 
-   magit-repository-directories '("~/Projects/")
-
-   helm-gtags-minor-mode-name 'HGT)
+   magit-repository-directories '("~/Projects/"))
 
   (setq shell-file-name "/usr/bin/zsh")
 
@@ -370,9 +356,6 @@ you should place your code here."
   ;; env
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
-  ;; arch linux package build mode
-  (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-
   ;; company
   (setq-default
    company-idle-delay 0.4
@@ -388,112 +371,12 @@ you should place your code here."
    evil-escape-key-sequence "fd"
    evil-escape-unordered-key-sequence t)
 
-  ;; c-mode
-
-  (defun c-c++/clang-format-line-or-region (&optional style)
-    "Format the current line or region with clang-format according to STYLE."
-    (interactive)
-    (save-excursion
-      (progn
-        (if (region-active-p)
-            (clang-format (region-beginning) (region-end) style)
-          (message "Formatted region"))
-        (progn
-          (clang-format (line-beginning-position) (line-end-position) style)
-          (message "Formatted line %s" (line-number-at-pos))))))
-
-  (defun c-c++/clang-format-function (&optional style)
-    "Format the current function with clang-format according to STYLE."
-    (interactive)
-    (save-excursion
-      (c-mark-function)
-      (clang-format (region-beginning) (region-end) style)
-      (deactivate-mark)
-      (message "Formatted function %s" (c-defun-name))))
-
-  (defun c-c++/clang-format-buffer (&optional style)
-    "Format the current buffer with clang-format according to STYLE."
-    (interactive)
-    (clang-format (point-min) (point-max) style)
-    (message "Formatted buffer %s" (buffer-name)))
-
-  (dolist (mode '(c-mode c++-mode))
-    ;; (spacemacs/declare-prefix-for-mode mode "m=" "format")
-    ;; (spacemacs/set-leader-keys-for-major-mode mode "==" 'c-c++/clang-format-line-or-region)
-    ;; (spacemacs/set-leader-keys-for-major-mode mode "=b" 'c-c++/clang-format-buffer)
-    ;; (spacemacs/set-leader-keys-for-major-mode mode "=f" 'c-c++/clang-format-function)
-    (spacemacs/set-leader-keys-for-major-mode mode "gb" 'c-beginning-of-defun)
-    (spacemacs/set-leader-keys-for-major-mode mode "ge" 'c-end-of-defun)
-    (spacemacs/set-leader-keys-for-major-mode mode "tn" 'c-toggle-auto-newline)
-    (spacemacs/set-leader-keys-for-major-mode mode "ts" 'c-toggle-syntactic-indentation)
-    (spacemacs/set-leader-keys-for-major-mode mode "te" 'c-toggle-electric-state)
-    (spacemacs/set-leader-keys-for-major-mode mode "th"'c-toggle-hungry-state)
-    (spacemacs/set-leader-keys-for-major-mode mode "tH" 'c-toggle-auto-hungry-state))
-
-  ;; prettify
-
-  (defun init-prog-mode-alists ()
-    "Add pretty symbols to prog mode"
-    (add-to-list 'prettify-symbols-alist '("<=" . ?≤))
-    (add-to-list 'prettify-symbols-alist '(">=" . ?≥))
-    (add-to-list 'prettify-symbols-alist '("<-" . ?←))
-    (add-to-list 'prettify-symbols-alist '("->" . ?→))
-    (add-to-list 'prettify-symbols-alist '("!=" . ?≠))
-    (add-to-list 'prettify-symbols-alist '("::" . ?∷))
-    (add-to-list 'prettify-symbols-alist '("..." . ?…))
-    (add-to-list 'prettify-symbols-alist '("--" . ?╌))
-    )
-
-  (dolist (hook '(c-mode-hook emacs-lisp-mode-hook))
-    (add-hook hook 'init-prog-mode-alists)
-    )
-
   ;; evil
   (evil-ex-define-cmd "cl" 'spacemacs/comment-or-uncomment-lines)
   (evil-ex-define-cmd "dp" 'delete-pair)
   (evil-ex-define-cmd "ks" 'kill-sexp)
   (evil-ex-define-cmd "kp" 'kill-paragraph)
   (evil-ex-define-cmd "mp" 'mark-paragraph)
-
-  ;; flycheck-package
-  (eval-after-load 'flycheck
-    '(flycheck-package-setup))
-
-  ;; web
-  (defun my-web-mode-hook ()
-    "Hooks for Web mode."
-    (setq-local web-mode-markup-indent-offset 2)
-    )
-  (add-hook 'web-mode-hook  'my-web-mode-hook)
-
-  (add-hook 'compilation-mode-hook 'read-only-mode )
-
-  ;; avy
-  avy-all-windows 'all-frames
-
-  ;; Elisp
-  (use-package suggest
-    :defer t)
-
-  ;; (add-hook 'emacs-lisp-mode-hook 'user-init-emacs-lisp-mode)
-  (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
-
-  ;; python
-  (use-package flycheck-mypy
-    :defer nil)
-
-  (add-to-list 'flycheck-disabled-checkers 'python-flake8)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-  ;; markdown
-  (add-hook 'text-mode
-            (lambda()
-              (set-fill-column 70)))
-  (add-hook 'markdown-mode-hook 'auto-fill-mode)
-  (add-hook 'markdown-mode-hook
-            (lambda()
-              (spacemacs/toggle-fill-column-indicator-on)
-              (set-fill-column 70)))
 
   ;; smartparens
   (global-set-key (kbd "C-k") 'sp-kill-hybrid-sexp)
@@ -508,16 +391,7 @@ you should place your code here."
   (define-key isearch-mode-map [remap isearch-query-replace]  #'anzu-isearch-query-replace)
   (define-key isearch-mode-map [remap isearch-query-replace-regexp] #'anzu-isearch-query-replace-regexp)
 
-  ;; helm-swoop
-  (eval-after-load 'helm-swoop
-    (lambda()
-      (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-      (define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-      (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-      (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)))
-
   ;; key bindings
-
   (global-set-key [f5] 'spacemacs/safe-revert-buffer)
   (global-set-key [f6] 'recompile)
   (global-set-key [M-down] 'move-text-down)
@@ -530,7 +404,6 @@ you should place your code here."
   (global-set-key (kbd "C-s") 'helm-swoop)
   (global-set-key (kbd "M-.") 'spacemacs/jump-to-definition)
   (global-set-key (kbd "M-RET") 'spacemacs/duplicate-line-or-region)
-  (global-set-key (kbd "C-x C-k") 'kill-paragraph)
   (global-set-key (kbd "C-r") 'anzu-query-replace-at-cursor)
   (global-set-key (kbd "C-M-w") 'other-window)
   (global-set-key (kbd "C-;") 'spacemacs/comment-or-uncomment-lines)
