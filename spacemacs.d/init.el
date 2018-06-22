@@ -338,22 +338,11 @@ you should place your code here."
         (if (display-graphic-p)
             'icons 'arrow))
 
-  ;; compilation-mode
   (add-to-list 'auto-mode-alist '("\\.log\\'" . compilation-mode) t)
-
-  ;; unix
   (add-to-list 'auto-mode-alist '("\\defconfig\\'" . conf-unix-mode) t)
-
-  ;; init.*.rc files
   (add-to-list 'auto-mode-alist '("\\.rc\\'" . conf-unix-mode) t)
-
-  ;; .cmd files
   (add-to-list 'auto-mode-alist '("\\.cmd\\'" . makefile-mode) t)
-
-  ;; clang-format
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . yaml-mode) t)
-
-  ;; env
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
   ;; company
@@ -400,15 +389,11 @@ you should place your code here."
   (global-set-key (kbd "M-p")   'move-text-up)
   (global-set-key (kbd "<C-tab>")   'next-buffer)
   (global-set-key (kbd "<C-iso-lefttab>")   'previous-buffer)
-  (global-set-key (kbd "C-x C-b")'helm-mini)
   (global-set-key (kbd "C-s") 'helm-swoop)
   (global-set-key (kbd "M-.") 'spacemacs/jump-to-definition)
   (global-set-key (kbd "M-RET") 'spacemacs/duplicate-line-or-region)
   (global-set-key (kbd "C-r") 'anzu-query-replace-at-cursor)
-  (global-set-key (kbd "C-M-w") 'other-window)
-  (global-set-key (kbd "C-;") 'spacemacs/comment-or-uncomment-lines)
-  (global-set-key (kbd "C-M-;") 'spacemacs/comment-or-uncomment-paragraphs)
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-(load custom-file 'no-error 'no-message)
+(load custom-file 'no-message)
