@@ -64,8 +64,14 @@ if (( $+commands[apt] )); then
     plugins+=(ubuntu)
 elif (( $+commands[pacman] )); then
     plugins+=(archlinux)
-    alias ya='yaourt'
-    alias pa='pacaur'
+fi
+
+if (( $+commands[bundle] )); then
+    plugins+=(bundler)
+fi
+
+if (( $+commands[npm] )); then
+    plugins+=(npm)
 fi
 
 # Always load syntax highlighting plugin last
