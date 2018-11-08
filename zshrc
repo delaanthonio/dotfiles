@@ -52,7 +52,6 @@ plugins=(
     git
     pip
     pj
-    pyenv
     systemd
     zsh-autosuggestions
 )
