@@ -53,7 +53,6 @@ plugins=(
     pip
     pj
     systemd
-    zsh-autosuggestions
 )
 
 # Project Jump
@@ -73,15 +72,18 @@ if (( $+commands[npm] )); then
     plugins+=(npm)
 fi
 
-# Always load syntax highlighting plugin last
-plugins+=(fast-syntax-highlighting)
-
 source $ZSH/oh-my-zsh.sh
+
+source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Pure Prompt
 fpath=("$HOME/.dotfiles/zsh/functions" $fpath)
 autoload -U promptinit; promptinit
 prompt pure
+
+# Always load syntax highlighting last
+source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+
 
 # Direnv: https://direnv.net/
 if (( $+commands[direnv] )); then
