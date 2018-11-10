@@ -11,6 +11,10 @@
 	# Clone a repository including all submodules
 	c = clone --recursive
 
+    # Worktree
+   exclude = update-index --skip-worktree
+   include = update-index --no-skip-worktree
+
 	# Get the last commit
 	last = log -1 HEAD
 
