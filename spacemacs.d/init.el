@@ -34,8 +34,7 @@ values."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(ruby
-     (
+   '((
       auto-completion :variables
       auto-completion-complete-with-key-sequence "fd"
       auto-completion-complete-with-key-sequence-delay 0.2
@@ -43,7 +42,6 @@ values."
       auto-completion-enable-help-tooltip t
       auto-completion-private-snippets-directory nil
       spacemacs-default-company-backends '(company-files company-capf))
-     better-defaults
      (c-c++ :variables c-c++-enable-clang-support t
             c-c++-enable-clang-format-on-save t
             :packages (not cmake-ide))
