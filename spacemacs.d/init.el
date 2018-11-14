@@ -72,6 +72,7 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     (typography :variables typography-enable-typographic-editing t)
      yaml
      )
    ;; List of additional packages that will be installed without being
