@@ -519,8 +519,6 @@ you should place your code here."
   (global-set-key (kbd "M-p")   'move-text-up)
   (global-set-key (kbd "<C-tab>")   'next-buffer)
   (global-set-key (kbd "<C-iso-lefttab>")   'previous-buffer)
-  (global-set-key (kbd "C-s") 'helm-swoop)
-  (global-set-key (kbd "M-.") 'spacemacs/jump-to-definition)
   (global-set-key (kbd "M-RET") 'spacemacs/duplicate-line-or-region)
   )
 
