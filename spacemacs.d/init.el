@@ -503,6 +503,16 @@ you should place your code here."
   (evil-ex-define-cmd "kp" 'kill-paragraph)
   (evil-ex-define-cmd "mp" 'mark-paragraph)
 
+  ;; org
+  (add-hook 'org-mode-hook 'aggressive-indent-mode)
+  (spacemacs|add-company-backends
+    :backends (company-dabbrev)
+    :modes org-mode markdown-mode
+    :variables
+    company-minimum-prefix-length 3
+    company-dabbrev-other-buffers nil
+    )
+
   ;; anzu
   (global-set-key (kbd "C-r") 'anzu-query-replace-at-cursor)
   (global-set-key [remap query-replace] 'anzu-query-replace)
