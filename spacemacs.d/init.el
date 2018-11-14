@@ -56,6 +56,7 @@ values."
             :disabled-for emacs-lisp)
      helm
      (markdown :variables markdown-live-preview-engine 'vmd)
+     (neotree :variables neo-theme 'arrow)
      (python :variables
              python-test-runner 'pytest
              python-enable-yapf-format-on-save t
