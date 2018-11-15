@@ -41,8 +41,10 @@ values."
       auto-completion-enable-snippets-in-popup t
       auto-completion-enable-help-tooltip t
       auto-completion-private-snippets-directory nil
-      spacemacs-default-company-backends '(company-files company-capf))
-     (c-c++ :variables c-c++-enable-clang-support t
+      company-minimum-prefix-length 2
+      spacemacs-default-company-backends '(company-files company-capf company-dabbrev-code))
+     (c-c++ :variables
+            c-c++-enable-clang-support t
             c-c++-enable-clang-format-on-save t
             :packages (not cmake-ide))
      emacs-lisp
