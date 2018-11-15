@@ -11,6 +11,7 @@
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "emacs.d"]
+	branch = develop
 	path = emacs.d
 	url = https://github.com/syl20bnr/spacemacs
 [submodule "zsh/pure"]
