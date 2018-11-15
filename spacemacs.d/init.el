@@ -48,7 +48,7 @@ values."
             c-c++-enable-clang-format-on-save t
             :packages (not cmake-ide))
      emacs-lisp
-     git
+     (git :variables magit-repository-directories '(("~/Projects/" . 1)))
      (github :packages (not magithub))
      (gtags :variables
             helm-gtags-use-input-at-cursor t
@@ -477,7 +477,6 @@ you should place your code here."
    compilation-ask-about-save nil
    indent-tabs-mode nil
    tab-width  4
-   magit-repository-directories '(("~/Projects/" . 1))
    delete-by-moving-to-trash t
    )
 
