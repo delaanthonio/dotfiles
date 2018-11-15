@@ -69,7 +69,9 @@ values."
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-height 30
-            shell-default-position 'bottom)
+            shell-default-position 'bottom
+            shell-file-name "/usr/bin/zsh"
+            )
      spell-checking
      syntax-checking
      (typography :variables typography-enable-typographic-editing t)
@@ -471,11 +473,9 @@ you should place your code here."
   (setq-default
    c-basic-offset 4
    compilation-ask-about-save nil
-
    indent-tabs-mode nil
    tab-width  4
    magit-repository-directories '(("~/Projects/" . 1)))
-  (setq shell-file-name "/usr/bin/zsh")
 
   (setq neo-theme
         (if (display-graphic-p)
