@@ -477,7 +477,9 @@ you should place your code here."
    compilation-ask-about-save nil
    indent-tabs-mode nil
    tab-width  4
-   magit-repository-directories '(("~/Projects/" . 1)))
+   magit-repository-directories '(("~/Projects/" . 1))
+   delete-by-moving-to-trash t
+   )
 
   (setq neo-theme
         (if (display-graphic-p)
