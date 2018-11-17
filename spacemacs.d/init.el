@@ -516,7 +516,6 @@ you should place your code here."
                               ))
 
   ;; org
-  (add-hook 'org-mode-hook 'aggressive-indent-mode)
   (spacemacs|add-company-backends
     :backends (company-dabbrev)
     :modes org-mode markdown-mode
