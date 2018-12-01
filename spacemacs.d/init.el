@@ -485,6 +485,7 @@ you should place your code here."
    indent-tabs-mode nil
    tab-width  4
    delete-by-moving-to-trash t
+   inhibit-compacting-font-caches t
    )
 
   (setq neo-theme
