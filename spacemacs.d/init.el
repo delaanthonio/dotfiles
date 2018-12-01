@@ -501,6 +501,7 @@ you should place your code here."
 
   ;; company
   (add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'after-init-hook 'global-prettify-symbols-mode)
 
   ;; evil escape
   (setq-default
@@ -546,8 +547,6 @@ you should place your code here."
   (global-set-key (kbd "M-n") 'move-text-down)
   (global-set-key [M-up]   'move-text-up)
   (global-set-key (kbd "M-p")   'move-text-up)
-  (global-set-key (kbd "<C-tab>")   'next-buffer)
-  (global-set-key (kbd "<C-iso-lefttab>")   'previous-buffer)
   (global-set-key (kbd "M-RET") 'spacemacs/duplicate-line-or-region)
   )
 
