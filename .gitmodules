@@ -18,6 +18,3 @@
 [submodule "zsh/pure"]
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure.git
-[submodule "oh-my-tmux"]
-	path = tmux
-	url = git@github.com:gpakosz/.tmux.git
