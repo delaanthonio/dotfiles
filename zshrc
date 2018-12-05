@@ -72,6 +72,9 @@ if (( $+commands[npm] )); then
     plugins+=(npm)
 fi
 
+if (( $+commands[mvn] )); then
+    plugins+=(mvn)
+fi
 source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
