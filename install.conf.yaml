@@ -6,12 +6,10 @@
 - clean: ['~']
 
 - link:
-    ~/.dotfiles: ''
     ~/.emacs.d:
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.oh-my-zsh: zsh/oh-my-zsh
-    ~/.tmux.conf: tmux/.tmux.conf
     ~/.spacemacs.d:
     ~/.zshenv:
     ~/.zshrc:
