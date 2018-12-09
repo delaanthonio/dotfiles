@@ -533,13 +533,6 @@ you should place your code here."
     company-dabbrev-other-buffers nil
     )
 
-  ;; anzu
-  (global-set-key (kbd "C-r") 'anzu-query-replace-at-cursor)
-  (global-set-key [remap query-replace] 'anzu-query-replace)
-  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
-  (define-key isearch-mode-map [remap isearch-query-replace]  #'anzu-isearch-query-replace)
-  (define-key isearch-mode-map [remap isearch-query-replace-regexp] #'anzu-isearch-query-replace-regexp)
-
   ;; key bindings
   (global-set-key [f5] 'spacemacs/safe-revert-buffer)
   (global-set-key [f6] 'recompile)
