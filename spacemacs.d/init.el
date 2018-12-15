@@ -500,6 +500,7 @@ you should place your code here."
    c-basic-offset 4
    compilation-ask-about-save nil
 
+   ;; evil-escape
    evil-escape-delay 0.1
    evil-escape-key-sequence "fd"
    evil-escape-unordered-key-sequence t
@@ -508,6 +509,12 @@ you should place your code here."
    tab-width  4
    delete-by-moving-to-trash t
    inhibit-compacting-font-caches t
+
+   ;; scroll
+   scroll-margin 2
+   scroll-step 1
+   scroll-conservatively 10
+   scroll-preserve-screen-position 1
    )
 
   (define-coding-system-alias 'UTF-8 'utf-8)
