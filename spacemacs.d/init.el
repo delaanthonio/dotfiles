@@ -77,7 +77,7 @@ values."
      semantic
      (shell-scripts :packages (not fish-mode))
      (shell :variables
-            shell-default-shell 'ansi-term
+            shell-default-shell 'eshell
             shell-default-height 30
             shell-default-position 'bottom
             shell-file-name "/usr/bin/zsh"
