@@ -58,7 +58,10 @@ values."
             :disabled-for emacs-lisp)
      helm
      (markdown :variables markdown-live-preview-engine 'vmd)
-     (neotree :variables neo-theme 'arrow)
+     (neotree :variables
+              neo-theme (if (display-graphic-p)
+                            'icons 'arrow)
+              )
      (python :variables
              python-test-runner 'pytest
              python-enable-yapf-format-on-save t
@@ -495,10 +498,6 @@ you should place your code here."
    delete-by-moving-to-trash t
    inhibit-compacting-font-caches t
    )
-
-  (setq neo-theme
-        (if (display-graphic-p)
-            'icons 'arrow))
 
   (add-to-list 'auto-mode-alist '("\\.log\\'" . compilation-mode) t)
   (add-to-list 'auto-mode-alist '("\\defconfig\\'" . conf-unix-mode) t)
