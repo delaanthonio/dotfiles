@@ -499,6 +499,11 @@ you should place your code here."
   (setq-default
    c-basic-offset 4
    compilation-ask-about-save nil
+
+   evil-escape-delay 0.1
+   evil-escape-key-sequence "fd"
+   evil-escape-unordered-key-sequence t
+
    indent-tabs-mode nil
    tab-width  4
    delete-by-moving-to-trash t
@@ -515,12 +520,6 @@ you should place your code here."
   ;; company
   (add-hook 'after-init-hook 'global-company-mode)
   (add-hook 'after-init-hook 'global-prettify-symbols-mode)
-
-  ;; evil escape
-  (setq-default
-   evil-escape-delay 0.1
-   evil-escape-key-sequence "fd"
-   evil-escape-unordered-key-sequence t)
 
   ;; evil
   (evil-ex-define-cmd "cl" 'spacemacs/comment-or-uncomment-lines)
