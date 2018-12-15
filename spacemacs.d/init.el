@@ -510,6 +510,8 @@ you should place your code here."
    inhibit-compacting-font-caches t
    )
 
+  (define-coding-system-alias 'UTF-8 'utf-8)
+
   (add-to-list 'auto-mode-alist '("\\.log\\'" . compilation-mode) t)
   (add-to-list 'auto-mode-alist '("\\defconfig\\'" . conf-unix-mode) t)
   (add-to-list 'auto-mode-alist '("\\.rc\\'" . conf-unix-mode) t)
