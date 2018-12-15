@@ -68,7 +68,12 @@ values."
              python-sort-imports-on-save t
              python-fill-column 79
              python-indent-offset 4)
-     org
+     (org :variables
+          org-bullets-bullet-list '("■" "◆" "▲" "▶" )
+          org-brain-path "~/Documents/org/brain"
+          org-id-track-globally t
+          org-id-locations-file "~/.emacs.d/.org-id-locations"
+          org-brain-title-max-length 12)
      semantic
      (shell-scripts :packages (not fish-mode))
      (shell :variables
