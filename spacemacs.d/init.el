@@ -499,6 +499,7 @@ you should place your code here."
   (setq-default
    c-basic-offset 4
    compilation-ask-about-save nil
+   default-buffer-file-coding-system 'utf-8-unix
 
    ;; evil-escape
    evil-escape-delay 0.1
