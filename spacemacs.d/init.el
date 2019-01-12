@@ -64,8 +64,7 @@ This function should only modify configuration layer settings."
              python-test-runner 'pytest
              python-enable-yapf-format-on-save t
              python-sort-imports-on-save t
-             python-fill-column 79
-             python-indent-offset 4)
+             )
      (org :variables
           org-bullets-bullet-list '("■" "◆" "▲" "▶" )
           org-brain-path "~/Documents/org/brain"
