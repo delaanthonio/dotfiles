@@ -550,13 +550,6 @@ you should place your code here."
   (evil-ex-define-cmd "kp" 'kill-paragraph)
   (evil-ex-define-cmd "mp" 'mark-paragraph)
 
-  ;; text
-  (add-hook 'text-mode-hook (lambda ()
-                              (auto-fill-mode)
-                              (set-fill-column 80)
-                              (spacemacs/toggle-line-numbers-off)
-                              ))
-
   ;; org
   (spacemacs|add-company-backends
     :backends (company-dabbrev)
