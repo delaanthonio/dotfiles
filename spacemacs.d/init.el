@@ -527,9 +527,12 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . yaml-mode) t)
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
-  ;; company
-  (add-hook 'after-init-hook 'global-company-mode)
-  (add-hook 'after-init-hook 'global-prettify-symbols-mode)
+  ;; Global modes
+  (global-auto-revert-mode 1)
+  (global-auto-highlight-symbol-mode 1)
+  (global-prettify-symbols-mode 1)
+  (global-visual-fill-column-mode 1)
+  (global-visual-line-mode 1)
 
   ;; evil
   (evil-ex-define-cmd "cl" 'spacemacs/comment-or-uncomment-lines)
