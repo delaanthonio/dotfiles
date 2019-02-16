@@ -68,6 +68,10 @@ if (( $+commands[bundle] )); then
     plugins+=(bundler)
 fi
 
+if (( $+commands[direnv] )); then
+    eval "$(direnv hook zsh)"
+fi
+
 if (( $+commands[npm] )); then
     plugins+=(npm)
 fi
