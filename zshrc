@@ -104,6 +104,7 @@ alias ..3='cd ../../../'
 alias ..4='cd ../../../../'
 alias ..5='cd ../../../../../'
 
+alias e="$EDITOR"
 alias et='emacsclient -t'
 alias ec='emacsclient -c'
 
