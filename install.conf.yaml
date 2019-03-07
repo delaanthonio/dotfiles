@@ -14,7 +14,4 @@
     ~/.zshenv:
     ~/.zshrc:
 
-    zsh/functions/prompt_pure_setup : zsh/pure/pure.zsh
-    zsh/functions/async : zsh/pure/async.zsh
-
 - shell: []

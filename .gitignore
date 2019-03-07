@@ -1,6 +1,4 @@
 custom.el
-async
-prompt_pure_setup
 
 # Local Environment Variables
 *.env
