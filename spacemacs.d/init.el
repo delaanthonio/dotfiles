@@ -475,16 +475,11 @@ See the header of this file for more information."
   (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
-  "initialization function for user code.
-it is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- this function is mostly useful for variables that need to be set
-before packages are loaded. if you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
-
-  ;; https://github.com/syl20bnr/spacemacs/issues/2705
-  (setq tramp-ssh-controlmaster-options
-        "-o controlmaster=auto -o controlpath='tramp.%%c' -o controlpersist=no")
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 (defun dotspacemacs/user-load ()
