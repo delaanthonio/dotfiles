@@ -40,6 +40,7 @@
 	gpgsign = false
 
 [core]
+	autocrlf = input
 	excludesfile = ~/.gitignore_global
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
