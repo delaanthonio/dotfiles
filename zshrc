@@ -112,7 +112,10 @@ alias hib='systemctl hibernate'
 alias sus='systemctl suspend'
 alias reb='systemctl reboot'
 
-# Get environment vars in ~/.zshenv
-if [ -f ~/.zshenv ]; then
-    source ~/.zshenv
+if [ -f "~/.zshrc_local" ]; then
+    source "~/.zshrc_local"
+fi
+
+if [ -f "~/.zshenv" ]; then
+    source "~/.zshenv"
 fi
