@@ -112,6 +112,11 @@ alias hib='systemctl hibernate'
 alias sus='systemctl suspend'
 alias reb='systemctl reboot'
 
+if (( $+commands[youtube-dl] )); then
+    alias dla='youtube-dl-mp3'
+    alias dlv='youtube-dl'
+fi
+
 if [ -f "~/.zshrc_local" ]; then
     source "~/.zshrc_local"
 fi
