@@ -113,7 +113,7 @@ alias sus='systemctl suspend'
 alias reb='systemctl reboot'
 
 if (( $+commands[youtube-dl] )); then
-    alias dla='youtube-dl-mp3'
+    alias dla='youtube-dl --extract-audio --audio-format mp3'
     alias dlv='youtube-dl'
 fi
 
