@@ -33,56 +33,33 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '((
-      auto-completion :variables
-      auto-completion-enable-snippets-in-popup t
-      auto-completion-enable-help-tooltip t
-      auto-completion-idle-delay 0.2
-      auto-completion-tab-key-behavior 'complete
-      company-minimum-prefix-length 2
-      spacemacs-default-company-backends '(company-files company-capf))
-     (c-c++ :variables
-            c-c++-enable-clang-support t
-            c-c++-enable-clang-format-on-save t
-            :packages (not cmake-ide))
+   '((auto-completion :variables auto-completion-idle-delay 0.5)
+     csv
      emacs-lisp
-     (git :variables magit-repository-directories '(("~/Projects/" . 1)))
-     (github :packages (not magithub))
-     (gtags :variables
-            helm-gtags-use-input-at-cursor t
-            helm-gtags-display-style 'detail
-            helm-gtags-auto-update nil
-            helm-gtags-maximum-candidates 10
-            :disabled-for emacs-lisp)
-     helm
-     (markdown :variables markdown-live-preview-engine 'vmd)
-     (neotree :variables
-              neo-theme (if (display-graphic-p)
-                            'icons 'arrow)
-              )
-     (python :variables
-             python-test-runner 'pytest
-             python-enable-yapf-format-on-save t
-             python-sort-imports-on-save t
-             )
+     emoji
+     epub
+     (git :variables magit-repository-directories '(("/ext/b2/" . 1)))
+     helpful
+     (major-modes :packages pkgbuild-mode)
+     pdf
      (org :variables
-          org-bullets-bullet-list '("■" "◆" "▲" "▶" )
-          org-brain-path "~/Documents/org/brain"
+          org-brain-path "/home/dela/Dropbox/Domains/Brain"
           org-id-track-globally t
           org-id-locations-file "~/.emacs.d/.org-id-locations"
-          org-brain-title-max-length 12)
+          org-brain-title-max-length 16
+          )
+     pandoc
+     plantuml
      semantic
      (shell-scripts :packages (not fish-mode))
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
             shell-default-position 'bottom
-            shell-file-name "/usr/bin/zsh"
-            )
+            shell-file"/usr/bin/zsh")
      spell-checking
+     systemd
      syntax-checking
-     (typography :variables typography-enable-typographic-editing t)
-     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -91,13 +68,15 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(visual-fill-column)
-
+   dotspacemacs-additional-packages '(visual-fill-column
+                                      org-gcal
+                                      yasnippet-snippets
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -496,7 +475,6 @@ This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
   )
-
 (defun dotspacemacs/user-config ()
   "configuration function for user code.
 this function is called at the very end of spacemacs initialization after
@@ -504,6 +482,8 @@ layers configuration.
 this is the place where most of your configurations should be done. unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  (define-coding-system-alias 'UTF-8 'utf-8)
 
   (setq-default
    c-basic-offset 4
@@ -514,54 +494,172 @@ you should place your code here."
    evil-escape-delay 0.1
    evil-escape-key-sequence "fd"
    evil-escape-unordered-key-sequence t
-
    indent-tabs-mode nil
+
    tab-width  4
    delete-by-moving-to-trash t
    inhibit-compacting-font-caches t
 
    ;; scroll
-   scroll-margin 2
+   scroll-margin 4
    scroll-step 1
    scroll-conservatively 10
-   scroll-preserve-screen-position 1
+   scroll-preserve-screen-position t
+
+   ;; misc
+   avy-all-windows 'all-frames
+   org-agenda-files '("~/Dropbox/Org")
+   projectile-project-search-path '("~/Dropbox/1_Projects")
+   epa-file-cache-passphrase-for-symmetric-encryption t
+   ;; git-magit-status-fullscreen t
+   recentf-auto-cleanup 120
+   shell-command-switch "-ic"
    )
 
-  (define-coding-system-alias 'UTF-8 'utf-8)
-
-  (add-to-list 'auto-mode-alist '("\\.log\\'" . compilation-mode) t)
-  (add-to-list 'auto-mode-alist '("\\defconfig\\'" . conf-unix-mode) t)
-  (add-to-list 'auto-mode-alist '("\\.rc\\'" . conf-unix-mode) t)
-  (add-to-list 'auto-mode-alist '("\\.cmd\\'" . makefile-mode) t)
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . yaml-mode) t)
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
-  ;; Global modes
-  (global-auto-revert-mode 1)
-  (global-auto-highlight-symbol-mode 1)
-  (global-prettify-symbols-mode 1)
-  (global-visual-fill-column-mode 1)
-  (global-visual-line-mode 1)
+  (use-package visual-fill-column
+    :defer nil
+    :config
+    (progn
+      (add-hook 'text-mode-hook 'visual-fill-column-mode)
+      (setq-default visual-fill-column-width 120)
+      ))
+
+  (auto-save-visited-mode t)
+  (global-auto-revert-mode t)
+  (spacemacs/toggle-mode-line-org-clock-on)
+  (spacemacs/toggle-display-time-on)
+
+  ;; prettify
+  (defun init-prog-mode-alists ()
+    "Add pretty symbols to prog mode"
+    (add-to-list 'prettify-symbols-alist '("<=" . ?≤))
+    (add-to-list 'prettify-symbols-alist '(">=" . ?≥))
+    (add-to-list 'prettify-symbols-alist '("<-" . ?←))
+    (add-to-list 'prettify-symbols-alist '("->" . ?→))
+    (add-to-list 'prettify-symbols-alist '("<=" . ?⇐))
+    (add-to-list 'prettify-symbols-alist '("=>" . ?⇒))
+    (add-to-list 'prettify-symbols-alist '("!=" . ?≠))
+    (add-to-list 'prettify-symbols-alist '("::" . ?∷))
+    (add-to-list 'prettify-symbols-alist '("..." . ?…))
+    )
+
+  (add-hook 'prog-mode-hook 'init-prog-mode-alists)
 
   ;; evil
-  (evil-ex-define-cmd "cl" 'spacemacs/comment-or-uncomment-lines)
   (evil-ex-define-cmd "dp" 'delete-pair)
   (evil-ex-define-cmd "ks" 'kill-sexp)
   (evil-ex-define-cmd "khs" 'sp-kill-hybrid-sexp)
   (evil-ex-define-cmd "kp" 'kill-paragraph)
   (evil-ex-define-cmd "mp" 'mark-paragraph)
 
+  (add-hook 'smartparens-mode-hook (lambda ()
+                                     (define-key evil-normal-state-map
+                                       (kbd "<remap> <evil-delete-line>")
+                                       'sp-kill-hybrid-sexp)))
+  (define-key evil-normal-state-map (kbd "&") 'evil-ex-repeat)
+
+  (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+  (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+  (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+
+  (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
+
+  ;; git
+  (defun gitignore (&rest modes)
+    (interactive "IDEs, languages, Operating Systems: ")
+    (shell-command (concat "curl -L -s https://www.gitignore.io/api/" (string-join modes ",") " --output .gitignore")))
+
+  ;; text
+  (add-hook 'text-mode-hook (lambda ()
+                              (when
+                                  (executable-find "hunspell")
+                                (progn
+                                  (setq-local ispell-program-name "/usr/bin/hunspell")
+                                  (setq-local ispell-local-dictionary "en_US")
+                                  ))))
+  (add-hook 'text-mode-hook 'visual-fill-column-mode)
+  (add-hook 'text-mode-hook 'variable-pitch-mode)
+
   ;; org
-  (spacemacs|add-company-backends
-    :backends (company-dabbrev)
-    :modes org-mode markdown-mode
-    :variables
-    company-minimum-prefix-length 3
-    company-dabbrev-other-buffers nil
+  (setq org-directory "~/Dropbox/Org"
+        org-pomodoro-play-sounds nil
+        org-pomodoro-start-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_begin.wav")
+        org-pomodoro-short-break-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_end.wav")
+        )
+
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (setq org-hide-emphasis-markers t)
+
+  (setq org-download-method 'directory
+        org-download-image-dir (concat org-directory "pictures"))
+
+  (with-eval-after-load "org-brain"
+    (define-key org-brain-visualize-mode-map (kbd dotspacemacs-leader-key)  #'spacemacs-cmds)
+    (add-hook 'org-brain-visualize-mode-hook (lambda ()
+                                               (setq visual-fill-column-width 120)))
     )
 
+  (defun transform-square-brackets-to-round-ones(string-to-transform)
+    "Transforms [ into ( and ] into ), other chars left unchanged."
+    (concat
+     (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
+
+  (use-package org-gcal
+    :config
+    (setq
+     org-gcal-file-alist '(("dell.anthonio@gmail.com" . "~/Dropbox/Org/gcal.org"))
+     org-gcal-up-days 15
+     org-gcal-down-days 45)
+    (spacemacs/set-leader-keys "aog" 'org-gcal-sync))
+
+  (setq org-agenda-files '("~/Dropbox/Org"))
+  (add-hook 'org-agenda-mode-hook (lambda () (setq-local visual-fill-column-width 135)))
+  (add-hook 'org-agenda-mode-hook (lambda () (spacemacs/toggle-centered-buffer)))
+  (add-hook 'org-agenda-mode-hook (lambda () (emojify-mode)))
+  (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
+  (setq org-refile-targets '(("~/Dropbox/Org/projects.org" . (:maxlevel . 2))
+                             ("~/Dropbox/Org/areas.org" . (:maxlevel . 2))
+                             ("~/Dropbox/Org/resources.org" . (:maxlevel . 2))
+                             ("~/Dropbox/Org/archives.org" . (:maxlevel . 2))))
+
+  (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
+  (setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
+  (require 'org-protocol)
+  (setq org-todo-keywords
+        '((sequence "TODO" "NEXT" "|" "DONE")))
+  (setq org-capture-templates
+        '(
+          ("n" "Note" entry (file "inbox.org")
+           "* %?")
+          ("i" "Idea" plain (file+headline "inbox.org" "Ideas")
+           "%?")
+          ("t" "Todo" entry (file "inbox.org")
+           "* TODO %?\n  %i\n")
+          ("j" "Journal" entry (file+datetree "areas.org")
+           "* %?\nEntered on %U\n")
+          ("d" "Daily Review" entry (file+olp+datetree "areas.org" "2020")
+           "* %?\nEntered on %U\n")
+          ("p" "Protocol" entry (file "inbox.org"
+                                      ;;"[[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n)"
+                                      )
+           "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n%i\n")
+          ("L" "Protocol Link" entry (file"inbox.org")
+           "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+          ))
+
   ;; key bindings
-  (global-set-key [f5] 'spacemacs/safe-revert-buffer)
+  (spacemacs/set-leader-keys "ob" 'org-brain-visualize)
+  (spacemacs/set-leader-keys "oc" 'count-words)
+  (spacemacs/set-leader-keys "od" 'spacemacs/toggle-distraction-free)
+  (spacemacs/set-leader-keys "os" 'eshell)
+
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+
   (global-set-key [f6] 'recompile)
   (global-set-key [M-down] 'move-text-down)
   (global-set-key (kbd "M-n") 'move-text-down)
