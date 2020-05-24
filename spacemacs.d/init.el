@@ -491,7 +491,6 @@ you should place your code here."
    default-buffer-file-coding-system 'utf-8-unix
 
    ;; evil-escape
-   evil-escape-delay 0.1
    evil-escape-key-sequence "fd"
    evil-escape-unordered-key-sequence t
    indent-tabs-mode nil
