@@ -41,12 +41,7 @@ This function should only modify configuration layer settings."
      helpful
      (major-modes :packages pkgbuild-mode)
      pdf
-     (org :variables
-          org-brain-path "/home/dela/Dropbox/Domains/Brain"
-          org-id-track-globally t
-          org-id-locations-file "~/.emacs.d/.org-id-locations"
-          org-brain-title-max-length 16
-          )
+     (org :packages (not org-brain))
      pandoc
      plantuml
      semantic
@@ -599,7 +594,8 @@ before packages are loaded."
         org-pomodoro-play-sounds nil
         org-pomodoro-start-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_begin.wav")
         org-pomodoro-short-break-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_end.wav")
-        )
+        org-id-track-globally t
+        org-id-locations-file "~/.emacs.d/.org-id-locations")
 
   (defun org-refile-to-level-1 (&optional arg default-buffer rfloc msg)
     "Move entry to file top level in a file"
@@ -616,12 +612,6 @@ before packages are loaded."
 
   (setq org-download-method 'directory
         org-download-image-dir (concat org-directory "pictures"))
-
-  (with-eval-after-load "org-brain"
-    (define-key org-brain-visualize-mode-map (kbd dotspacemacs-leader-key)  #'spacemacs-cmds)
-    (add-hook 'org-brain-visualize-mode-hook (lambda ()
-                                               (setq visual-fill-column-width 120)))
-    )
 
   (use-package org-gcal
     :config
@@ -696,7 +686,6 @@ before packages are loaded."
                   ))))
 
   ;; key bindings
-  (spacemacs/set-leader-keys "ob" 'org-brain-visualize)
   (spacemacs/set-leader-keys "oc" 'count-words)
   (spacemacs/set-leader-keys "od" 'spacemacs/toggle-distraction-free)
   (spacemacs/set-leader-keys "os" 'eshell)
