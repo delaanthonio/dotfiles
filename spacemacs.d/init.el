@@ -639,9 +639,7 @@ you should place your code here."
            "* %?\nEntered on %U\n")
           ("d" "Daily Review" entry (file+olp+datetree "areas.org" "2020")
            "* %?\nEntered on %U\n")
-          ("p" "Protocol" entry (file "inbox.org"
-                                      ;;"[[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n)"
-                                      )
+          ("p" "Protocol" entry (file "inbox.org")
            "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n%i\n")
           ("L" "Protocol Link" entry (file"inbox.org")
            "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
