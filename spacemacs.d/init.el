@@ -628,7 +628,7 @@ before packages are loaded."
   (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
   (setq org-refile-targets '(("~/Dropbox/Org/projects.org" . (:maxlevel . 2))
                              ("~/Dropbox/Org/areas.org" . (:maxlevel . 2))
-                             ("~/Dropbox/Org/resources.org" . (:maxlevel . 2))
+                             ("~/Dropbox/Org/resources.org" . (:maxlevel . 3))
                              ("~/Dropbox/Org/archives.org" . (:maxlevel . 2))))
 
   (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
@@ -642,11 +642,13 @@ before packages are loaded."
     (defun transform-square-brackets-to-round-ones(string-to-transform)
       "Transforms [ into ( and ] into ), other chars left unchanged."
       (concat
-       (mapcar (lambda (c) (if (equal c ?\[) ?\( (if (equal c ?\]) ?\) c))) string-to-transform)))
+       (mapcar (lambda (c) (if (equal c ?\[) ?\(
+                             (if (equal c ?\]) ?\)
+                               c))) string-to-transform)))
     (setq org-capture-templates
           (doct '(("Journal"
                    :keys "j"
-                   :file  "~/Dropbox/Org/areas.org"
+                   :file  "~/Dropbox/Org/resources.org"
                    :template ("* %^{Description}"
                               ":PROPERTIES:"
                               ":Created: %U"
