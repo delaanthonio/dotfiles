@@ -520,12 +520,10 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
   (use-package visual-fill-column
-    :defer nil
+    :hook (text-mode . visual-fill-column-mode)
     :config
-    (progn
-      (add-hook 'text-mode-hook 'visual-fill-column-mode)
-      (setq-default visual-fill-column-width 120)
-      ))
+    (setq-default visual-fill-column-width 120)
+    )
 
   (auto-save-visited-mode t)
   (global-auto-revert-mode t)
