@@ -527,11 +527,7 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.clang-format\\'" . yaml-mode) t)
   (add-to-list 'auto-mode-alist '("\\.env\\'" . sh-mode) t)
 
-  (use-package visual-fill-column
-    :hook (text-mode . visual-fill-column-mode)
-    :config
-    (setq-default visual-fill-column-width 120)
-    )
+
 
   (auto-save-visited-mode t)
   (global-auto-revert-mode t)
@@ -580,6 +576,11 @@ before packages are loaded."
     (shell-command (concat "curl -L -s https://www.gitignore.io/api/" (string-join modes ",") " --output .gitignore")))
 
   ;; text
+  (use-package visual-fill-column
+    :hook ((text-mode . visual-fill-column-mode)
+           (text-mode . visual-line-mode))
+    :config (setq-default visual-fill-column-width 120))
+
   (add-hook 'text-mode-hook (lambda ()
                               (when
                                   (executable-find "hunspell")
@@ -587,7 +588,6 @@ before packages are loaded."
                                   (setq-local ispell-program-name "/usr/bin/hunspell")
                                   (setq-local ispell-local-dictionary "en_US")
                                   ))))
-  (add-hook 'text-mode-hook 'visual-fill-column-mode)
 
   ;; org
   (setq org-directory "~/Dropbox/Org"
