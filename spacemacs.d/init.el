@@ -67,10 +67,10 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(visual-fill-column
+   dotspacemacs-additional-packages '(doct
                                       org-gcal
-                                      yasnippet-snippets
-                                      )
+                                      visual-fill-column
+                                      yasnippet-snippets)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
@@ -623,11 +623,6 @@ before packages are loaded."
                                                (setq visual-fill-column-width 120)))
     )
 
-  (defun transform-square-brackets-to-round-ones(string-to-transform)
-    "Transforms [ into ( and ] into ), other chars left unchanged."
-    (concat
-     (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
-
   (use-package org-gcal
     :config
     (setq
@@ -651,23 +646,54 @@ before packages are loaded."
   (require 'org-protocol)
   (setq org-todo-keywords
         '((sequence "TODO" "NEXT" "|" "DONE")))
-  (setq org-capture-templates
-        '(
-          ("n" "Note" entry (file "inbox.org")
-           "* %?")
-          ("i" "Idea" plain (file+headline "inbox.org" "Ideas")
-           "%?")
-          ("t" "Todo" entry (file "inbox.org")
-           "* TODO %?\n  %i\n")
-          ("j" "Journal" entry (file+datetree "areas.org")
-           "* %?\nEntered on %U\n")
-          ("d" "Daily Review" entry (file+olp+datetree "areas.org" "2020")
-           "* %?\nEntered on %U\n")
-          ("p" "Protocol" entry (file "inbox.org")
-           "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n%i\n")
-          ("L" "Protocol Link" entry (file"inbox.org")
-           "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
-          ))
+  (use-package doct
+    :ensure t
+    :config
+    (defun transform-square-brackets-to-round-ones(string-to-transform)
+      "Transforms [ into ( and ] into ), other chars left unchanged."
+      (concat
+       (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
+    (setq org-capture-templates
+          (doct '(("Journal"
+                   :keys "j"
+                   :file  "~/Dropbox/Org/areas.org"
+                   :template ("* %^{Description}"
+                              ":PROPERTIES:"
+                              ":Created: %U"
+                              ":END:"
+                              "%?")
+                   :datetree t)
+                  ("Protocol"
+                   :keys "p"
+                   :file "~/Dropbox/Org/inbox.org"
+                   :template ("* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]"
+                              ":PROPERTIES:"
+                              ":Created: %U"
+                              ":END:"
+                              "%i"
+                              "%?"))
+                  ("Protocol Link"
+                   :keys "L"
+                   :file "~/Dropbox/Org/inbox.org"
+                   :template ("* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]"
+                              ":PROPERTIES:"
+                              ":Created: %U"
+                              ":END:"
+                              "%?"))
+                  ("Todo"
+                   :keys "t"
+                   :file "~/Dropbox/Org/inbox.org"
+                   :template ("* %{todo-state} %^{Description}"
+                              ":PROPERTIES:"
+                              ":Created: %U"
+                              ":END:"
+                              "%?")
+                   :children (("Todo"  :keys "t"
+                               :todo-state "TODO"
+                               :hook (lambda () (message "\"First Child\" selected.")))
+                              ("Next" :keys "n"
+                               :todo-state "NEXT")))
+                  ))))
 
   ;; key bindings
   (spacemacs/set-leader-keys "ob" 'org-brain-visualize)
