@@ -582,12 +582,8 @@ before packages are loaded."
     :config (setq-default visual-fill-column-width 120))
 
   (add-hook 'text-mode-hook (lambda ()
-                              (when
-                                  (executable-find "hunspell")
-                                (progn
-                                  (setq-local ispell-program-name "/usr/bin/hunspell")
-                                  (setq-local ispell-local-dictionary "en_US")
-                                  ))))
+                              (when (executable-find "hunspell")
+                                (setq-local ispell-program-name "/usr/bin/hunspell"))))
 
   ;; org
   (setq org-directory "~/Dropbox/Org"
