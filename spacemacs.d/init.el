@@ -617,11 +617,11 @@ before packages are loaded."
      org-gcal-down-days 45)
     (spacemacs/set-leader-keys "aog" 'org-gcal-sync))
 
-  (setq org-agenda-files '("~/Dropbox/Org"))
-  (add-hook 'org-agenda-mode-hook (lambda () (setq-local visual-fill-column-width 135)))
-  (add-hook 'org-agenda-mode-hook (lambda () (spacemacs/toggle-centered-buffer)))
-  (add-hook 'org-agenda-mode-hook (lambda () (emojify-mode)))
-  (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
+  (with-eval-after-load 'org-agenda
+    (setq org-agenda-files '("~/Dropbox/Org"))
+    (add-hook 'org-agenda-mode-hook (lambda () (emojify-mode)
+                                      (spacemacs/toggle-centered-buffer))))
+
   (setq org-refile-targets '(("~/Dropbox/Org/projects.org" . (:maxlevel . 2))
                              ("~/Dropbox/Org/areas.org" . (:maxlevel . 2))
                              ("~/Dropbox/Org/resources.org" . (:maxlevel . 3))
