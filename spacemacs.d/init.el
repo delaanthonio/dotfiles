@@ -582,7 +582,6 @@ you should place your code here."
                                   (setq-local ispell-local-dictionary "en_US")
                                   ))))
   (add-hook 'text-mode-hook 'visual-fill-column-mode)
-  (add-hook 'text-mode-hook 'variable-pitch-mode)
 
   ;; org
   (setq org-directory "~/Dropbox/Org"
