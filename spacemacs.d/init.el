@@ -503,7 +503,6 @@ you should place your code here."
    scroll-margin 4
    scroll-step 1
    scroll-conservatively 10
-   scroll-preserve-screen-position t
 
    ;; misc
    avy-all-windows 'all-frames
