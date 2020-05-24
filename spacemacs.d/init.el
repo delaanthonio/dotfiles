@@ -586,6 +586,16 @@ you should place your code here."
         org-pomodoro-short-break-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_end.wav")
         )
 
+  (defun org-refile-to-level-1 (&optional arg default-buffer rfloc msg)
+    "Move entry to file top level in a file"
+    (interactive "P")
+    (let ((org-refile-use-outline-path 'file))
+      (org-refile arg default-buffer rfloc msg)
+      )
+    )
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "sR" 'org-refile-to-level-1)
+
   (add-hook 'org-mode-hook 'org-indent-mode)
   (setq org-hide-emphasis-markers t)
 
