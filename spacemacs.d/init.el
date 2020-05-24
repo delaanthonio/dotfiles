@@ -639,12 +639,11 @@ before packages are loaded."
   (use-package doct
     :ensure t
     :config
-    (defun transform-square-brackets-to-round-ones(string-to-transform)
+    (defun transform-brackets-to-parentheses(string)
       "Transforms [ into ( and ] into ), other chars left unchanged."
-      (concat
-       (mapcar (lambda (c) (if (equal c ?\[) ?\(
-                             (if (equal c ?\]) ?\)
-                               c))) string-to-transform)))
+      (concat (mapcar (lambda (c) (cond ((equal c ?\[) ?\()
+                                        ((equal c ?\]) ?\))
+                                        (t c))) string)))
     (setq org-capture-templates
           (doct '(("Journal"
                    :keys "j"
@@ -658,7 +657,7 @@ before packages are loaded."
                   ("Protocol"
                    :keys "p"
                    :file "~/Dropbox/Org/inbox.org"
-                   :template ("* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]"
+                   :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
                               ":PROPERTIES:"
                               ":Created: %U"
                               ":END:"
@@ -667,7 +666,7 @@ before packages are loaded."
                   ("Protocol Link"
                    :keys "L"
                    :file "~/Dropbox/Org/inbox.org"
-                   :template ("* [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]"
+                   :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
                               ":PROPERTIES:"
                               ":Created: %U"
                               ":END:"
