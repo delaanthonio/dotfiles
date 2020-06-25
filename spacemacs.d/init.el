@@ -622,8 +622,7 @@ before packages are loaded."
 
   (with-eval-after-load 'org-agenda
     (setq org-agenda-files '("~/Dropbox/Org"))
-    (add-hook 'org-agenda-mode-hook (lambda () (emojify-mode)
-                                      (spacemacs/toggle-centered-buffer))))
+    (add-hook 'org-agenda-mode-hook #'emojify-mode))
 
   (setq org-refile-targets '(("~/Dropbox/Org/para.org" . (:maxlevel . 2))
                              ("~/Dropbox/Org/archives.org" . (:maxlevel . 2))))
