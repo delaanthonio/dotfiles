@@ -545,10 +545,9 @@ before packages are loaded."
     (add-to-list 'prettify-symbols-alist '("=>" . ?⇒))
     (add-to-list 'prettify-symbols-alist '("!=" . ?≠))
     (add-to-list 'prettify-symbols-alist '("::" . ?∷))
-    (add-to-list 'prettify-symbols-alist '("..." . ?…))
-    )
+    (add-to-list 'prettify-symbols-alist '("..." . ?…)))
 
-  (add-hook 'prog-mode-hook 'init-prog-mode-alists)
+  (add-hook 'prog-mode-hook #'init-prog-mode-alists)
 
   ;; evil
   (evil-ex-define-cmd "dp" 'delete-pair)
@@ -568,7 +567,7 @@ before packages are loaded."
   (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
   (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-  (add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 
   ;; git
   (defun gitignore (&rest modes)
@@ -606,7 +605,7 @@ before packages are loaded."
 
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "sR" 'org-refile-to-level-1)
 
-  (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook #'org-indent-mode)
   (setq org-hide-emphasis-markers t)
 
   (setq org-download-method 'directory
