@@ -612,10 +612,10 @@ before packages are loaded."
   (use-package org-gcal
     :config
     (setq
-     org-gcal-file-alist '(("dell.anthonio@gmail.com" . "~/Dropbox/Org/gcal.org"))
+     org-gcal-fetch-file-alist '(("dell.anthonio@gmail.com" . "~/Dropbox/Org/gcal.org"))
      org-gcal-up-days 15
      org-gcal-down-days 45)
-    (spacemacs/set-leader-keys "aog" 'org-gcal-sync))
+    (spacemacs/set-leader-keys "aog" 'org-gcal-fetch))
 
   (with-eval-after-load 'org-agenda
     (setq org-agenda-files '("~/Dropbox/Org"))
