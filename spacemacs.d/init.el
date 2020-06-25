@@ -575,11 +575,14 @@ before packages are loaded."
     (interactive "IDEs, languages, Operating Systems: ")
     (shell-command (concat "curl -L -s https://www.gitignore.io/api/" (string-join modes ",") " --output .gitignore")))
 
+  ;; dired
+  (setq dired-listing-switches "-alh")
+
   ;; text
   (use-package visual-fill-column
     :hook ((text-mode . visual-fill-column-mode)
            (text-mode . visual-line-mode))
-    :config (setq-default visual-fill-column-width 120))
+    :config (setq-default visual-fill-column-width 160))
 
   (add-hook 'text-mode-hook (lambda ()
                               (when (executable-find "hunspell")
