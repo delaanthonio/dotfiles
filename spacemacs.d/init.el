@@ -622,9 +622,7 @@ before packages are loaded."
     (add-hook 'org-agenda-mode-hook (lambda () (emojify-mode)
                                       (spacemacs/toggle-centered-buffer))))
 
-  (setq org-refile-targets '(("~/Dropbox/Org/projects.org" . (:maxlevel . 2))
-                             ("~/Dropbox/Org/areas.org" . (:maxlevel . 2))
-                             ("~/Dropbox/Org/resources.org" . (:maxlevel . 3))
+  (setq org-refile-targets '(("~/Dropbox/Org/para.org" . (:maxlevel . 2))
                              ("~/Dropbox/Org/archives.org" . (:maxlevel . 2))))
 
   (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
@@ -643,7 +641,7 @@ before packages are loaded."
     (setq org-capture-templates
           (doct '(("Journal"
                    :keys "j"
-                   :file  "~/Dropbox/Org/resources.org"
+                   :file  "~/Dropbox/Org/para.org"
                    :template ("* %^{Description}"
                               ":PROPERTIES:"
                               ":Created: %U"
