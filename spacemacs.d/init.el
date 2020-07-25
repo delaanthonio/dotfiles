@@ -621,7 +621,8 @@ before packages are loaded."
   (setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
   (require 'org-protocol)
   (setq org-todo-keywords
-        '((sequence "TODO" "NEXT" "|" "DONE")))
+        '((sequence "TODO(t)" "PROJ(p)" "GOAL(g)" "|" "DONE(d)" "CANCELED(c)")))
+
   (use-package doct
     :ensure t
     :config
