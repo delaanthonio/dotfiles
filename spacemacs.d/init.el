@@ -640,6 +640,14 @@ before packages are loaded."
                               ":END:"
                               "%?")
                    :datetree t)
+                  ("Note"
+                   :keys "n"
+                   :file  "~/Dropbox/Org/inbox.org"
+                   :template ("* %^{Description}"
+                              ":PROPERTIES:"
+                              ":Created: %U"
+                              ":END:"
+                              "%?"))
                   ("Protocol"
                    :keys "p"
                    :file "~/Dropbox/Org/inbox.org"
