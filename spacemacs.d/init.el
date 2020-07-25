@@ -63,7 +63,6 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(doct
-                                      org-gcal
                                       visual-fill-column
                                       yasnippet-snippets)
    ;; A list of packages that cannot be updated.
@@ -610,14 +609,6 @@ before packages are loaded."
 
   (setq org-download-method 'directory
         org-download-image-dir (concat org-directory "pictures"))
-
-  (use-package org-gcal
-    :config
-    (setq
-     org-gcal-fetch-file-alist '(("dell.anthonio@gmail.com" . "~/Dropbox/Org/gcal.org"))
-     org-gcal-up-days 15
-     org-gcal-down-days 45)
-    (spacemacs/set-leader-keys "aog" 'org-gcal-fetch))
 
   (with-eval-after-load 'org-agenda
     (setq org-agenda-files '("~/Dropbox/Org"))
