@@ -660,16 +660,11 @@ before packages are loaded."
                   ("Todo"
                    :keys "t"
                    :file "~/Dropbox/Org/inbox.org"
-                   :template ("* %{todo-state} %^{Description}"
+                   :template ("* TODO %^{Description}"
                               ":PROPERTIES:"
                               ":Created: %U"
                               ":END:"
-                              "%?")
-                   :children (("Todo"  :keys "t"
-                               :todo-state "TODO"
-                               :hook (lambda () (message "\"First Child\" selected.")))
-                              ("Next" :keys "n"
-                               :todo-state "NEXT")))
+                              "%?"))
                   ))))
 
   ;; key bindings
