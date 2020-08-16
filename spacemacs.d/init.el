@@ -588,6 +588,7 @@ before packages are loaded."
 
   ;; org
   (setq org-directory "~/Dropbox/Org"
+        org-log-into-drawer "LOGBOOK"
         org-pomodoro-play-sounds nil
         org-pomodoro-start-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_begin.wav")
         org-pomodoro-short-break-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_end.wav")
