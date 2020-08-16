@@ -591,6 +591,7 @@ before packages are loaded."
         org-pomodoro-play-sounds nil
         org-pomodoro-start-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_begin.wav")
         org-pomodoro-short-break-sound (expand-file-name "~/.spacemacs.d/media/org_pomodoro_end.wav")
+        org-projectile-projects-file "~/Dropbox/Org/para.org"
         org-id-track-globally t
         org-id-locations-file "~/.emacs.d/.org-id-locations")
 
