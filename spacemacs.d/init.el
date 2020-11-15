@@ -219,7 +219,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts.
    dotspacemacs-default-font '("Iosevka"
-                               :size 16
+                               :size 24
                                :weight normal
                                :width normal)
    ;; The leader key (default "SPC")
