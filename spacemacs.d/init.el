@@ -606,6 +606,12 @@ before packages are loaded."
   (spacemacs/set-leader-keys-for-major-mode 'org-mode "sR" 'org-refile-to-level-1)
 
   (add-hook 'org-mode-hook #'org-indent-mode)
+
+  (with-eval-after-load 'mode-local
+    (setq-mode-local org-mode line-spacing 5)
+    (setq-mode-local org-mode writeroom-extra-line-spacing 5)
+    )
+
   (setq org-hide-emphasis-markers t)
 
   (setq org-download-method 'directory
