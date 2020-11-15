@@ -516,7 +516,7 @@ before packages are loaded."
    ;; misc
    avy-all-windows 'all-frames
    org-agenda-files '("~/Dropbox/Org")
-   projectile-project-search-path '("~/Dropbox/1_Projects")
+   projectile-project-search-path '("~/Code")
    epa-file-cache-passphrase-for-symmetric-encryption t
    ;; git-magit-status-fullscreen t
    recentf-auto-cleanup 120
