@@ -42,7 +42,6 @@ This function should only modify configuration layer settings."
      (major-modes :packages pkgbuild-mode)
      pdf
      (org :packages (not org-brain))
-     pandoc
      plantuml
      semantic
      (shell-scripts :packages (not fish-mode))
