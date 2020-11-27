@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - link:
+    ~/.doom.d:
     ~/.emacs.d:
     ~/.gitconfig:
     ~/.gitignore_global:
