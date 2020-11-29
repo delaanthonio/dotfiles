@@ -1,5 +1,5 @@
 # Set name of the theme to load.
-ZSH_THEME=""
+ZSH_THEME="pure"
 
 # You may need to manually set your language environment
 LANG="en_US.UTF-8"
@@ -79,14 +79,13 @@ fi
 if (( $+commands[mvn] )); then
     plugins+=(mvn)
 fi
-source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Pure Prompt
-fpath=("$HOME/.dotfiles/zsh/functions" $fpath)
-autoload -U promptinit; promptinit
-prompt pure
+fpath+="$HOME/.dotfiles/zsh/pure"
+
+source $ZSH/oh-my-zsh.sh
 
 # Always load syntax highlighting last
 source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"

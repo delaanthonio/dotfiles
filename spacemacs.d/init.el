@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
      pdf
      (org :packages (not org-brain))
      plantuml
+     python
      semantic
      (shell-scripts :packages (not fish-mode))
      (shell :variables

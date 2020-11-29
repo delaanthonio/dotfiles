@@ -16,4 +16,4 @@
     ~/.spacemacs.d:
     ~/.zshenv:
     ~/.zshrc:
-
+    zsh/oh-my-zsh/custom/themes/pure.zsh-theme: zsh/pure/pure.zsh
