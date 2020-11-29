@@ -52,7 +52,6 @@ plugins=(
     git
     pip
     pj
-    systemd
 )
 
 # Project Jump
@@ -74,6 +73,10 @@ fi
 
 if (( $+commands[npm] )); then
     plugins+=(npm)
+fi
+
+if (( $+commands[systemd] )); then
+    plugins+=(systemd)
 fi
 
 if (( $+commands[mvn] )); then
