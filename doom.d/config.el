@@ -81,9 +81,8 @@
 ;; text-mode
 (remove-hook! '(text-mode-hook) #'display-line-numbers-mode)
 
-;; org
-(require 'org-protocol)
 
+;; org
 (setq org-directory "~/Dropbox/Org"
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file "~/Dropbox/Org/para.org"
