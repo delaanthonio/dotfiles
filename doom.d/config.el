@@ -83,6 +83,11 @@
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
+;; sh
+  (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
+  (add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
+  (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
+
 ;; org
 (setq org-directory "~/Dropbox/Org"
       org-log-into-drawer "LOGBOOK"
