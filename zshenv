@@ -16,6 +16,11 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
 
+# Doom emacs bin
+if [ -d $HOME/.emacs.d/bin ]; then
+   export PATH="$HOME/.emacs.d/bin:$PATH"
+fi
+
 if [ -f ~/.zshenv_local ]; then
     source ~/.zshenv_local
 fi
