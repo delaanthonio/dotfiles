@@ -72,6 +72,10 @@ if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
 fi
 
+if (( $+commands[docker] )); then
+    plugins+=(docker)
+fi
+
 if (( $+commands[npm] )); then
     plugins+=(npm)
 fi
