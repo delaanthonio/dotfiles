@@ -106,7 +106,8 @@
   (map! :map org-mode-map
         :leader
         (:prefix ("n" . "notes")
-         :desc "Org Brain" "V" #'org-brain-visualize)))
+         :desc "Org Brain" "V" #'org-brain-visualize))
+  (setq org-brain-path org-directory))
 
 (use-package! doct
   :config
