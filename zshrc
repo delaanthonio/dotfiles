@@ -52,10 +52,11 @@ plugins=(
     git
     pip
     pj
+    pyenv
 )
 
 # Project Jump
-PROJECT_PATHS=(~/Projects)
+PROJECT_PATHS=($HOME/Git $HOME/Git/projects)
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
