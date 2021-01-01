@@ -78,9 +78,6 @@
 (evil-ex-define-cmd "dp" 'delete-pair)
 (evil-ex-define-cmd "ks" 'kill-sexp)
 
-;; text-mode
-(remove-hook! '(text-mode-hook) #'display-line-numbers-mode)
-
 
 ;; org
 (setq org-directory "~/Dropbox/Org"
