@@ -48,6 +48,7 @@ export ZSH=$HOME/.oh-my-zsh
 plugins=(
     common-aliases
     colored-man-pages
+    django
     extract
     git
     pip
