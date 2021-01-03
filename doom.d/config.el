@@ -75,8 +75,6 @@
 
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
-(evil-ex-define-cmd "dp" 'delete-pair)
-(evil-ex-define-cmd "ks" 'kill-sexp)
 
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
@@ -107,12 +105,6 @@
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
 (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
 (setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
-
-(defun org-refile-to-level-1 (&optional arg default-buffer rfloc msg)
-  "Move entry to file top level in a file"
-  (interactive "P")
-  (let ((org-refile-use-outline-path 'file))
-    (org-refile arg default-buffer rfloc msg)))
 
 (use-package! org-brain
   :config
