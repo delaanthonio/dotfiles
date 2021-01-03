@@ -89,14 +89,22 @@
   (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
 ;; org
-(setq org-directory "~/Dropbox/Org"
+(setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
-      org-projectile-projects-file "~/Dropbox/Org/para.org"
+      org-projectile-projects-file (concat org-directory "para.org")
       org-id-track-globally t
-      org-id-locations-file "~/.emacs.d/.org-id-locations")
+      org-id-locations-file (concat user-emacs-directory "org-id-locations"))
 
-(setq org-refile-targets '(("~/Dropbox/Org/para.org" . (:maxlevel . 2))
-                           ("~/Dropbox/Org/archives.org" . (:maxlevel . 2))))
+(defcustom org-inbox-file (concat org-directory "inbox.org")
+  "Org inbox file."
+  :type 'string)
+
+(defcustom org-para-file (concat org-directory "para.org")
+  "Org PARA file."
+  :type 'string)
+
+(setq org-refile-targets '((org-para-file . (:maxlevel . 2))
+                           ((concat org-directory "archives.org") . (:maxlevel . 2))))
 (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
 (setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
 
@@ -124,7 +132,7 @@
   (setq org-capture-templates
         (doct '(("Journal"
                  :keys "j"
-                 :file  "~/Dropbox/Org/para.org"
+                 :file  org-inbox-file
                  :template ("* %^{Description}"
                             ":PROPERTIES:"
                             ":Created: %U"
@@ -133,7 +141,7 @@
                  :datetree t)
                 ("Note"
                  :keys "n"
-                 :file  "~/Dropbox/Org/inbox.org"
+                 :file  org-inbox-file
                  :template ("* %^{Description}"
                             ":PROPERTIES:"
                             ":Created: %U"
@@ -141,7 +149,7 @@
                             "%?"))
                 ("Protocol"
                  :keys "p"
-                 :file "~/Dropbox/Org/inbox.org"
+                 :file org-inbox-file
                  :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
                             ":PROPERTIES:"
                             ":Created: %U"
@@ -150,7 +158,7 @@
                             "%?"))
                 ("Protocol Link"
                  :keys "L"
-                 :file "~/Dropbox/Org/inbox.org"
+                 :file org-inbox-file
                  :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
                             ":PROPERTIES:"
                             ":Created: %U"
@@ -158,7 +166,7 @@
                             "%?"))
                 ("Todo"
                  :keys "t"
-                 :file "~/Dropbox/Org/inbox.org"
+                 :file org-inbox-file
                  :template ("* TODO %^{Description}"
                             ":PROPERTIES:"
                             ":Created: %U"
