@@ -101,6 +101,10 @@
   "Org PARA file."
   :type 'string)
 
+(defcustom org-journal-file (concat org-directory "journal.org")
+  "Org Journal file."
+  :type 'string)
+
 (setq org-refile-targets '((org-para-file . (:maxlevel . 2))
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
 (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
@@ -124,7 +128,7 @@
   (setq org-capture-templates
         (doct '(("Journal"
                  :keys "j"
-                 :file  org-inbox-file
+                 :file  org-journal-file
                  :template ("* %^{Description}"
                             ":PROPERTIES:"
                             ":Created: %U"
