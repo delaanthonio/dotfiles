@@ -70,6 +70,11 @@
 
 (global-auto-revert-mode t)
 
+;; direnv
+(use-package direnv
+  :config
+  (direnv-mode))
+
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
 
