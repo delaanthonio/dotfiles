@@ -100,9 +100,10 @@
            #'(lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
 
 ;; sh
-  (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
-  (add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
-  (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
 ;; org
 (setq org-directory "~/Dropbox/Org/"
