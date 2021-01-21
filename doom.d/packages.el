@@ -42,6 +42,8 @@
 
 (package! direnv)
 (package! doct)
+(package! prettier)
+(package! js-react-redux-yasnippets)
 (package! visual-fill-column)
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
