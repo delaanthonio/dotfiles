@@ -57,14 +57,11 @@
 
 ;; Set default browser for Windows
 (when (and (eq system-type 'gnu/linux)
-           (string-match
-            "Linux.*Microsoft.*Linux"
-            (shell-command-to-string "uname -a")))
-  (setq browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
-   browse-url-generic-args     nil
-   browse-url-generic-program "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
-   browse-url-browser-function #'browse-url-generic
-   ))
+           (string-match "Linux.*Microsoft.*Linux" (shell-command-to-string "uname -a")))
+  (defun browse-url-wsl (url &optional ignored)
+    (interactive (browse-url-interactive-arg "URL: "))
+    (shell-command-to-string (concat "explorer.exe " url)))
+  (setq browse-url-browser-function #'browse-url-wsl))
 
 ;; general settings
 (setq projectile-project-search-path '("~/Code")
