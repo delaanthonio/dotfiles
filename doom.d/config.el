@@ -97,7 +97,7 @@
 
 ;; python
 (add-hook! 'python-mode-hook
-           #'(lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
+           (lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
 
 ;; sh
 (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
