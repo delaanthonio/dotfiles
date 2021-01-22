@@ -105,8 +105,6 @@ source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.pl
 # For a full list of active aliases, run `alias`.
 
 # Aliases
-alias reload='source ~/.zshrc'
-
 alias ..2='cd ../../'
 alias ..3='cd ../../../'
 alias ..4='cd ../../../../'
@@ -129,6 +127,10 @@ if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
 
-if [ -f "~/.zshenv" ]; then
-    source "~/.zshenv"
-fi
+# Functions
+function reload() {
+    for file ("$HOME/.zshrc" "$HOME/.zshenv"); do
+        source "$file"
+        echo "loaded $file"
+    done
+}
