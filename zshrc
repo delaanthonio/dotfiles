@@ -125,8 +125,8 @@ if (( $+commands[youtube-dl] )); then
     alias dlv='youtube-dl'
 fi
 
-if [ -f "~/.zshrc_local" ]; then
-    source "~/.zshrc_local"
+if [ -f "$HOME/.zshrc_local" ]; then
+    source "$HOME/.zshrc_local"
 fi
 
 if [ -f "~/.zshenv" ]; then
