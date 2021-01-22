@@ -77,6 +77,10 @@ if (( $+commands[docker] )); then
     plugins+=(docker)
 fi
 
+if (( $+commands[yarn] )); then
+    plugins+=(yarn)
+fi
+
 if (( $+commands[npm] )); then
     plugins+=(npm)
 fi
