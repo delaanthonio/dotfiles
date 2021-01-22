@@ -21,6 +21,6 @@ if [ -d $HOME/.emacs.d/bin ]; then
    export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
-if [ -f ~/.zshenv_local ]; then
-    source ~/.zshenv_local
+if [ -f $HOME/.zshenv_local ]; then
+    source $HOME/.zshenv_local
 fi
