@@ -21,6 +21,11 @@ if [ -d $HOME/.emacs.d/bin ]; then
    export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
+# Rustup
+if [ -x "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
+
 if [ -f $HOME/.zshenv_local ]; then
     source $HOME/.zshenv_local
 fi
