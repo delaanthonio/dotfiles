@@ -111,6 +111,11 @@
 (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
 ;; org
+(add-hook! 'text-mode-hook
+           #'mixed-pitch-mode
+           (lambda ()
+             (setq display-line-numbers nil)))
+
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file (concat org-directory "para.org")
