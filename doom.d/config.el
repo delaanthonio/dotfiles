@@ -114,6 +114,7 @@
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file (concat org-directory "para.org")
+      org-roam-directory (concat org-directory "roam/")
       org-id-track-globally t
       org-id-locations-file (concat user-emacs-directory "org-id-locations"))
 
@@ -133,7 +134,6 @@
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
 (setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
 (setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
-
 (use-package! org-brain
   :config
   (map! :map org-mode-map
