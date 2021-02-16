@@ -100,6 +100,10 @@
 (add-hook! 'python-mode-hook
            (lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
 
+;; emacs lisp
+(add-hook! 'emacs-lisp-mode-hook
+  (add-hook 'before-save-hook #'+format/buffer))
+
 ;; sh
 (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
