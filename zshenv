@@ -26,6 +26,13 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
+# Fix WSL 2 Interops
+for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+    if [[ -e "/run/WSL/${i}_interop" ]]; then
+        export WSL_INTEROP=/run/WSL/${i}_interop
+    fi
+done
+
 if [ -f $HOME/.zshenv_local ]; then
     source $HOME/.zshenv_local
 fi
