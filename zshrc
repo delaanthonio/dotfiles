@@ -127,10 +127,6 @@ if (( $+commands[youtube-dl] )); then
     alias dlv='youtube-dl'
 fi
 
-if [ -f "$HOME/.zshrc_local" ]; then
-    source "$HOME/.zshrc_local"
-fi
-
 # Functions
 function reload() {
     for file ("$HOME/.zshrc" "$HOME/.zshenv"); do
