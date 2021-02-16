@@ -57,8 +57,9 @@
 
 ;; Set default browser for Windows
 (when (and (eq system-type 'gnu/linux)
-           (string-match "Linux.*Microsoft.*Linux" (shell-command-to-string "uname -a")))
+           (string-match ".*microsoft.*" (shell-command-to-string "uname -a")))
   (defun browse-url-wsl (url &optional ignored)
+    "Open a URL using the default Windows Browser"
     (interactive (browse-url-interactive-arg "URL: "))
     (shell-command-to-string (concat "explorer.exe " url)))
   (setq browse-url-browser-function #'browse-url-wsl))
