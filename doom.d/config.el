@@ -65,7 +65,7 @@
   (setq browse-url-browser-function #'browse-url-wsl))
 
 ;; general settings
-(setq projectile-project-search-path '("~/Code")
+(setq projectile-project-search-path '("~/Git")
       recentf-auto-cleanup 120
       shell-command-switch "-ic")
 
