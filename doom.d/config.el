@@ -92,8 +92,7 @@
 (after! js2-mode
   (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
 
-(use-package prettier
-  :ensure t
+(use-package! prettier
   :hook (js-mode . prettier-mode))
 
 ;; python
