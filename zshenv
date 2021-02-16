@@ -22,7 +22,7 @@ if [ -d $HOME/.emacs.d/bin ]; then
 fi
 
 # Rustup
-if [ -x "$HOME/.cargo/env" ]; then
+if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
