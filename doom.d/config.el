@@ -109,6 +109,9 @@
 (add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
+;; vterm
+(setq vterm-buffer-name-string "vterm %s")
+
 ;; org
 (add-hook! 'text-mode-hook
            #'mixed-pitch-mode
