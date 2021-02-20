@@ -144,6 +144,15 @@
          :desc "Org Brain" "V" #'org-brain-visualize))
   (setq org-brain-path org-directory))
 
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "daily/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n\n")))
+
 (use-package! doct
   :config
   (defun transform-brackets-to-parentheses(string)
@@ -152,16 +161,7 @@
                                       ((equal c ?\]) ?\))
                                       (t c))) string)))
   (setq org-capture-templates
-        (doct '(("Journal"
-                 :keys "j"
-                 :file  org-journal-file
-                 :template ("* %^{Description}"
-                            ":PROPERTIES:"
-                            ":Created: %U"
-                            ":END:"
-                            "%?")
-                 :datetree t)
-                ("Note"
+        (doct '(("Note"
                  :keys "n"
                  :file  org-inbox-file
                  :template ("* %^{Description}"
