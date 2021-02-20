@@ -136,8 +136,6 @@
 
 (setq org-refile-targets '((org-para-file . (:maxlevel . 2))
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
-(setq org-global-properties '(("Effort_ALL" . "0 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00 3:00")))
-(setq org-columns-default-format "%3PRIORITY %TODO %25ITEM %20Effort{:} %CLOCKSUM %TAGS")
 (use-package! org-brain
   :config
   (map! :map org-mode-map
@@ -184,14 +182,6 @@
                  :keys "L"
                  :file org-inbox-file
                  :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
-                            ":PROPERTIES:"
-                            ":Created: %U"
-                            ":END:"
-                            "%?"))
-                ("Todo"
-                 :keys "t"
-                 :file org-inbox-file
-                 :template ("* TODO %^{Description}"
                             ":PROPERTIES:"
                             ":Created: %U"
                             ":END:"
