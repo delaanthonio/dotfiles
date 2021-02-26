@@ -26,6 +26,11 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
+# NVM
+[ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
 # Fix WSL 2 Interops
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
