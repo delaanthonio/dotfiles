@@ -84,17 +84,6 @@
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-;; javascript
-(setq flycheck-javascript-standard-executable "/usr/bin/standardx")
-
-(use-package! js-react-redux-yasnippets)
-
-(after! js2-mode
-  (set-company-backend! 'js2-mode 'company-tide 'company-yasnippet))
-
-(use-package! prettier
-  :hook (js-mode . prettier-mode))
-
 ;; python
 (add-hook! 'python-mode-hook
   (lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
