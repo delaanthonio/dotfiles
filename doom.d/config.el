@@ -98,6 +98,15 @@
 (add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
+;; Enable plantuml-mode for PlantUML files
+(after! plantuml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+  (setq plantuml-default-exec-mode 'executable)
+  (after! org-mode
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (setq org-plantuml-exec-mode 'plantuml)))
+
 ;; vterm
 (setq vterm-buffer-name-string "vterm %s")
 
