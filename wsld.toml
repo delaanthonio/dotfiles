@@ -1,0 +1,12 @@
+# Leave out this section to disable X11 forwarding
+[x11]
+# X11 display number to listen *inside* WSL. The X server in Windows can specified as argument when running wsldhost.exe.
+# Default to 0, can be omitted.
+display = 0
+
+# Leave out this section to disable time synchronisation
+# If you need time synchronisation, you should either run wsld with root, or give it `cap_sys_time` capability using `sudo setcap cap_sys_time+eip <PATH to wsld>`.
+[time]
+# Interval between syncs
+# Default to 10min, can be omitted
+interval = "1hr"
