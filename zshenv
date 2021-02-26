@@ -32,7 +32,3 @@ for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
         export WSL_INTEROP=/run/WSL/${i}_interop
     fi
 done
-
-if [ -f $HOME/.zshenv_local ]; then
-    source $HOME/.zshenv_local
-fi
