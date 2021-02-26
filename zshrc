@@ -77,8 +77,9 @@ if (( $+commands[yarn] )); then
     plugins+=(yarn)
 fi
 
-if (( $+commands[npm] )); then
+if [[ -z "$NVM_DIR" ]]; then
     plugins+=(npm)
+    plugins+=(npx)
 fi
 
 if (( $+commands[systemd] )); then
