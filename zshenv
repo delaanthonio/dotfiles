@@ -18,7 +18,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Doom emacs bin
 if [ -d $HOME/.emacs.d/bin ]; then
-   export PATH="$HOME/.emacs.d/bin:$PATH"
+    export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
 # Rustup
