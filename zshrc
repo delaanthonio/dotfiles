@@ -48,6 +48,7 @@ export ZSH=$HOME/.oh-my-zsh
 plugins=(
     common-aliases
     colored-man-pages
+    direnv
     django
     extract
     git
@@ -66,10 +67,6 @@ fi
 
 if (( $+commands[bundle] )); then
     plugins+=(bundler)
-fi
-
-if (( $+commands[direnv] )); then
-    eval "$(direnv hook zsh)"
 fi
 
 if (( $+commands[docker] )); then
