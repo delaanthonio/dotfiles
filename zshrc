@@ -53,7 +53,6 @@ plugins=(
     git
     pip
     pj
-    pyenv
 )
 
 # Project Jump
@@ -91,6 +90,11 @@ fi
 
 if (( $+commands[mvn] )); then
     plugins+=(mvn)
+fi
+
+# Only load pyenv when not using emacs
+if [[ -z "$INSIDE_EMACS" ]]; then
+  plugins+=(pyenv)
 fi
 
 source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
