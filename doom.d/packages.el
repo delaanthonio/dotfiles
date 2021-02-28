@@ -42,6 +42,7 @@
 
 (package! direnv)
 (package! doct)
+(package! org-roam-server)
 (package! visual-fill-column)
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
