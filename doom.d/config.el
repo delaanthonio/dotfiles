@@ -138,13 +138,6 @@
 
 (setq org-refile-targets '((org-para-file . (:maxlevel . 2))
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
-(use-package! org-brain
-  :config
-  (map! :map org-mode-map
-        :leader
-        (:prefix ("n" . "notes")
-         :desc "Org Brain" "V" #'org-brain-visualize))
-  (setq org-brain-path org-directory))
 
 (setq org-roam-dailies-directory "daily/")
 
