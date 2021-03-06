@@ -162,36 +162,16 @@
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 
-(use-package! doct
-  :config
-  (defun transform-brackets-to-parentheses(string)
-    "Transforms [ into ( and ] into ), other chars left unchanged."
-    (concat (mapcar (lambda (c) (cond ((equal c ?\[) ?\()
-                                      ((equal c ?\]) ?\))
-                                      (t c))) string)))
-  (setq org-capture-templates
-        (doct '(("Note"
-                 :keys "n"
-                 :file  org-inbox-file
-                 :template ("* %^{Description}"
-                            ":PROPERTIES:"
-                            ":Created: %U"
-                            ":END:"
-                            "%?"))
-                ("Protocol"
-                 :keys "p"
-                 :file org-inbox-file
-                 :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
-                            ":PROPERTIES:"
-                            ":Created: %U"
-                            ":END:"
-                            "%i"
-                            "%?"))
-                ("Protocol Link"
-                 :keys "L"
-                 :file org-inbox-file
-                 :template ("* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]"
-                            ":PROPERTIES:"
-                            ":Created: %U"
-                            ":END:"
-                            "%?"))))))
+(defun transform-brackets-to-parentheses(string)
+  "Transforms [ into ( and ] into ), other chars left unchanged."
+  (concat (mapcar (lambda (c) (cond ((equal c ?\[) ?\()
+                                    ((equal c ?\]) ?\))
+                                    (t c))) string)))
+
+(setq org-capture-templates
+      '(("n" "Note" entry (file org-inbox-file)
+         "* %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
+        ("p" "Protocol" entry (file org-inbox-file)
+         "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?")
+        ("L" "Protocol Link" entry (file org-inbox-file)
+         "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%?")))

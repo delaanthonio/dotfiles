@@ -41,7 +41,6 @@
 ;(package! builtin-package :pin "1a2b3c4d5e")
 
 (package! direnv)
-(package! doct)
 (package! org-roam-server)
 (package! visual-fill-column)
 
