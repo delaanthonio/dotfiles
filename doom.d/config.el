@@ -107,9 +107,6 @@
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (setq org-plantuml-exec-mode 'plantuml)))
 
-;; vterm
-(setq vterm-buffer-name-string "vterm %s")
-
 ;; org
 (add-hook! 'text-mode-hook
            #'mixed-pitch-mode
