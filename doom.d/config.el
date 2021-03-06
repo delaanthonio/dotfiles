@@ -25,6 +25,12 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'modus-operandi)
+(setq modus-themes-bold-constructs t)
+(setq modus-themes-syntax 'yellow-comments-green-strings)
+(setq modus-themes-mode-line 'borderless)
+(setq modus-themes-lang-checkers 'subtle-foreground)
+(setq modus-themes-paren-match 'subtle-bold)
+(setq modus-themes-subtle-line-numbers t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
