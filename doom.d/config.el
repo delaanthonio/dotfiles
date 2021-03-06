@@ -61,6 +61,8 @@
                         visual-fill-column-center-text t
                         line-spacing 3))
 
+(add-hook 'text-mode-hook #'mixed-pitch-mode)
+
 ;; Set default browser for Windows
 (when (and (eq system-type 'gnu/linux)
            (string-match ".*microsoft.*" (shell-command-to-string "uname -a")))
@@ -114,11 +116,6 @@
     (setq org-plantuml-exec-mode 'plantuml)))
 
 ;; org
-(add-hook! 'text-mode-hook
-           #'mixed-pitch-mode
-           (lambda ()
-             (setq display-line-numbers nil)))
-
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file (concat org-directory "para.org")
