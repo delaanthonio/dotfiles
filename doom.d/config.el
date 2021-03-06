@@ -62,6 +62,7 @@
                         line-spacing 3))
 
 (add-hook 'text-mode-hook #'mixed-pitch-mode)
+(remove-hook 'text-mode-hook #'display-line-numbers-mode)
 
 ;; Set default browser for Windows
 (when (and (eq system-type 'gnu/linux)
