@@ -116,6 +116,8 @@
       org-id-track-globally t
       org-id-locations-file (concat user-emacs-directory "org-id-locations"))
 
+(add-hook 'org-mode-hook #'+org-pretty-mode)
+
 (defcustom org-inbox-file (concat org-directory "inbox.org")
   "Org inbox file."
   :type 'string)
