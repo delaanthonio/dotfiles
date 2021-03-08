@@ -43,6 +43,7 @@
 (package! direnv)
 (package! modus-themes)
 (package! org-roam-server)
+(package! solaire-mode :disable t)
 (package! visual-fill-column)
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
