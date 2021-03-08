@@ -112,7 +112,6 @@
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file (concat org-directory "para.org")
       org-roam-directory (concat org-directory "roam/")
-      org-superstar-headline-bullets-list '("●")
       org-id-track-globally t
       org-id-locations-file (concat user-emacs-directory "org-id-locations"))
 
