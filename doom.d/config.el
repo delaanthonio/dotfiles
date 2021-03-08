@@ -80,11 +80,6 @@
 
 (global-auto-revert-mode t)
 
-;; direnv
-(use-package direnv
-  :config
-  (direnv-mode))
-
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
 
@@ -92,10 +87,6 @@
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-
-;; python
-(add-hook! 'python-mode-hook
-  (lambda() (add-hook! 'before-save-hook #'py-isort-before-save)))
 
 ;; emacs lisp
 (add-hook! 'emacs-lisp-mode-hook
