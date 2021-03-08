@@ -130,6 +130,10 @@
 
 (setq org-refile-targets '((org-para-file . (:maxlevel . 2))
                            ((concat org-directory "archives.org") . (:maxlevel . 2))))
+(setq org-protocol-protocol-alist
+      '(("org-roam-file" :protocol "roam-file" :function org-roam-protocol-open-file)
+        ("org-roam-ref" :protocol "roam-ref" :function org-roam-protocol-open-ref :kill-client t)
+        ("org-capture" :protocol "capture" :function org-protocol-capture :kill-client t)))
 
 (setq org-roam-dailies-directory "daily/")
 
