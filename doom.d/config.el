@@ -24,11 +24,10 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'modus-operandi)
+(setq doom-theme 'modus-vivendi)
 (setq modus-themes-bold-constructs t)
 (setq modus-themes-syntax 'green-strings)
-(setq modus-themes-mode-line 'borderless)
-(setq modus-themes-lang-checkers 'subtle-foreground)
+(setq modus-themes-mode-line '3d)
 (setq modus-themes-paren-match 'subtle-bold)
 (setq modus-themes-subtle-line-numbers t)
 (setq modus-themes-org-blocks t)
