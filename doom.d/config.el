@@ -75,7 +75,6 @@
 
 ;; general settings
 (setq projectile-project-search-path '("~/Git")
-      recentf-auto-cleanup 120
       shell-command-switch "-ic")
 
 (global-auto-revert-mode t)
@@ -110,7 +109,6 @@
 ;; org
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
-      org-projectile-projects-file (concat org-directory "para.org")
       org-roam-directory (concat org-directory "roam/")
       org-id-track-globally t)
 
@@ -118,11 +116,6 @@
 
 (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 2))
                            (+org-capture-todo-file . (:maxlevel . 2))))
-
-(setq org-protocol-protocol-alist
-      '(("org-roam-file" :protocol "roam-file" :function org-roam-protocol-open-file)
-        ("org-roam-ref" :protocol "roam-ref" :function org-roam-protocol-open-ref :kill-client t)
-        ("org-capture" :protocol "capture" :function org-protocol-capture :kill-client t)))
 
 (setq org-roam-dailies-directory "daily/")
 
