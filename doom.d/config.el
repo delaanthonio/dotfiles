@@ -117,20 +117,9 @@
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
-(defcustom org-notes-file (concat org-directory "notes.org")
-  "Org notes file"
-  :type 'string)
+(setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 2))
+                           (+org-capture-todo-file . (:maxlevel . 2))))
 
-(defcustom org-todo-file (concat org-directory "todo.org")
-  "Org todo file"
-  :type 'string)
-
-(defcustom org-journal-file (concat org-directory "journal.org")
-  "Org Journal file."
-  :type 'string)
-
-(setq org-refile-targets '((org-para-file . (:maxlevel . 2))
-                           ((concat org-directory "archives.org") . (:maxlevel . 2))))
 (setq org-protocol-protocol-alist
       '(("org-roam-file" :protocol "roam-file" :function org-roam-protocol-open-file)
         ("org-roam-ref" :protocol "roam-ref" :function org-roam-protocol-open-ref :kill-client t)
@@ -166,9 +155,9 @@
                                     (t c))) string)))
 
 (setq org-capture-templates
-      '(("n" "Note" entry (file+headline org-notes-file "Inbox")
+      '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
          "* %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
-        ("t" "To-do" entry (file+headline org-todo-file "Inbox")
+        ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
          "* TODO %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
-        ("L" "Link" entry (file+headline org-notes-file "Inbox")
+        ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
          "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?")))
