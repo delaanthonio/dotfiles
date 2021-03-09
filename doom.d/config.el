@@ -118,12 +118,12 @@
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
-(defcustom org-inbox-file (concat org-directory "inbox.org")
-  "Org inbox file."
+(defcustom org-notes-file (concat org-directory "notes.org")
+  "Org notes file"
   :type 'string)
 
-(defcustom org-para-file (concat org-directory "para.org")
-  "Org PARA file."
+(defcustom org-todo-file (concat org-directory "todo.org")
+  "Org todo file"
   :type 'string)
 
 (defcustom org-journal-file (concat org-directory "journal.org")
@@ -167,9 +167,11 @@
                                     (t c))) string)))
 
 (setq org-capture-templates
-      '(("n" "Note" entry (file org-inbox-file)
+      '(("n" "Note" entry (file+headline org-notes-file "Inbox")
          "* %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
-        ("p" "Protocol" entry (file org-inbox-file)
+        ("t" "To-do" entry (file+headline org-todo-file "Inbox")
+         "* TODO %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
+        ("p" "Protocol" entry (file+headline org-notes-file "Inbox")
          "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?")
-        ("L" "Protocol Link" entry (file org-inbox-file)
+        ("L" "Protocol Link" entry (file+headline org-notes-file "Inbox")
          "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%?")))
