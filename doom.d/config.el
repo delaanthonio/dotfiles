@@ -112,8 +112,7 @@
       org-log-into-drawer "LOGBOOK"
       org-projectile-projects-file (concat org-directory "para.org")
       org-roam-directory (concat org-directory "roam/")
-      org-id-track-globally t
-      org-id-locations-file (concat user-emacs-directory "org-id-locations"))
+      org-id-track-globally t)
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
