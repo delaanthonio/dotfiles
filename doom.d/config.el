@@ -74,7 +74,8 @@
   (setq browse-url-browser-function #'browse-url-wsl))
 
 ;; general settings
-(setq projectile-project-search-path '("~/Git"))
+(setq projectile-project-search-path '("~/Git")
+      shell-command-switch "-ic")
 
 (global-auto-revert-mode t)
 
