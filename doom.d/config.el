@@ -148,8 +148,8 @@
 
 (setq org-capture-templates
       '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
-         "* %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
+         "* %U \n%?")
         ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
-         "* TODO %^{Description}\n:PROPERTIES:\n:Created: %U\n:END:\n%?")
+         "* TODO %?")
         ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
          "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?")))
