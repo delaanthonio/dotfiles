@@ -53,7 +53,6 @@ plugins=(
     git
     pip
     pj
-    pyenv
 )
 
 # Project Jump
