@@ -47,10 +47,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     common-aliases
-    colored-man-pages
     django
     extract
-    git
     pip
     pj
 )
@@ -60,12 +58,6 @@ PROJECT_PATHS=($HOME/Git $HOME/Git/projects)
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
-elif (( $+commands[pacman] )); then
-    plugins+=(archlinux)
-fi
-
-if (( $+commands[bundle] )); then
-    plugins+=(bundler)
 fi
 
 if (( $+commands[docker] )); then
@@ -85,9 +77,6 @@ if (( $+commands[systemd] )); then
     plugins+=(systemd)
 fi
 
-if (( $+commands[mvn] )); then
-    plugins+=(mvn)
-fi
 
 source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
