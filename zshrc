@@ -96,8 +96,6 @@ source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.pl
 # Aliases
 alias ..2='cd ../../'
 alias ..3='cd ../../../'
-alias ..4='cd ../../../../'
-alias ..5='cd ../../../../../'
 
 alias e="$EDITOR"
 alias et='emacsclient -t'
@@ -106,11 +104,6 @@ alias ec='emacsclient -c'
 alias hib='systemctl hibernate'
 alias sus='systemctl suspend'
 alias reb='systemctl reboot'
-
-if (( $+commands[youtube-dl] )); then
-    alias dla='youtube-dl --extract-audio --audio-format mp3'
-    alias dlv='youtube-dl'
-fi
 
 # Functions
 function reload() {
