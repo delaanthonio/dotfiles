@@ -57,9 +57,9 @@
 (use-package! visual-fill-column
   :hook ((text-mode . visual-fill-column-mode)
          (text-mode . visual-line-mode))
-  :config (setq-default visual-fill-column-width 100
                         visual-fill-column-center-text t
                         line-spacing 3))
+  :config (setq-default visual-fill-column-width 150
 
 (add-hook 'text-mode-hook #'mixed-pitch-mode)
 (remove-hook 'text-mode-hook #'display-line-numbers-mode)
