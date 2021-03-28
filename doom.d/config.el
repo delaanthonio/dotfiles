@@ -57,9 +57,8 @@
 (use-package! visual-fill-column
   :hook ((text-mode . visual-fill-column-mode)
          (text-mode . visual-line-mode))
-                        visual-fill-column-center-text t
-                        line-spacing 3))
   :config (setq-default visual-fill-column-width 150
+                        visual-fill-column-center-text t))
 
 (add-hook 'text-mode-hook #'mixed-pitch-mode)
 (remove-hook 'text-mode-hook #'display-line-numbers-mode)
@@ -76,6 +75,8 @@
 ;; general settings
 (setq projectile-project-search-path '("~/Git")
       shell-command-switch "-ic")
+
+(setq-default line-spacing 3)
 
 (global-auto-revert-mode t)
 
