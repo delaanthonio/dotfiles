@@ -24,13 +24,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'modus-vivendi)
-(setq modus-themes-bold-constructs t)
-(setq modus-themes-syntax 'green-strings)
-(setq modus-themes-mode-line '3d)
-(setq modus-themes-paren-match 'subtle-bold)
-(setq modus-themes-subtle-line-numbers t)
-(setq modus-themes-org-blocks t)
+(setq doom-theme 'doom-spacegrey)
+(setq doom-spacegrey-brighter-comments t)
+(setq doom-spacegrey-comment-bg nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
