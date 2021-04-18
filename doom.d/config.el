@@ -51,10 +51,13 @@
 
 ;; text
 (use-package! visual-fill-column
-  :hook ((text-mode . visual-fill-column-mode)
-         (text-mode . visual-line-mode))
-  :config (setq-default visual-fill-column-width 150
-                        visual-fill-column-center-text t))
+  :config
+  (add-hook! (text-mode prog-mode org-agenda-mode)
+             #'(visual-fill-column-mode visual-line-mode))
+  (add-hook! text-mode  (setq visual-fill-column-width 150))
+  (add-hook! (text-mode org-agenda-mode) (setq visual-fill-column-center-text t)))
+
+(setq-default visual-fill-column-width 100)
 
 (add-hook 'text-mode-hook #'mixed-pitch-mode)
 (remove-hook 'text-mode-hook #'display-line-numbers-mode)
