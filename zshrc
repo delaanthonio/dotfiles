@@ -85,6 +85,14 @@ fpath+="$HOME/.dotfiles/zsh/pure"
 
 source $ZSH/oh-my-zsh.sh
 
+# Homebrew completion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # Always load syntax highlighting last
 source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
