@@ -49,6 +49,7 @@ plugins=(
     common-aliases
     django
     extract
+    kubectl
     pip
     pj
 )
