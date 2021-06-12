@@ -84,6 +84,9 @@
 
 (global-auto-revert-mode t)
 
+(setq mac-option-modifier nil)
+(setq mac-command-modifier 'meta)
+
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
 
