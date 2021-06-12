@@ -49,9 +49,12 @@ plugins=(
     common-aliases
     django
     extract
+    gh
+    git-flow
     kubectl
     pip
     pj
+    zsh_reload
 )
 
 # Project Jump
