@@ -18,7 +18,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Iosevka SS04" :size 22 :weight 'normal)
+(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'normal)
       doom-variable-pitch-font
       (cond
        ((eq system-type 'gnu/linux) (font-spec :family "Roboto" :size 22 :weight 'normal))
