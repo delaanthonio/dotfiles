@@ -16,5 +16,6 @@
 	path = emacs.d
 	url = https://github.com/hlissner/doom-emacs
 [submodule "zsh/pure"]
+	branch = main
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure.git
