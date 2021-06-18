@@ -40,7 +40,6 @@
 ;; Use `:pin' to specify a particular commit to install.
 ;; (package! builtin-package :pin "1a2b3c4d5e")
 
-(package! direnv)
 (package! visual-fill-column)
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
