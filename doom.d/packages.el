@@ -41,6 +41,7 @@
 ;; (package! builtin-package :pin "1a2b3c4d5e")
 
 (package! visual-fill-column)
+(package! solaire-mode :disable t)
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...
