@@ -81,12 +81,8 @@
       shell-command-switch "-ic")
 
 (auto-save-visited-mode t)
-
 (setq-default line-spacing 3)
-
 (global-auto-revert-mode t)
-
-(setq mac-option-modifier nil)
 (setq mac-command-modifier 'meta)
 
 ;; evil
