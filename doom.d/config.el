@@ -98,6 +98,8 @@
   (add-hook 'before-save-hook #'+format/buffer))
 
 ;; sh
+(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . java-mode) t)
+(add-to-list 'auto-mode-alist '("poetry.lock" . conf-toml-mode) t)
 (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
