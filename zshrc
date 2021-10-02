@@ -47,7 +47,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     common-aliases
-    django
     extract
     gh
     git-flow
