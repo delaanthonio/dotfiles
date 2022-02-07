@@ -49,11 +49,9 @@ plugins=(
     common-aliases
     extract
     gh
-    git-flow
     kubectl
     pip
     pj
-    zsh_reload
 )
 
 # Project Jump
