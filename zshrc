@@ -97,7 +97,7 @@ if type brew &>/dev/null; then
 fi
 
 # Always load syntax highlighting last
-source "$HOME/.dotfiles/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "$HOME/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

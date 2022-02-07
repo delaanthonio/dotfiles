@@ -5,9 +5,6 @@
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "zsh/fast-syntax-highlighting"]
-	path = zsh/fast-syntax-highlighting
-	url = https://github.com/zdharma/fast-syntax-highlighting.git
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
@@ -19,3 +16,6 @@
 	branch = main
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "zsh-syntax-highlighting"]
+	path = zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
