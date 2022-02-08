@@ -9,7 +9,7 @@
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "emacs.d"]
-	branch = develop
+	branch = master
 	path = emacs.d
 	url = https://github.com/hlissner/doom-emacs
 [submodule "zsh/pure"]
