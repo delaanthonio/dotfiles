@@ -1,5 +1,5 @@
 # Set name of the theme to load.
-ZSH_THEME="pure"
+ZSH_THEME=""
 
 # You may need to manually set your language environment
 LANG="en_US.UTF-8"
@@ -38,7 +38,7 @@ HIST_STAMPS="mm/dd/yyyy"
 DOTFILES=$HOME/.dotfiles
 
 # Path to your oh-my-zsh installation.
-export ZSH=$DOTFILES/zsh/oh-my-zsh
+export ZSH=$DOTFILES/oh-my-zsh
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -80,13 +80,13 @@ if (( $+commands[systemd] )); then
     plugins+=(systemd)
 fi
 
-
-source "$DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# Pure Prompt
-fpath+="$DOTFILES/zsh/pure"
+source "$DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 source $ZSH/oh-my-zsh.sh
+
+# Pure Prompt
+fpath+="$DOTFILES/pure"
+source "$DOTFILES/pure/pure.zsh"
 
 # Homebrew completion
 if type brew &>/dev/null; then
@@ -182,3 +182,4 @@ PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
+eval "$(pyenv init -)"

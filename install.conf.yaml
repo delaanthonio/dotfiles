@@ -12,7 +12,5 @@
     ~/.emacs.d:
     ~/.gitconfig:
     ~/.gitignore_global:
-    ~/.oh-my-zsh: zsh/oh-my-zsh
     ~/.zshenv:
     ~/.zshrc:
-    zsh/oh-my-zsh/custom/themes/pure.zsh-theme: zsh/pure/pure.zsh
