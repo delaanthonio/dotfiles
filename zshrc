@@ -35,8 +35,10 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
 
+DOTFILES=$HOME/.dotfiles
+
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$DOTFILES/zsh/oh-my-zsh
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -79,10 +81,10 @@ if (( $+commands[systemd] )); then
 fi
 
 
-source "$HOME/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Pure Prompt
-fpath+="$HOME/.dotfiles/zsh/pure"
+fpath+="$DOTFILES/zsh/pure"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,7 +97,7 @@ if type brew &>/dev/null; then
 fi
 
 # Always load syntax highlighting last
-source "$HOME/.dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "$DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
