@@ -84,6 +84,7 @@
 (setq-default line-spacing 3)
 (global-auto-revert-mode t)
 (setq mac-command-modifier 'meta)
+(setq confirm-kill-emacs nil)
 
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
