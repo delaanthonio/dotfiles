@@ -64,7 +64,7 @@ if (( $+commands[apt] )); then
 fi
 
 if (( $+commands[docker] )); then
-    plugins+=(docker)
+    plugins+=(docker docker-compose)
 fi
 
 if (( $+commands[yarn] )); then
