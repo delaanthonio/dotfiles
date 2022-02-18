@@ -18,6 +18,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 #brew
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 
 # Doom emacs bin
 if [ -d $HOME/.emacs.d/bin ]; then
