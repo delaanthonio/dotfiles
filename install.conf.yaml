@@ -8,6 +8,7 @@
 - clean: ['~']
 
 - link:
+    ~/.config/kitty/kitty.conf: kitty.conf
     ~/.doom.d:
     ~/.emacs.d:
     ~/.gitconfig:
