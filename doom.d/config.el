@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 (setq user-full-name "Dela Anthonio"
-      user-mail-address "dela@anthonio.pro")
+      user-mail-address "dela.anthonio@labcorp.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:

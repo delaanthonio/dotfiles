@@ -91,4 +91,12 @@
 
 [user]
 	name = Dela Anthonio
-	email = dela@anthonio.pro
+	email = dela.anthonio@labcorp.com
+[pull]
+	rebase = true
+[merge]
+	rebase = true
+[fetch]
+	prune = true
+[init]
+	defaultBranch = main
