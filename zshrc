@@ -54,6 +54,7 @@ plugins=(
     kubectl
     pip
     pj
+    poetry
 )
 
 # Project Jump
