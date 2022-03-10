@@ -107,3 +107,6 @@ cscope.po.out
 .python-version
 .venv
 venv
+
+# VSCode
+.vscode
