@@ -24,10 +24,6 @@ if [ -d $HOME/.emacs.d/bin ]; then
     export PATH="$HOME/.emacs.d/bin:$PATH"
 fi
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 # Rustup
 if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
