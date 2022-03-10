@@ -101,5 +101,9 @@ cscope.in.out
 cscope.po.out
 
 .direnv
-.python-version
 .envrc
+
+# Python
+.python-version
+.venv
+venv
