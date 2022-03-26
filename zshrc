@@ -205,7 +205,3 @@ vterm_prompt_end() {
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-eval "$(pyenv init -)"
