@@ -40,6 +40,8 @@
 ;; Use `:pin' to specify a particular commit to install.
 ;; (package! builtin-package :pin "1a2b3c4d5e")
 
+(package! mermaid-mode)
+(package! ob-mermaid)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
 
