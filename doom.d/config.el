@@ -146,10 +146,9 @@ apps are not started from a shell."
 
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
-         #'org-roam-capture--get-point
          "* %?"
-         :file-name "daily/%<%Y-%m-%d>"
-         :head "#+title: %<%Y-%m-%d>\n\n")))
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
 
 (defun transform-brackets-to-parentheses(string)
   "Transforms [ into ( and ] into ), other chars left unchanged."
