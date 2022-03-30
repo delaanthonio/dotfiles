@@ -10,3 +10,10 @@ nnoremap p "+p
 vnoremap p "+p
 nnoremap P "+P
 vnoremap P "+P
+
+let mapleader="<Space>"
+map <Space> <Leader>
+map <leader>s <Action>(GotoSymbol)
+map <leader>a <Action>(GotoAction)
+map <Space><Space> <Action>(GotoFile)
+map <leader>qr <Action>(RestartIde)
