@@ -11,6 +11,7 @@
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.doom.d:
     ~/.emacs.d:
+    ~/.ideavimrc:
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.zshenv:
