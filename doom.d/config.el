@@ -122,6 +122,13 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 
+;; sql
+(use-package! sqlformat
+  :config
+  (setq sqlformat-command 'pgformatter)
+  (setq sqlformat-args '("--keyword-case" "2" "--type-case" "1" "--spaces" "2" "-g"))
+  (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
+
 ;; Enable plantuml-mode for PlantUML files
 (after! plantuml-mode
   :config
