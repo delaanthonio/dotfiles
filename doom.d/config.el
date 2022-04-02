@@ -144,8 +144,9 @@ apps are not started from a shell."
 
 (use-package! ob-mermaid
   :config
-  (add-to-list 'org-babel-load-languages '(mermaid . t))
-  (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc"))
+  (after! org-mode
+    (add-to-list 'org-babel-load-languages '(mermaid . t))
+    (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")))
 
 ;; org
 (setq org-directory "~/Dropbox/Org/"
