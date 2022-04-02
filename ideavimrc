@@ -3,6 +3,8 @@ Plug 'tpope/vim-surround'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'michaeljsmith/vim-indent-object'
 
+nnoremap cc "+cc
+nnoremap dd "+dd
 nnoremap yy "+yy
 vnoremap y "+y
 
