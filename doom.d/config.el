@@ -138,16 +138,6 @@ apps are not started from a shell."
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (setq org-plantuml-exec-mode 'plantuml)))
 
-(use-package! mermaid-mode
-  :config
-  (add-to-list 'org-src-lang-modes '("mermaid" . mermaid)))
-
-(use-package! ob-mermaid
-  :config
-  (after! org-mode
-    (add-to-list 'org-babel-load-languages '(mermaid . t))
-    (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")))
-
 ;; org
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
