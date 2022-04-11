@@ -3,15 +3,7 @@ Plug 'tpope/vim-surround'
 Plug 'dbakker/vim-paragraph-motion'
 Plug 'michaeljsmith/vim-indent-object'
 
-nnoremap cc "+cc
-nnoremap dd "+dd
-nnoremap yy "+yy
-vnoremap y "+y
-
-nnoremap p "+p
-vnoremap p "+p
-nnoremap P "+P
-vnoremap P "+P
+set clipboard+=unnamed
 
 let mapleader="<Space>"
 map <Space> <Leader>
