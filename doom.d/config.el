@@ -81,6 +81,7 @@
       shell-command-switch "-ic")
 
 (auto-save-visited-mode t)
+(setq auto-save-visited-interval 10)
 (setq-default line-spacing 3)
 (global-auto-revert-mode t)
 (setq mac-command-modifier 'meta)
