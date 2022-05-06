@@ -55,10 +55,10 @@
 ;; text
 (use-package! visual-fill-column
   :config
-  (add-hook! (text-mode prog-mode org-agenda-mode)
+  (add-hook! (text-mode prog-mode)
              '(visual-fill-column-mode visual-line-mode))
   (add-hook! text-mode  (setq visual-fill-column-width 150))
-  (add-hook! (text-mode org-agenda-mode) (setq visual-fill-column-center-text t)))
+  (add-hook! text-mode (setq visual-fill-column-center-text t)))
 
 (setq-default visual-fill-column-width 100)
 
