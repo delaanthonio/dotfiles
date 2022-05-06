@@ -141,6 +141,10 @@ apps are not started from a shell."
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
       org-roam-directory (concat org-directory "roam/")
+      org-roam-node-display-template
+      (format "${doom-hierarchy:50} %s %s"
+              (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
+              (propertize "${doom-tags:42}" 'face 'org-tag))
       org-id-track-globally t)
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
