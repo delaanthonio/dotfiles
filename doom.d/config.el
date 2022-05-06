@@ -166,10 +166,11 @@ apps are not started from a shell."
                                     ((equal c ?\]) ?\))
                                     (t c))) string)))
 
-(setq org-capture-templates
-      '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
-         "* %U \n%?")
-        ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
-         "* TODO %?")
-        ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
-         "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?")))
+(after! org-mode
+  (setq org-capture-templates
+        '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
+           "* %U \n%?")
+          ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
+           "* TODO %?")
+          ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
+           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?"))))
