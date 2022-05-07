@@ -156,7 +156,7 @@ apps are not started from a shell."
                                     ((equal c ?\]) ?\))
                                     (t c))) string)))
 
-(after! org-mode
+(after! org
   (setq org-capture-templates
         '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
            "* %U \n%?")
