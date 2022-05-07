@@ -62,11 +62,9 @@
 
 (setq-default visual-fill-column-width 100)
 
-(add-hook 'markdown-mode-hook #'mixed-pitch-mode)
-(add-hook 'org-mode-hook #'mixed-pitch-mode)
-(remove-hook 'markdown-mode-hook #'display-line-numbers-mode)
-(remove-hook 'org-mode-hook #'display-line-numbers-mode)
 
+(add-hook! (markdown-mode org-mode) #'mixed-pitch-mode)
+(remove-hook! (markdown-mode org-mode) #'display-line-numbers-mode)
 
 ;; general settings
 (setq projectile-project-search-path '("~/Git")
