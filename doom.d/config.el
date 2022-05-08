@@ -57,11 +57,8 @@
   :config
   (add-hook! (text-mode prog-mode)
              '(visual-fill-column-mode visual-line-mode))
-  (add-hook! text-mode  (setq visual-fill-column-width 150))
-  (add-hook! text-mode (setq visual-fill-column-center-text t)))
-
-(setq-default visual-fill-column-width 100)
-
+  (add-hook! text-mode (setq visual-fill-column-center-text t))
+  (setq-default visual-fill-column-width 120))
 
 (add-hook! (markdown-mode org-mode) #'mixed-pitch-mode)
 (remove-hook! (markdown-mode org-mode) #'display-line-numbers-mode)
