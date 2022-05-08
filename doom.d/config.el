@@ -76,6 +76,7 @@
 (global-auto-revert-mode t)
 (setq mac-command-modifier 'meta)
 (setq confirm-kill-emacs nil)
+(setq-default explicit-shell-file-name "/bin/zsh")
 
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
