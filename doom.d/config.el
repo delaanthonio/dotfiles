@@ -135,12 +135,15 @@ apps are not started from a shell."
       org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
                                              (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
                                              (propertize "${doom-tags:42}" 'face 'org-tag))
+      +org-capture-projects-file (concat org-roam-directory "para/projects.org")
+      +org-capture-todo-file (concat org-roam-directory "para/todo.org")
       org-id-track-globally t)
 
 (add-hook 'org-mode-hook #'+org-pretty-mode)
 
 (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 2))
-                           (+org-capture-todo-file . (:maxlevel . 2))))
+                           (+org-capture-todo-file . (:maxlevel . 2))
+                           (+org-capture-projects-file . (:maxlevel . 2))))
 
 (setq org-roam-dailies-directory "daily/")
 
