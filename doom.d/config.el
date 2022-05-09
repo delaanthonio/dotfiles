@@ -159,8 +159,10 @@ apps are not started from a shell."
 (after! org
   (setq org-capture-templates
         '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
-           "* %U \n%?")
-          ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
-           "* TODO %?")
+           "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+          ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
+           "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+          ("t" "To-do" entry (file +org-capture-todo-file)
+           "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
            "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?"))))
