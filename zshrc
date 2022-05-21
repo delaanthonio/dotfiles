@@ -100,6 +100,7 @@ fi
 if [[ -z "$NVM_DIR" ]]; then
     plugins+=(npm)
     plugins+=(npx)
+    plugins+=(nvm)
 fi
 
 if (( $+commands[systemd] )); then
