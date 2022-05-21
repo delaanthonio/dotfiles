@@ -18,11 +18,13 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'normal)
-      doom-variable-pitch-font
-      (cond
-       ((eq system-type 'gnu/linux) (font-spec :family "Roboto" :size 22 :weight 'normal))
-       (t (font-spec :family "Sans Serif" :size 22 :weight 'normal))))
+(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'normal))
+(setq doom-variable-pitch-font (cond
+                                ((find-font (font-spec :family "SF Pro Text"))
+                                 (font-spec :family "SF Pro Text" :size 20))
+                                ((find-font (font-spec :family "Roboto"))
+                                 (font-spec :family "Roboto" :size 20))
+                                (t (font-spec :family "Sans Serif" :size 20))))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
