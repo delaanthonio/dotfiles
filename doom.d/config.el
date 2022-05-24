@@ -146,6 +146,9 @@ apps are not started from a shell."
 
 (setq org-roam-dailies-directory "daily/")
 
+(after! org-superstar
+  (setq org-superstar-headline-bullets-list '("●")))
+
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
          "* %?"
