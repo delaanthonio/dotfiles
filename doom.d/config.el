@@ -140,8 +140,9 @@ Is relative to `org-directory', unless it is absolute."))
       org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
                                              (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
                                              (propertize "${doom-tags:42}" 'face 'org-tag))
-      +org-capture-projects-file (concat org-roam-directory "para/projects.org")
-      +org-capture-todo-file (concat org-roam-directory "para/todo.org")
+      +org-capture-projects-file (concat org-directory "/projects.org")
+      +org-capture-todo-file (concat org-directory "/todo.org")
+      +org-capture-inbox-file (concat org-directory "/inbox.org")
       org-id-track-globally t)
 
 (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
