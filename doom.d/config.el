@@ -144,9 +144,9 @@ Is relative to `org-directory', unless it is absolute."))
       +org-capture-todo-file (concat org-roam-directory "para/todo.org")
       org-id-track-globally t)
 
-(setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 2))
-                           (+org-capture-todo-file . (:maxlevel . 2))
-                           (+org-capture-projects-file . (:maxlevel . 2))))
+(setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
+                           (+org-capture-todo-file . (:maxlevel . 1))
+                           (+org-capture-projects-file . (:maxlevel . 1))))
 
 (setq org-roam-dailies-directory "daily/")
 
