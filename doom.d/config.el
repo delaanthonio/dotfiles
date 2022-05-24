@@ -135,6 +135,7 @@ Is relative to `org-directory', unless it is absolute."))
 
 ;; org
 (setq org-directory "~/Dropbox/Org/"
+      org-agenda-files (directory-files org-directory t "\\.org$" t)
       org-log-into-drawer "LOGBOOK"
       org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
       org-roam-directory org-directory
