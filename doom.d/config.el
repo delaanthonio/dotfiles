@@ -136,6 +136,7 @@ Is relative to `org-directory', unless it is absolute."))
 ;; org
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
+      org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
       org-roam-directory org-directory
       org-roam-capture-templates '(("d" "default" plain "%?" :target
                                     (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
