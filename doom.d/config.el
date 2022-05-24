@@ -167,11 +167,11 @@ Is relative to `org-directory', unless it is absolute."))
 
 (after! org
   (setq org-capture-templates
-        '(("n" "Note" entry (file+headline +org-capture-notes-file "Inbox")
+        '(("n" "Note" entry (file +org-capture-inbox-file)
            "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
            "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("t" "To-do" entry (file +org-capture-todo-file)
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("L" "Link" entry (file+headline +org-capture-notes-file "Inbox")
-           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:END:\n%i\n%?"))))
+          ("L" "Link" entry (file +org-capture-inbox-file)
+           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
