@@ -134,17 +134,19 @@ apps are not started from a shell."
 
 Is relative to `org-directory', unless it is absolute.")
 
-  (setq org-directory "~/Dropbox/Org/"
-        org-agenda-files (directory-files org-directory t "\\.org$" t)
-        org-log-into-drawer "LOGBOOK"
-        org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
+  (setq org-directory "~/Dropbox/Org/")
+
+  (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
         +org-capture-projects-file (concat org-directory "/projects.org")
         +org-capture-todo-file (concat org-directory "/todo.org")
         +org-capture-inbox-file (concat org-directory "/inbox.org")
-        org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
+        org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
+        org-id-track-globally t
+        org-log-into-drawer "LOGBOOK")
+
+  (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
                              (+org-capture-todo-file . (:maxlevel . 1))
-                             (+org-capture-projects-file . (:maxlevel . 1)))
-        org-id-track-globally t)
+                             (+org-capture-projects-file . (:maxlevel . 1))))
 
   (defun transform-brackets-to-parentheses(string)
     "Transforms [ into ( and ] into ), other chars left unchanged."
