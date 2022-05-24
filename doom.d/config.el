@@ -136,7 +136,10 @@ Is relative to `org-directory', unless it is absolute."))
 ;; org
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
-      org-roam-directory (concat org-directory "roam/")
+      org-roam-directory org-directory
+      org-roam-capture-templates '(("d" "default" plain "%?" :target
+                                    (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+                                    :unnarrowed t))
       org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
                                              (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
                                              (propertize "${doom-tags:42}" 'face 'org-tag))
