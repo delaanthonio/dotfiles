@@ -141,6 +141,7 @@ Is relative to `org-directory', unless it is absolute.")
         +org-capture-todo-file (concat org-directory "/todo.org")
         +org-capture-inbox-file (concat org-directory "/inbox.org")
         org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
+        org-ellipsis "…"
         org-id-track-globally t
         org-log-into-drawer "LOGBOOK")
 
