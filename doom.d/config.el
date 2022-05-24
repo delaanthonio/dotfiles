@@ -127,32 +127,47 @@ apps are not started from a shell."
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (setq org-plantuml-exec-mode 'plantuml)))
 
+;; org
 (after! org
   (defvar +org-capture-inbox-file "inbox.org"
     "Default target for inbox entries.
 
-Is relative to `org-directory', unless it is absolute."))
+Is relative to `org-directory', unless it is absolute.")
 
-;; org
-(setq org-directory "~/Dropbox/Org/"
-      org-agenda-files (directory-files org-directory t "\\.org$" t)
-      org-log-into-drawer "LOGBOOK"
-      org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
-      org-roam-directory org-directory
-      org-roam-capture-templates '(("d" "default" plain "%?" :target
-                                    (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-                                    :unnarrowed t))
-      org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
-                                             (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
-                                             (propertize "${doom-tags:42}" 'face 'org-tag))
-      +org-capture-projects-file (concat org-directory "/projects.org")
-      +org-capture-todo-file (concat org-directory "/todo.org")
-      +org-capture-inbox-file (concat org-directory "/inbox.org")
-      org-id-track-globally t)
+  (setq org-directory "~/Dropbox/Org/"
+        org-agenda-files (directory-files org-directory t "\\.org$" t)
+        org-log-into-drawer "LOGBOOK"
+        org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
+        org-roam-directory org-directory
+        org-roam-capture-templates '(("d" "default" plain "%?" :target
+                                      (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+                                      :unnarrowed t))
+        org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
+                                               (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
+                                               (propertize "${doom-tags:42}" 'face 'org-tag))
+        +org-capture-projects-file (concat org-directory "/projects.org")
+        +org-capture-todo-file (concat org-directory "/todo.org")
+        +org-capture-inbox-file (concat org-directory "/inbox.org")
+        org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
+                             (+org-capture-todo-file . (:maxlevel . 1))
+                             (+org-capture-projects-file . (:maxlevel . 1)))
+        org-id-track-globally t)
 
-(setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
-                           (+org-capture-todo-file . (:maxlevel . 1))
-                           (+org-capture-projects-file . (:maxlevel . 1))))
+  (defun transform-brackets-to-parentheses(string)
+    "Transforms [ into ( and ] into ), other chars left unchanged."
+    (concat (mapcar (lambda (c) (cond ((equal c ?\[) ?\()
+                                      ((equal c ?\]) ?\))
+                                      (t c))) string)))
+
+  (setq org-capture-templates
+        '(("n" "Note" entry (file +org-capture-inbox-file)
+           "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+          ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
+           "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+          ("t" "To-do" entry (file +org-capture-todo-file)
+           "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+          ("L" "Link" entry (file +org-capture-inbox-file)
+           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
 
 (setq org-roam-dailies-directory "daily/")
 
@@ -165,19 +180,5 @@ Is relative to `org-directory', unless it is absolute."))
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
 
-(defun transform-brackets-to-parentheses(string)
-  "Transforms [ into ( and ] into ), other chars left unchanged."
-  (concat (mapcar (lambda (c) (cond ((equal c ?\[) ?\()
-                                    ((equal c ?\]) ?\))
-                                    (t c))) string)))
 
 (after! org
-  (setq org-capture-templates
-        '(("n" "Note" entry (file +org-capture-inbox-file)
-           "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
-           "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("t" "To-do" entry (file +org-capture-todo-file)
-           "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("L" "Link" entry (file +org-capture-inbox-file)
-           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
