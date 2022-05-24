@@ -57,9 +57,9 @@
 ;; text
 (use-package! visual-fill-column
   :config
-  (add-hook! (text-mode prog-mode)
+  (add-hook! (text-mode prog-mode org-agenda-mode)
              '(visual-fill-column-mode visual-line-mode))
-  (add-hook! text-mode (setq visual-fill-column-center-text t))
+  (add-hook! (text-mode org-agenda-mode) (setq visual-fill-column-center-text t))
   (setq-default visual-fill-column-width 120))
 
 (add-hook! (markdown-mode org-mode) #'mixed-pitch-mode)
@@ -138,13 +138,6 @@ Is relative to `org-directory', unless it is absolute.")
         org-agenda-files (directory-files org-directory t "\\.org$" t)
         org-log-into-drawer "LOGBOOK"
         org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
-        org-roam-directory org-directory
-        org-roam-capture-templates '(("d" "default" plain "%?" :target
-                                      (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-                                      :unnarrowed t))
-        org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
-                                               (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
-                                               (propertize "${doom-tags:42}" 'face 'org-tag))
         +org-capture-projects-file (concat org-directory "/projects.org")
         +org-capture-todo-file (concat org-directory "/todo.org")
         +org-capture-inbox-file (concat org-directory "/inbox.org")
@@ -169,16 +162,20 @@ Is relative to `org-directory', unless it is absolute.")
           ("L" "Link" entry (file +org-capture-inbox-file)
            "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
 
-(setq org-roam-dailies-directory "daily/")
+(after! org-roam
+  (setq
+   org-roam-capture-templates '(("d" "default" plain "%?" :target
+                                 (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+                                 :unnarrowed t))
+   org-roam-dailies-directory "daily/"
+   org-roam-dailies-capture-templates '(("d" "default" entry
+                                         "* %?"
+                                         :target (file+head "%<%Y-%m-%d>.org"
+                                                            "#+title: %<%Y-%m-%d>\n")))
+   org-roam-directory org-directory
+   org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
+                                          (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
+                                          (propertize "${doom-tags:42}" 'face 'org-tag))))
 
 (after! org-superstar
   (setq org-superstar-headline-bullets-list '("●")))
-
-(setq org-roam-dailies-capture-templates
-      '(("d" "default" entry
-         "* %?"
-         :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n"))))
-
-
-(after! org
