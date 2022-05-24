@@ -127,6 +127,12 @@ apps are not started from a shell."
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (setq org-plantuml-exec-mode 'plantuml)))
 
+(after! org
+  (defvar +org-capture-inbox-file "inbox.org"
+    "Default target for inbox entries.
+
+Is relative to `org-directory', unless it is absolute."))
+
 ;; org
 (setq org-directory "~/Dropbox/Org/"
       org-log-into-drawer "LOGBOOK"
