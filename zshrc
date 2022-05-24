@@ -97,10 +97,10 @@ if (( $+commands[yarn] )); then
     plugins+=(yarn)
 fi
 
-if [[ -z "$NVM_DIR" ]]; then
+if [[ -d "$NVM_DIR" ]]; then
     plugins+=(npm)
-    plugins+=(npx)
     plugins+=(nvm)
+    export NVM_AUTOLOAD=1
 fi
 
 if (( $+commands[systemd] )); then
