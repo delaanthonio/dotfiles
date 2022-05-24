@@ -144,8 +144,6 @@ Is relative to `org-directory', unless it is absolute."))
       +org-capture-todo-file (concat org-roam-directory "para/todo.org")
       org-id-track-globally t)
 
-(add-hook 'org-mode-hook #'+org-pretty-mode)
-
 (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 2))
                            (+org-capture-todo-file . (:maxlevel . 2))
                            (+org-capture-projects-file . (:maxlevel . 2))))
