@@ -172,7 +172,7 @@ Is relative to `org-directory', unless it is absolute.")
                                  :unnarrowed t))
    org-roam-dailies-directory "daily/"
    org-roam-dailies-capture-templates '(("d" "default" entry
-                                         "* %?"
+                                         "* %U\n%?"
                                          :target (file+head "%<%Y-%m-%d>.org"
                                                             "#+title: %<%Y-%m-%d>\n")))
    org-roam-directory org-directory
