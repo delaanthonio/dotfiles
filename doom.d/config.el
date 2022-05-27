@@ -151,4 +151,14 @@ Is relative to `org-directory', unless it is absolute.")
                                           (propertize "${doom-tags:42}" 'face 'org-tag))))
 
 (after! org-superstar
-  (setq org-superstar-headline-bullets-list '("●")))
+  (setq org-superstar-headline-bullets-list '("■")
+        org-superstar-special-todo-items t
+        org-superstar-todo-bullet-alist '(("TODO" . 9675)
+                                          ("STRT" . 9675)
+                                          ("PROJ" . 9675)
+                                          ("GOAL" . 9675)
+                                          ("LOOP" . 9675)
+                                          ("[ ]" . 9675)
+                                          ("DONE" . 9679)
+                                          ("KILL" . 9679)
+                                          ("[X]" . 9679))))
