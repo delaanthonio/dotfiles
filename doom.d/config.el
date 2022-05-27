@@ -109,7 +109,7 @@ apps are not started from a shell."
         +org-capture-todo-file (concat org-directory "todo.org")
         +org-capture-notes-file (concat org-directory "inbox.org")
         org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
-        org-ellipsis "…"
+        org-ellipsis " ⯆ "
         org-id-track-globally t
         org-log-into-drawer "LOGBOOK")
 
