@@ -47,6 +47,8 @@
 (setq mac-command-modifier 'meta)
 (setq confirm-kill-emacs nil)
 (setq-default explicit-shell-file-name "/bin/zsh")
+(setq which-key-add-column-padding 3)
+(setq which-key-max-description-length 30)
 
 ;; evil
 (setq evil-escape-unordered-key-sequence t)
