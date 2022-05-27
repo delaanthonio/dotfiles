@@ -102,17 +102,12 @@ apps are not started from a shell."
 
 ;; org
 (after! org
-  (defvar +org-capture-inbox-file "inbox.org"
-    "Default target for inbox entries.
-
-Is relative to `org-directory', unless it is absolute.")
-
   (setq org-directory "~/Dropbox/Org/")
 
   (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
-        +org-capture-projects-file (concat org-directory "/projects.org")
-        +org-capture-todo-file (concat org-directory "/todo.org")
-        +org-capture-inbox-file (concat org-directory "/inbox.org")
+        +org-capture-projects-file (concat org-directory "projects.org")
+        +org-capture-todo-file (concat org-directory "todo.org")
+        +org-capture-notes-file (concat org-directory "inbox.org")
         org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
         org-ellipsis "…"
         org-id-track-globally t
@@ -129,13 +124,13 @@ Is relative to `org-directory', unless it is absolute.")
                                       (t c))) string)))
 
   (setq org-capture-templates
-        '(("n" "Note" entry (file +org-capture-inbox-file)
+        '(("n" "Note" entry (file +org-capture-notes-file)
            "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
            "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("t" "To-do" entry (file +org-capture-todo-file)
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("L" "Link" entry (file +org-capture-inbox-file)
+          ("L" "Link" entry (file +org-capture-notes-file)
            "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
 
 (after! org-roam
