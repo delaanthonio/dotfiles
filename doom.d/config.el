@@ -43,6 +43,7 @@
 (setq auto-save-visited-interval 10)
 (setq-default line-spacing 3)
 (global-auto-revert-mode t)
+(setq git-commit-summary-max-length 68)
 (setq mac-command-modifier 'meta)
 (setq confirm-kill-emacs nil)
 (setq-default explicit-shell-file-name "/bin/zsh")
