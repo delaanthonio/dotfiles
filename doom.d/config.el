@@ -105,6 +105,7 @@ apps are not started from a shell."
   (setq org-directory "~/Dropbox/Org/")
 
   (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
+        org-archive-location "::* Archive"
         +org-capture-projects-file (concat org-directory "projects.org")
         +org-capture-todo-file (concat org-directory "todo.org")
         +org-capture-notes-file (concat org-directory "inbox.org")
