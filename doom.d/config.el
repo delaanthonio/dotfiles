@@ -125,10 +125,18 @@ apps are not started from a shell."
                                       (t c))) string)))
 
   (setq org-capture-templates
-        '(("n" "Note" entry (file +org-capture-notes-file)
+        `(("n" "Note" entry (file +org-capture-notes-file)
            "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
-           "* PROJ %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
+           ,(string-join '("* PROJ %?"
+                           ":PROPERTIES:"
+                           ":Created: %U"
+                           ":ID: %(org-id-uuid)"
+                           ":END:"
+                           ":Meta:"
+                           "- Area ::"
+                           "- Goal ::"
+                           ":END:") "\n"))
           ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("L" "Link" entry (file +org-capture-notes-file)
