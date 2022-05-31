@@ -140,7 +140,9 @@ apps are not started from a shell."
           ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("L" "Link" entry (file +org-capture-notes-file)
-           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
+           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?")))
+
+  (add-hook! org-mode #'+org-pretty-mode))
 
 (after! org-roam
   (setq
