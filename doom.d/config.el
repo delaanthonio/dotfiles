@@ -171,3 +171,7 @@ apps are not started from a shell."
                                           ("DONE" . 9679)
                                           ("KILL" . 9679)
                                           ("[X]" . 9679))))
+
+
+;; protobuf
+(use-package! protobuf-mode)

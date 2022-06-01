@@ -42,6 +42,7 @@
 
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
+(package! protobuf-mode)
 (package! sqlformat)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
