@@ -198,5 +198,17 @@ apps are not started from a shell."
                                           ("[X]" . 9679))))
 
 
+;;; Themes
+(after! (doom-themes org)
+  (custom-set-faces!
+    '(org-document-title :foreground "fg" :height 1.25 :background nil :weight semi-bold)
+    '(font-lock-doc-face :italic nil)
+    '(org-link :inherit font-lock-constant-face :underline t)
+    '(org-level-1 :height 1.1 :weight semi-bold)
+    '(org-level-2 :height 1.0 :weight normal)
+    '(org-level-3 :height 1.0 :weight normal)
+    '(font-lock-constant-face :weight bold)
+    '(org-ellipsis :height 1.0 :foreground "#65737E"  :background nil :weight normal)))
+
 ;; protobuf
 (use-package! protobuf-mode)
