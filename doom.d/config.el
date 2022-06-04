@@ -24,7 +24,7 @@
 (setq doom-spacegrey-comment-bg nil)
 (setq display-line-numbers-type t)
 
-;; text
+;;; Text
 (use-package! visual-fill-column
   :config
   (add-hook! (text-mode prog-mode org-agenda-mode) (visual-fill-column-mode visual-line-mode))
@@ -35,12 +35,16 @@
 (add-hook! (markdown-mode org-mode) #'mixed-pitch-mode)
 (remove-hook! (markdown-mode org-mode) #'display-line-numbers-mode)
 
-;; general settings
+(define-key visual-line-mode-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key visual-line-mode-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+
+;;; General Settings
 (setq projectile-project-search-path '("~/Git")
       shell-command-switch "-ic")
 
 (auto-save-visited-mode t)
 (setq auto-save-visited-interval 10)
+(setq evil-escape-unordered-key-sequence t)
 (setq-default line-spacing 3)
 (global-auto-revert-mode t)
 (setq git-commit-summary-max-length 68)
@@ -50,17 +54,12 @@
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
 
-;; evil
-(setq evil-escape-unordered-key-sequence t)
 
-(define-key visual-line-mode-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key visual-line-mode-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-
-;; emacs lisp
+;;; Emacs Lisp
 (add-hook! 'emacs-lisp-mode-hook
-  (add-hook 'before-save-hook #'+format/buffer))
+  (add-hook! 'before-save-hook #'+format/buffer))
 
-;; sh
+;;; Shell
 (add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode) t)
 (add-to-list 'auto-mode-alist '("poetry.lock" . conf-toml-mode) t)
 (add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
@@ -84,14 +83,14 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 
-;; sql
+;;; SQL
 (use-package! sqlformat
   :config
   (setq sqlformat-command 'pgformatter)
   (setq sqlformat-args '("--keyword-case" "2" "--type-case" "1" "--spaces" "2" "-g"))
   (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
 
-;; Enable plantuml-mode for PlantUML files
+;;; PlantUML files
 (after! plantuml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
@@ -100,7 +99,7 @@ apps are not started from a shell."
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     (setq org-plantuml-exec-mode 'plantuml)))
 
-;; org
+;;; Org
 (after! org
   (setq org-directory "~/Dropbox/Org/")
 
