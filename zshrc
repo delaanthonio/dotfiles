@@ -113,6 +113,9 @@ source "$DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source $ZSH/oh-my-zsh.sh
 
 # Pure Prompt
+zstyle ":prompt:pure:path" color "green"
+zstyle ":prompt:pure:prompt:success" color "gray"
+
 fpath+="$DOTFILES/pure"
 source "$DOTFILES/pure/pure.zsh"
 
@@ -206,4 +209,3 @@ vterm_prompt_end() {
 }
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-
