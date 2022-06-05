@@ -211,3 +211,6 @@ apps are not started from a shell."
 
 ;; protobuf
 (use-package! protobuf-mode)
+
+
+(message "Loaded config.el")
