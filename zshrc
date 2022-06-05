@@ -49,6 +49,7 @@ export ZSH=$DOTFILES/oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     common-aliases
+    direnv
     extract
     gh
     kubectl
