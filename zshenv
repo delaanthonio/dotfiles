@@ -32,7 +32,8 @@ fi
 
 # NVM
 [ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -d "$HOME/.nvm" ] && export NODE_VERSIONS="$HOME/.nvm/versions/node/"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
 
 # Fix WSL 2 Interops
 if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
