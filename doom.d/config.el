@@ -113,8 +113,13 @@ apps are not started from a shell."
         org-id-track-globally t
         org-log-into-drawer "LOGBOOK")
 
-  (setq org-refile-targets '((+org-capture-notes-file . (:maxlevel . 1))
+  (setq org-refile-targets `((+org-capture-notes-file . (:maxlevel . 1))
                              (+org-capture-todo-file . (:maxlevel . 1))
+                             (nil . (:maxlevel . 1))
+                             (,(expand-file-name "areas.org" org-directory)
+                              . (:maxlevel . 1))
+                             (,(expand-file-name "resources.org" org-directory)
+                              . (:maxlevel . 1))
                              (+org-capture-projects-file . (:maxlevel . 1))))
 
   (defun transform-brackets-to-parentheses(string)
