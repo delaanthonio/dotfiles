@@ -27,7 +27,7 @@
 ;;; Text
 (use-package! visual-fill-column
   :config
-  (add-hook! (text-mode prog-mode org-agenda-mode) (visual-fill-column-mode visual-line-mode))
+  (add-hook! (text-mode org-agenda-mode) #'visual-fill-column-mode #'visual-line-mode)
   (add-hook! (markdown-mode org-mode org-agenda-mode) (setq visual-fill-column-center-text t
                                                             visual-fill-column-width 80))
   (setq-default visual-fill-column-width 100))
