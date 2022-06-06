@@ -101,7 +101,7 @@ fi
 if [[ -d "$NVM_DIR" ]]; then
     plugins+=(npm)
     plugins+=(nvm)
-    export NVM_AUTOLOAD=1
+    export NVM_LAZY=1
 fi
 
 if (( $+commands[systemd] )); then
