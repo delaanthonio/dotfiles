@@ -217,5 +217,14 @@ apps are not started from a shell."
 ;; protobuf
 (use-package! protobuf-mode)
 
+;;; Color
+(use-package! ansi-color
+  :config
+  (defun colorize-buffer ()
+    (toggle-read-only)
+    (ansi-color-apply-on-region (point-min) (point-max))
+    (toggle-read-only))
+  (add-hook! 'compilation-filter-hook #'colorize-buffer))
+
 
 (message "Loaded config.el")
