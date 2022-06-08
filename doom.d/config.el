@@ -90,6 +90,11 @@ apps are not started from a shell."
   (setq sqlformat-args '("--keyword-case" "2" "--type-case" "1" "--spaces" "2" "-g"))
   (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
 
+;;; Make
+(map! (:when (featurep! :tools make)
+       :leader (:prefix "c"
+                :desc "Run make" "m" #'+make/run)))
+
 ;;; PlantUML files
 (after! plantuml-mode
   :config
