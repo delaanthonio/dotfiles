@@ -22,7 +22,28 @@
 (setq doom-theme 'doom-spacegrey)
 (setq doom-spacegrey-brighter-comments t)
 (setq doom-spacegrey-comment-bg nil)
+
+(auto-save-visited-mode t)
+(setq auto-save-visited-interval 10)
+(setq confirm-kill-emacs nil)
 (setq display-line-numbers-type t)
+(setq evil-escape-unordered-key-sequence t)
+(setq-default explicit-shell-file-name "/bin/zsh")
+(global-auto-revert-mode t)
+(setq git-commit-summary-max-length 68)
+(setq-default line-spacing 3)
+(setq mac-command-modifier 'meta)
+(setq projectile-project-search-path '("~/Git"))
+(setq shell-command-switch "-ic")
+(setq which-key-add-column-padding 3)
+(setq which-key-max-description-length 30)
+
+(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode) t)
+(add-to-list 'auto-mode-alist '("poetry.lock" . conf-toml-mode) t)
+(add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
 
 ;;; Text
 (use-package! visual-fill-column
@@ -38,35 +59,11 @@
 (define-key visual-line-mode-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key visual-line-mode-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-;;; General Settings
-(setq projectile-project-search-path '("~/Git")
-      shell-command-switch "-ic")
-
-(auto-save-visited-mode t)
-(setq auto-save-visited-interval 10)
-(setq evil-escape-unordered-key-sequence t)
-(setq-default line-spacing 3)
-(global-auto-revert-mode t)
-(setq git-commit-summary-max-length 68)
-(setq mac-command-modifier 'meta)
-(setq confirm-kill-emacs nil)
-(setq-default explicit-shell-file-name "/bin/zsh")
-(setq which-key-add-column-padding 3)
-(setq which-key-max-description-length 30)
-
-
 ;;; Emacs Lisp
 (add-hook! 'emacs-lisp-mode-hook
   (add-hook! 'before-save-hook #'+format/buffer))
 
 ;;; Shell
-(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode) t)
-(add-to-list 'auto-mode-alist '("poetry.lock" . conf-toml-mode) t)
-(add-to-list 'auto-mode-alist '("zshrc\\'" . sh-mode) t)
-(add-to-list 'auto-mode-alist '("zshenv\\'" . sh-mode) t)
-(add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
-(add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
-
 (defun set-exec-path-from-shell-PATH ()
   "Set up Emacs' `exec-path' and PATH environment variable to match
 that used by the user's shell.
