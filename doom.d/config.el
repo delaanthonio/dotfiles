@@ -217,7 +217,21 @@ apps are not started from a shell."
     '(org-level-2 :height 1.0 :weight normal)
     '(org-level-3 :height 1.0 :weight normal)
     '(font-lock-constant-face :weight bold)
-    '(org-ellipsis :height 1.0 :foreground "#65737E"  :background nil :weight normal)))
+    '(org-ellipsis :height 1.0 :foreground "#65737E"  :background nil :weight normal))
+
+  (custom-theme-set-faces! 'doom-one-light
+    '(outline-1 :weight normal)
+    '(outline-2 :weight normal)
+    '(outline-3 :weight normal)
+    '(outline-4 :weight normal)
+    '(outline-5 :weight normal)
+    '(outline-6 :weight normal)
+    `(font-lock-builtin-face :foreground ,(doom-color 'orange))
+    `(font-lock-constant-face :foreground ,(doom-color 'blue))
+    `(font-lock-function-name-face :foreground ,(doom-color 'yellow))
+    `(font-lock-variable-name-face :foreground ,(doom-color 'blue))
+    '(default :background "white" :weight normal)
+    `(region :background ,(doom-color 'base0) :weight normal)))
 
 ;; protobuf
 (use-package! protobuf-mode)
@@ -230,6 +244,5 @@ apps are not started from a shell."
     (ansi-color-apply-on-region (point-min) (point-max))
     (toggle-read-only))
   (add-hook! 'compilation-filter-hook #'colorize-buffer))
-
 
 (message "Loaded config.el")
