@@ -10,7 +10,10 @@
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-(setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'normal))
+(setq doom-font (cond
+                 ((find-font (font-spec :family "Iosevka SS04"))
+                  (font-spec :family "Iosevka SS04" :size 20))
+                 (t (font-spec :family "Monospace" :size 20))))
 (setq doom-unicode-font doom-font)
 (setq doom-variable-pitch-font (cond
                                 ((find-font (font-spec :family "SF Pro"))
