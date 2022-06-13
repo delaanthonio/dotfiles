@@ -13,8 +13,8 @@
 (setq doom-font (font-spec :family "Iosevka SS04" :size 20 :weight 'normal))
 (setq doom-unicode-font doom-font)
 (setq doom-variable-pitch-font (cond
-                                ((find-font (font-spec :family "SF Pro Text"))
-                                 (font-spec :family "SF Pro Text" :size 20))
+                                ((find-font (font-spec :family "SF Pro"))
+                                 (font-spec :family "SF Pro" :size 20))
                                 ((find-font (font-spec :family "Roboto"))
                                  (font-spec :family "Roboto" :size 20))
                                 (t (font-spec :family "Sans Serif" :size 20))))
