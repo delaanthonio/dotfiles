@@ -42,6 +42,8 @@
 
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
+(package! mermaid-mode)
+(package! ob-mermaid)
 (package! protobuf-mode)
 (package! sqlformat)
 (package! visual-fill-column)
