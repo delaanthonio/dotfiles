@@ -240,7 +240,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
     '(org-level-1 :height 1.1 :weight semi-bold)
     '(org-level-2 :height 1.0 :weight normal)
     '(org-level-3 :height 1.0 :weight normal)
-    '(font-lock-constant-face :weight bold)
     '(org-ellipsis :height 1.0 :foreground "#65737E"  :background nil :weight normal))
 
   (custom-theme-set-faces! 'doom-one-light
