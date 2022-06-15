@@ -263,10 +263,10 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 ;;; Color
 (use-package! ansi-color
   :config
-  (defun colorize-buffer ()
-    (toggle-read-only)
+  (defun colorize-compilation-buffer ()
+    (read-only-mode -1)
     (ansi-color-apply-on-region (point-min) (point-max))
-    (toggle-read-only))
-  (add-hook! 'compilation-filter-hook #'colorize-buffer))
+    (read-only-mode 1))
+  (add-hook! 'compilation-filter-hook #'colorize-compilation-buffer))
 
 (message "Loaded config.el")
