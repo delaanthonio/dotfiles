@@ -147,6 +147,8 @@ alias hib='systemctl hibernate'
 alias sus='systemctl suspend'
 alias reb='systemctl reboot'
 
+unalias pip
+
 # Functions
 function reload() {
     for file ("$HOME/.zshrc" "$HOME/.zshenv"); do
