@@ -7,9 +7,6 @@ export TERM="xterm-256color"
 export EDITOR="emacsclient --create-frame --alternate-editor=''"
 export ALTERNATE_EDITOR="vim"
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
