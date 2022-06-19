@@ -155,36 +155,7 @@ function reload() {
     done
 }
 
-okta_auth() {
-  DUO_DEVICE="phone1"
-  if [[ $(ioreg -p IOUSB -l -w 0 | grep '"USB Vendor Name" = "Yubico"') ]]; then
-    DUO_DEVICE='u2f'
-  fi
-  if [[ -z ${1+x} ]]; then PROFILES=${AWS_PROFILE}; else PROFILES=${1}; fi
-  for PROFILE in ${PROFILES//,/ }
-  do
-    echo "profile is: ${PROFILE}"
-    aws-okta \
-      --debug \
-      --mfa-provider DUO \
-      --mfa-duo-device ${DUO_DEVICE} \
-      --mfa-factor-type web \
-      --assume-role-ttl 10h \
-      --session-ttl 10h \
-      write-to-credentials \
-      ${PROFILE} \
-      ~/.aws/credentials
-    EXPIRATION=$(
-      aws-okta \
-        cred-process \
-        ${PROFILE} | \
-      jq -r .Expiration)
-    echo "Expiration: ${EXPIRATION}"
-  done
-}
-
 # VTerm
-
 vterm_printf(){
     if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
         # Tell tmux to pass the escape sequences through
