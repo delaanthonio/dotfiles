@@ -130,7 +130,9 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 
 ;;; Org
 (after! org
-  (setq org-directory "~/Dropbox/Org/")
+  (setq org-directory
+        (cond ((file-directory-p (expand-file-name "~/Dropbox/Org")) "~/Dropbox/Org")
+              (t "~/Org")))
 
   (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
         org-archive-location "::* Archive"
