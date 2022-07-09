@@ -256,8 +256,19 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
     '(default :background "white" :weight normal)
     `(region :background ,(doom-color 'base0) :weight normal)))
 
-;; protobuf
+;;; Protobuf
 (use-package! protobuf-mode)
+
+(set-formatter!
+  'clang-format
+  '("clang-format"
+    ("-assume-filename=%S" (or buffer-file-name mode-result "")))
+  :modes
+  '((c-mode ".c")
+    (c++-mode ".cpp")
+    (java-mode ".java")
+    (objc-mode ".m")
+    (protobuf-mode ".proto")))
 
 ;;; Color
 (use-package! ansi-color
