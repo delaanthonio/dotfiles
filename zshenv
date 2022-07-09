@@ -13,6 +13,9 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
 
+# Go
+[ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
+
 #brew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
