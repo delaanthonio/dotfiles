@@ -36,6 +36,7 @@
 (setq git-commit-summary-max-length 68)
 (setq-default line-spacing 3)
 (setq mac-command-modifier 'meta)
+(setq magit-clone-default-directory "~/Git")
 (setq projectile-project-search-path '("~/Git" . 0))
 (setq shell-command-switch "-ic")
 (setq which-key-add-column-padding 3)
