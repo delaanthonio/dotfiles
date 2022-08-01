@@ -36,7 +36,7 @@
 (setq git-commit-summary-max-length 68)
 (setq-default line-spacing 3)
 (setq mac-command-modifier 'meta)
-(setq projectile-project-search-path '("~/Git"))
+(setq projectile-project-search-path '("~/Git" . 0))
 (setq shell-command-switch "-ic")
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
