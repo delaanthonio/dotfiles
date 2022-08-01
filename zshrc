@@ -112,12 +112,8 @@ source "$DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 source $ZSH/oh-my-zsh.sh
 
-# Pure Prompt
-zstyle ":prompt:pure:path" color "green"
-zstyle ":prompt:pure:prompt:success" color "gray"
-
-fpath+="$DOTFILES/pure"
-source "$DOTFILES/pure/pure.zsh"
+# Starship Prompt
+eval "$(starship init zsh)"
 
 # Homebrew completion
 if type brew &>/dev/null; then
