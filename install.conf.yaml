@@ -10,6 +10,7 @@
 - link:
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/topgrade.toml:
     ~/.doom.d:
     ~/.emacs.d:
     ~/.ideavimrc:
