@@ -17,7 +17,7 @@ disable = ["containers"]
 #run_in_tmux = true
 
 # List of remote machines with Topgrade installed on them
-#remote_topgrades = ["toothless", "pi", "parnas"]
+remote_topgrades = ["mac-mini.local"]
 
 # Arguments to pass SSH when upgrading remote systems
 #ssh_arguments = "-o ConnectTimeout=2"
