@@ -1,3 +1,4 @@
+# zshrc -*- mode: sh; -*-
 # Set name of the theme to load.
 ZSH_THEME=""
 

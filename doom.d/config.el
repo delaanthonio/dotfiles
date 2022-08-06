@@ -73,9 +73,10 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 (use-package! visual-fill-column
   :config
   (add-hook! (text-mode org-agenda-mode) #'visual-fill-column-mode #'visual-line-mode)
-  (add-hook! (markdown-mode org-mode org-agenda-mode) (setq visual-fill-column-center-text t
-                                                            visual-fill-column-width 80))
-  (setq-default visual-fill-column-width 100))
+  (add-hook! (markdown-mode org-mode org-agenda-mode) (setq visual-fill-column-center-text t))
+  (add-hook! (markdown-mode ) (setq visual-fill-column-width 120))
+  (add-hook! (org-mode org-agenda-mode) (setq visual-fill-column-width 80))
+  (setq-default visual-fill-column-width 120))
 
 (add-hook! (markdown-mode org-mode) #'mixed-pitch-mode)
 (remove-hook! (markdown-mode org-mode) #'display-line-numbers-mode)
