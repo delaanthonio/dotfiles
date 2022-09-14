@@ -42,8 +42,6 @@
 
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
-(package! mermaid-mode)
-(package! ob-mermaid)
 (package! sqlformat)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
