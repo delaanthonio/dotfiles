@@ -2,7 +2,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers"]
+disable = ["containers", "emacs"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
@@ -61,6 +61,7 @@ remote_topgrades = ["mac-mini.local"]
 # Custom commands
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+"Emacs" = "doom upgrade && emacsclient --eval '(vterm-module-compile)' && emacsclient --eval '(pdf-tools-install t)' "
 
 [brew]
 #greedy_cask = true
