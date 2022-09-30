@@ -100,15 +100,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
        :leader (:prefix "c"
                 :desc "Run make" "m" #'+make/run)))
 
-;;; PlantUML files
-(after! plantuml-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-  (setq plantuml-default-exec-mode 'executable)
-  (after! org-mode
-    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    (setq org-plantuml-exec-mode 'plantuml)))
-
 ;;; Org
 (after! org
   (setq org-directory
