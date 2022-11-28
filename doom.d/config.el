@@ -95,11 +95,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   (setq sqlformat-args '("--keyword-case" "2" "--type-case" "1" "--spaces" "2" "-g"))
   (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
 
-;;; Make
-(map! (:when (featurep! :tools make)
-       :leader (:prefix "c"
-                :desc "Run make" "m" #'+make/run)))
-
 ;;; Org
 (after! org
   (setq org-directory
