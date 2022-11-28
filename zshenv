@@ -36,11 +36,4 @@ fi
 [ -d "$HOME/.nvm" ] && export NODE_VERSIONS="$HOME/.nvm/versions/node/"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
 
-# Fix WSL 2 Interops
-if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-    for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
-        if [[ -e "/run/WSL/${i}_interop" ]]; then
-            export WSL_INTEROP=/run/WSL/${i}_interop
-        fi
-    done
 fi
