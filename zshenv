@@ -31,9 +31,12 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
-# NVM
+# Node
 [ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
 [ -d "$HOME/.nvm" ] && export NODE_VERSIONS="$HOME/.nvm/versions/node/"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
 
+if [[ -d "$HOME/Library/pnpm" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
 fi
