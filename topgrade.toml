@@ -5,7 +5,7 @@
 disable = ["containers", "emacs"]
 
 # Ignore failures for these steps
-#ignore_failures = ["powershell"]
+ignore_failures = ["node"]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
@@ -61,6 +61,7 @@ remote_topgrades = ["mac-mini.local"]
 # Custom commands
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+"Dotfiles" = "git -C ~/.dotfiles submodule update --remote --merge && echo 'Updated submodules'"
 "Emacs" = "doom upgrade && emacs --daemon && emacsclient --eval '(vterm-module-compile)' && emacsclient --eval '(pdf-tools-install t)' "
 
 [brew]
