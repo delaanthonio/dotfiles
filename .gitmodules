@@ -1,17 +1,17 @@
 [submodule "dotbot"]
 	ignore = dirty
-	path = dotbot
+	path = modules/dotbot
 	url = https://github.com/anishathalye/dotbot
 [submodule "oh-my-zsh"]
-	path = oh-my-zsh
+	path = modules/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "zsh-autosuggestions"]
-	path = zsh-autosuggestions
+	path = modules/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "emacs.d"]
 	branch = master
-	path = emacs.d
+	path = modules/emacs.d
 	url = https://github.com/hlissner/doom-emacs
 [submodule "zsh-syntax-highlighting"]
-	path = zsh-syntax-highlighting
+	path = modules/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

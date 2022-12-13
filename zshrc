@@ -36,10 +36,10 @@ COMPLETION_WAITING_DOTS="true"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
 
-DOTFILES=$HOME/.dotfiles
+MODULES_DIR=$HOME/.dotfiles/modules
 
 # Path to your oh-my-zsh installation.
-export ZSH=$DOTFILES/oh-my-zsh
+export ZSH=$MODULES_DIR/oh-my-zsh
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -102,14 +102,14 @@ fi
 if [[ -d "$NVM_DIR" ]]; then
     plugins+=(npm)
     plugins+=(nvm)
-    export NVM_LAZY=1
+    zstyle ':omz:plugins:nvm' lazy yes
 fi
 
 if (( $+commands[systemd] )); then
     plugins+=(systemd)
 fi
 
-source "$DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$MODULES_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,7 +125,7 @@ if type brew &>/dev/null; then
 fi
 
 # Always load syntax highlighting last
-source "$DOTFILES/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "$MODULES_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
