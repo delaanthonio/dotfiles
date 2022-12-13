@@ -41,7 +41,6 @@
 (setq shell-command-switch "-ic")
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
-(setq vterm-always-compile-module 't)
 
 (add-to-list 'auto-mode-alist '("Jenkinsfile\\'" . groovy-mode) t)
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode) t)
