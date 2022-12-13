@@ -5,7 +5,7 @@ export PATH="$PATH:/usr/local/bin/:/usr/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export TERM="xterm-256color"
-export EDITOR="emacsclient --create-frame --alternate-editor=''"
+export EDITOR="code"
 export ALTERNATE_EDITOR="vim"
 
 # ssh
