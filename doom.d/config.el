@@ -94,7 +94,7 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
               (t "~/Org/")))
 
   (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
-        org-archive-location "::* Archive"
+        org-archive-location "~/Org/archive.org::* From %s"
         +org-capture-projects-file (concat org-directory "projects.org")
         +org-capture-todo-file (concat org-directory "todo.org")
         +org-capture-notes-file (concat org-directory "inbox.org")
@@ -190,7 +190,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
                                           ("DONE" . 9679)
                                           ("KILL" . 9679)
                                           ("[X]" . 9679))))
-
 
 ;;; Themes
 (after! (doom-themes org)
