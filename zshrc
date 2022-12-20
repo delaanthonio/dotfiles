@@ -105,6 +105,10 @@ if [[ -d "$NVM_DIR" ]]; then
     zstyle ':omz:plugins:nvm' lazy yes
 fi
 
+if [[ -d "$HOME/.rbenv" ]]; then
+    eval "$(rbenv init - zsh)"
+fi
+
 if (( $+commands[systemd] )); then
     plugins+=(systemd)
 fi
