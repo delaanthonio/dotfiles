@@ -42,7 +42,6 @@
 
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
-(package! sqlformat)
 (package! straight :pin "3eca39d")
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
