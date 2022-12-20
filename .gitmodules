@@ -10,7 +10,7 @@
 	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule "emacs.d"]
 	branch = master
-	path = modules/emacs.d
+	path = emacs.d
 	url = https://github.com/hlissner/doom-emacs
 [submodule "zsh-syntax-highlighting"]
 	path = modules/zsh-syntax-highlighting
