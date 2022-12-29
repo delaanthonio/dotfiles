@@ -58,6 +58,7 @@ plugins=(
     pip
     pj
     poetry
+    ssh-agent
 )
 
 # Project Jump
