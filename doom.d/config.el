@@ -138,46 +138,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 
   (add-hook! org-mode #'+org-pretty-mode))
 
-(after! org-roam
-  (setq
-   org-roam-capture-templates '(("d" "default" plain "%?" :target
-                                 (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-                                 :unnarrowed t))
-   org-roam-dailies-directory "daily/"
-   org-roam-dailies-capture-templates '(("d" "default" entry
-                                         "* %U\n%?"
-                                         :target (file+head "%<%Y-%m-%d>.org"
-                                                            "#+title: %<%Y-%m-%d>\n")))
-   org-roam-directory org-directory
-   org-roam-node-display-template (format "${doom-hierarchy:50} %s %s"
-                                          (propertize "${doom-type:12}" 'face 'font-lock-keyword-face)
-                                          (propertize "${doom-tags:42}" 'face 'org-tag)))
-  (map! :leader
-        (:prefix-map ("r" . "roam")
-                     (:when (modulep! :lang org +roam2)
-                       :desc "Open random node"           "a" #'org-roam-node-random
-                       :desc "Find node"                  "f" #'org-roam-node-find
-                       :desc "Find ref"                   "F" #'org-roam-ref-find
-                       :desc "Show graph"                 "g" #'org-roam-graph
-                       :desc "Insert node"                "i" #'org-roam-node-insert
-                       :desc "Capture to node"            "n" #'org-roam-capture
-                       :desc "Toggle roam buffer"         "r" #'org-roam-buffer-toggle
-                       :desc "Launch roam buffer"         "R" #'org-roam-buffer-display-dedicated
-                       :desc "Sync database"              "s" #'org-roam-db-sync
-                       :desc "Goto today"                 "t" #'org-roam-dailies-goto-today
-                       :desc "Capture today"              "T" #'org-roam-dailies-capture-today
-                       (:prefix ("d" . "by date")
-                        :desc "Goto previous note"        "b" #'org-roam-dailies-goto-previous-note
-                        :desc "Goto date"                 "d" #'org-roam-dailies-goto-date
-                        :desc "Capture date"              "D" #'org-roam-dailies-capture-date
-                        :desc "Goto next note"            "f" #'org-roam-dailies-goto-next-note
-                        :desc "Goto tomorrow"             "m" #'org-roam-dailies-goto-tomorrow
-                        :desc "Capture tomorrow"          "M" #'org-roam-dailies-capture-tomorrow
-                        :desc "Capture today"             "n" #'org-roam-dailies-capture-today
-                        :desc "Goto yesterday"            "y" #'org-roam-dailies-goto-yesterday
-                        :desc "Capture yesterday"         "Y" #'org-roam-dailies-capture-yesterday
-                        :desc "Find directory"            "-" #'org-roam-dailies-find-directory)))))
-
 (after! org-superstar
   (setq org-superstar-headline-bullets-list '("■")
         org-superstar-special-todo-items t
