@@ -53,6 +53,7 @@ plugins=(
     direnv
     extract
     gh
+    git
     kubectl
     pip
     pj
