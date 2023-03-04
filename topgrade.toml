@@ -2,7 +2,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "git_repos", "node"]
+disable = ["containers", "git_repos", "node", "ruby_gems"]
 
 # Ignore failures for these steps
 ignore_failures = ["node"]
