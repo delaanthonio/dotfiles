@@ -4,13 +4,13 @@
 skip_notify = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["containers", "git_repos", "node", "ruby_gems"]
+# disable = ["containers", "git_repos", "node", "ruby_gems"]
 
 # Ignore failures for these steps
 ignore_failures = ["node"]
 
 # Run specific steps - same options as the command line flag
-#only = ["system", "emacs"]
+only = ["brew_cask", "brew_formula", "custom_commands", "emacs", "system"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true
