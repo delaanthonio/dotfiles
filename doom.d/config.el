@@ -89,15 +89,14 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 
 ;;; Org
 (after! org
-  (setq org-directory
-        (cond ((file-directory-p (expand-file-name "~/Dropbox/Org/")) "~/Dropbox/Org/")
-              (t "~/Org/")))
+  ;; Set org directory first since other org variables use it.
+  (setq org-directory "~/Org")
 
   (setq org-agenda-files (directory-files org-directory t "\\.org$" t)
         org-archive-location "~/Org/archive.org::* From %s"
-        +org-capture-projects-file (concat org-directory "projects.org")
-        +org-capture-todo-file (concat org-directory "todo.org")
-        +org-capture-notes-file (concat org-directory "inbox.org")
+        +org-capture-projects-file (expand-file-name "projects.org" org-directory )
+        +org-capture-todo-file (expand-file-name "todo.org" org-directory )
+        +org-capture-notes-file (expand-file-name "inbox.org" org-directory)
         org-columns-default-format "%25ITEM(Headline) %DEADLINE(Deadline) %EFFORT(Effort){:}"
         org-ellipsis " ⯆ "
         org-id-track-globally t
@@ -121,15 +120,13 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   (setq org-capture-templates
         `(("n" "Note" entry (file +org-capture-notes-file)
            "* %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
-          ("p" "Project" entry (file+headline +org-capture-projects-file "Backlog")
+          ("j" "Journal" entry (file+datetree ,(expand-file-name "journal.org" org-directory))
+           "* %U\n%?")
+          ("p" "Project" entry (file+headline +org-capture-projects-file "Later")
            ,(string-join '("* PROJ %?"
                            ":PROPERTIES:"
                            ":Created: %U"
                            ":ID: %(org-id-uuid)"
-                           ":END:"
-                           ":Meta:"
-                           "- Area ::"
-                           "- Goal ::"
                            ":END:") "\n"))
           ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
