@@ -136,7 +136,7 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   (add-hook! org-mode #'+org-pretty-mode))
 
 (after! org-superstar
-  (setq org-superstar-headline-bullets-list '("■")
+  (setq org-superstar-headline-bullets-list '("◉")
         org-superstar-special-todo-items t
         org-superstar-todo-bullet-alist '(("TODO" . 9675)
                                           ("STRT" . 9675)
