@@ -13,3 +13,6 @@ disabled = true
 
 [git_branch]
 style = "bold yellow"
+
+[kubernetes]
+disabled = false
