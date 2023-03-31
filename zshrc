@@ -100,7 +100,9 @@ if (( $+commands[yarn] )); then
     plugins+=(yarn)
 fi
 
-if [[ -d "$NVM_DIR" ]]; then
+if [[ -d "$HOME/.nvm" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    export NODE_VERSIONS="$HOME/.nvm/versions/node/"
     plugins+=(npm)
     plugins+=(nvm)
     zstyle ':omz:plugins:nvm' lazy yes
