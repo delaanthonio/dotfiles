@@ -340,7 +340,6 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   pyright = {},
-  ruby_ls = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
