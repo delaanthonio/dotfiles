@@ -26,5 +26,8 @@ style = "bold yellow"
 [terraform]
 format = '[TF $version]($style) '
 
+[git_state]
+disabled = false
+
 [kubernetes]
 disabled = false
