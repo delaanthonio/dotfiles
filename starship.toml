@@ -14,5 +14,8 @@ disabled = true
 [git_branch]
 style = "bold yellow"
 
+[git_state]
+disabled = false
+
 [kubernetes]
 disabled = false
