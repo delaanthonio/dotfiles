@@ -63,7 +63,8 @@ remote_topgrades = ["mac-mini.local"]
 # Custom commands
 [commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
-"Dotfiles" = "git -C ~/.dotfiles submodule update --remote --merge && echo 'Updated submodules'"
+"01 Oh My ZSH" = "source ~/.zshrc && omz update"
+"02 Dotfiles" = "git -C ~/.dotfiles submodule update --remote --merge && echo 'Updated submodules'"
 
 [brew]
 #greedy_cask = true
