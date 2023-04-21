@@ -10,7 +10,7 @@ skip_notify = true
 ignore_failures = ["node"]
 
 # Run specific steps - same options as the command line flag
-only = ["brew_cask", "brew_formula", "custom_commands", "emacs", "system"]
+only = ["brew_cask", "brew_formula", "custom_commands", "emacs"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true
