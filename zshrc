@@ -61,7 +61,7 @@ plugins=(
 )
 
 # Project Jump
-PROJECT_PATHS=($HOME/Git $HOME/Git/projects)
+PROJECT_PATHS=($HOME/Developer $HOME/Git)
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
