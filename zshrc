@@ -55,10 +55,19 @@ plugins=(
     gh
     git
     kubectl
+    magic-enter
     pip
     pj
     poetry
 )
+
+MAGIC_ENTER_GIT_COMMAND='git status -u .'
+
+if (( $+commands[exa] )); then
+    MAGIC_ENTER_OTHER_COMMAND='exa -lh .'
+else
+    MAGIC_ENTER_OTHER_COMMAND='ls -lh .'
+fi
 
 # Project Jump
 PROJECT_PATHS=($HOME/Developer $HOME/Git)
