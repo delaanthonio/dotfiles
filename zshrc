@@ -164,9 +164,5 @@ unalias pip
 
 # Functions
 function reload() {
-    for file ("$HOME/.zshrc" "$HOME/.zshenv"); do
-        source "$file"
-        echo "loaded $file"
-    done
+    exec zsh
 }
-
