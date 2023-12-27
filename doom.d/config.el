@@ -33,7 +33,6 @@
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
 (global-auto-revert-mode t)
-(setq git-commit-summary-max-length 68)
 (setq-default line-spacing 3)
 (setq mac-command-modifier 'meta)
 (setq magit-clone-default-directory "~/Git")
@@ -86,6 +85,10 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 ;;; Emacs Lisp
 (add-hook! 'emacs-lisp-mode-hook
   (add-hook! 'before-save-hook #'+format/buffer))
+
+;;; Git Commit
+(after! git-commit
+  (setq-default git-commit-summary-max-length 70))
 
 ;;; Org
 (after! org
