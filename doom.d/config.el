@@ -14,7 +14,7 @@
                  ((find-font (font-spec :family "Iosevka SS04"))
                   (font-spec :family "Iosevka SS04" :size 20))
                  (t (font-spec :family "Monospace" :size 20))))
-(setq doom-unicode-font doom-font)
+(setq doom-symbol-font doom-font)
 (setq doom-variable-pitch-font (cond
                                 ((find-font (font-spec :family "SF Pro"))
                                  (font-spec :family "SF Pro" :size 20))
