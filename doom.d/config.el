@@ -41,6 +41,12 @@
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
 
+(setq +format-on-save-disabled-modes
+      '(git-commit-mode
+        magit-mode
+        text-mode
+        ))
+
 (add-to-list 'auto-mode-alist '("Jenkinsfile\\'" . groovy-mode) t)
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode) t)
 (add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
