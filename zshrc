@@ -59,6 +59,7 @@ plugins=(
     pip
     pj
     poetry
+    pyenv
 )
 
 MAGIC_ENTER_GIT_COMMAND='git status -u .'
