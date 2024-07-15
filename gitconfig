@@ -63,6 +63,9 @@
 [push]
 	default = matching
 
+[rebase]
+    updateRefs = true
+
 [user]
 	name = Dela Anthonio
 	email = dell.anthonio@gmail.com
