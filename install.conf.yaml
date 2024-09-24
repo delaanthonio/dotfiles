@@ -10,7 +10,7 @@
 - link:
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/kitty/kitty.conf: kitty.conf
-    ~/.config/nvim/init.lua:
+    ~/.config/nvim:
     ~/.config/starship.toml: starship.toml
     ~/.config/topgrade.toml:
     ~/.doom.d:
