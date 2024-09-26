@@ -45,11 +45,13 @@
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	editor = nvim
 
 [diff]
 	# Enable an experimental heuristic that shifts the hunk boundary in an
 	# attempt to make the resulting patch easier to read.
 	indentHeuristic = true
+	colorMoved = zebra
 
 # Allow local customizations in the .gitconfig_local file
 [include]
@@ -61,7 +63,7 @@
 	detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ar%n %C(auto)%d%n"
 
 [push]
-	default = matching
+	default = simple
 
 [rebase]
     updateRefs = true
@@ -69,3 +71,11 @@
 [user]
 	name = Dela Anthonio
 	email = dell.anthonio@gmail.com
+[pull]
+	rebase = true
+[merge]
+	rebase = true
+[fetch]
+	prune = true
+[init]
+	defaultBranch = main
