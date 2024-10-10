@@ -64,8 +64,8 @@ plugins=(
 
 MAGIC_ENTER_GIT_COMMAND='git status -u .'
 
-if (( $+commands[exa] )); then
-    MAGIC_ENTER_OTHER_COMMAND='exa -lh .'
+if (( $+commands[eza] )); then
+    MAGIC_ENTER_OTHER_COMMAND='eza -lh .'
 else
     MAGIC_ENTER_OTHER_COMMAND='ls -lh .'
 fi
