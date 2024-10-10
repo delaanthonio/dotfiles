@@ -11,7 +11,7 @@ skip_notify = true
 ignore_failures = ["node"]
 
 # Run specific steps - same options as the command line flag
-only = ["brew_cask", "brew_formula", "custom_commands", "emacs"]
+only = ["brew_cask", "brew_formula", "custom_commands"]
 
 # Do not ask to retry failed steps (default: false)
 #no_retry = true
@@ -66,6 +66,7 @@ remote_topgrades = ["mac-mini.local"]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 "01 Oh My ZSH" = "source ~/.zshrc && omz update"
 "02 Dotfiles" = "git -C ~/.dotfiles submodule update --remote --merge && echo 'Updated submodules'"
+"03 Doom Emacs" = "git -C ~/.emacs.d pull origin HEAD && doom sync -u"
 
 [brew]
 #greedy_cask = true
