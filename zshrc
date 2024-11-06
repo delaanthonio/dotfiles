@@ -54,6 +54,7 @@ plugins=(
     extract
     gh
     git
+    fzf
     kubectl
     magic-enter
     pip
