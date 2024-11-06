@@ -61,6 +61,7 @@ plugins=(
     pj
     poetry
     pyenv
+    terraform
 )
 
 MAGIC_ENTER_GIT_COMMAND='git status -u .'
