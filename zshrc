@@ -59,8 +59,6 @@ plugins=(
     magic-enter
     pip
     pj
-    poetry
-    pyenv
     terraform
 )
 
