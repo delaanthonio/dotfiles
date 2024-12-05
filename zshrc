@@ -163,6 +163,8 @@ alias hib='systemctl hibernate'
 alias sus='systemctl suspend'
 alias reb='systemctl reboot'
 
+alias tg='topgrade'
+
 unalias pip
 
 # Functions
