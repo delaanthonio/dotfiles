@@ -41,6 +41,29 @@
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
 
+(use-package! doom-modeline
+  :config
+  (setq doom-modeline-height 10
+        doom-modeline-bar-width 0
+        doom-modeline-buffer-state-icon nil
+        doom-modeline-icon nil
+        doom-modeline-percent-position nil
+        doom-modeline-buffer-encoding nil
+        doom-modeline-check-simple-format nil
+        doom-modeline-vcs-max-length 20
+        doom-modeline-window-width-limit 90
+        doom-modeline-buffer-file-name-style 'relative-from-project
+        doom-modeline-minor-modes nil)
+
+  (doom-modeline-def-modeline 'minimal
+    '(bar matches buffer-info-simple)
+    '(misc-info major-mode))
+
+  (defun setup-custom-doom-modeline ()
+    (doom-modeline-set-modeline 'minimal 'default))
+
+  (add-hook! 'doom-modeline-mode-hook 'setup-custom-doom-modeline))
+
 (use-package! spacious-padding
   :config
   (setq spacious-padding-widths
