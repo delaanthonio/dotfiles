@@ -41,6 +41,20 @@
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
 
+(use-package! spacious-padding
+  :config
+  (setq spacious-padding-widths
+        '( :internal-border-width 15
+         :header-line-width 4
+         :mode-line-width 8
+         :tab-width 4
+         :right-divider-width 30
+         :scroll-bar-width 8
+         :fringe-width 10)
+        spacious-padding-subtle-mode-line nil
+        )
+  (spacious-padding-mode 1))
+
 (setq +format-on-save-disabled-modes
       '(git-commit-mode
         magit-mode
