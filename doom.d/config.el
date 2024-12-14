@@ -22,7 +22,7 @@
                                  (font-spec :family "Roboto" :size 20))
                                 (t (font-spec :family "Sans Serif" :size 20))))
 
-(setq doom-theme 'doom-spacegrey)
+(setq doom-theme 'ef-tritanopia-dark)
 (setq doom-spacegrey-brighter-comments t)
 (setq doom-spacegrey-comment-bg nil)
 

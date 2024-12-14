@@ -42,6 +42,9 @@
 
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! ef-themes)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
 (package! spacious-padding)
