@@ -35,3 +35,8 @@ if [[ -d "$HOME/Library/pnpm" ]]; then
     export PNPM_HOME="$HOME/Library/pnpm"
     export PATH="$PNPM_HOME:$PATH"
 fi
+
+# GNU Utils for MacOS
+if [[ -d "/opt/homebrew/opt/make/libexec/gnubin" ]]; then
+    export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+fi
