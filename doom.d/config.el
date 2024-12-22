@@ -46,15 +46,18 @@
   :config
   (setq doom-modeline-height 10
         doom-modeline-bar-width 0
-        doom-modeline-buffer-state-icon nil
-        doom-modeline-icon nil
+        doom-modeline-buffer-state-icon t
+        doom-modeline-icon t
         doom-modeline-percent-position nil
-        doom-modeline-buffer-encoding nil
-        doom-modeline-check-simple-format nil
+        doom-modeline-buffer-encoding t
+        doom-modeline-check-simple-format t
         doom-modeline-vcs-max-length 20
         doom-modeline-window-width-limit 90
         doom-modeline-buffer-file-name-style 'relative-from-project
-        doom-modeline-minor-modes nil)
+        doom-modeline-minor-modes nil
+        doom-modeline-major-mode-icon t
+        doom-modeline-major-mode-color-icon t
+        doom-modeline-workspace-name t)
 
   (doom-modeline-def-modeline 'minimal
     '(bar matches buffer-info-simple)
