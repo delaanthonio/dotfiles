@@ -22,9 +22,10 @@
                                  (font-spec :family "Roboto" :size 20))
                                 (t (font-spec :family "Sans Serif" :size 20))))
 
-(setq doom-theme 'ef-tritanopia-dark)
-(setq doom-spacegrey-brighter-comments t)
-(setq doom-spacegrey-comment-bg nil)
+(setq doom-theme 'doom-tokyo-night)
+(setq doom-tokyo-night-brighter-comments t)
+(setq doom-tokyo-night-comment-bg nil)
+(setq doom-tokyo-night-brighter-modeline nil)
 
 (auto-save-visited-mode t)
 (setq auto-save-visited-interval 10)
