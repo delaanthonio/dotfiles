@@ -49,18 +49,12 @@ export ZSH=$MODULES_DIR/oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    brew
     common-aliases
-    direnv
     extract
-    gh
     git
-    fzf
-    kubectl
     magic-enter
     pip
     pj
-    terraform
 )
 
 MAGIC_ENTER_GIT_COMMAND='git status -u .'
@@ -76,6 +70,14 @@ PROJECT_PATHS=($HOME/Developer $HOME/Git)
 
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
+fi
+
+if (( $+commands[brew] )); then
+    plugins+=(brew)
+fi
+
+if (( $+commands[direnv] )); then
+    plugins+=(direnv)
 fi
 
 if (( $+commands[docker] )); then
@@ -105,6 +107,22 @@ if (( $+commands[docker] )); then
     alias dck="$dccmd kill"
 
     unset dccmd
+fi
+
+if (( $+commands[gh] )); then
+    plugins+=(gh)
+fi
+
+if (( $+commands[fzf] )); then
+    plugins+=(fzf)
+fi
+
+if (( $+commands[kubectl] )); then
+    plugins+=(kubectl)
+fi
+
+if (( $+commands[terraform] )); then
+    plugins+=(terraform)
 fi
 
 if (( $+commands[yarn] )); then
