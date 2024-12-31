@@ -41,6 +41,7 @@
 ;; (package! builtin-package :pin "1a2b3c4d5e")
 
 (package! anaconda-mode :disable t)
+(package! caddyfile-mode)
 (package! company-anaconda :disable t)
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))

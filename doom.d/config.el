@@ -129,6 +129,12 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 (define-key visual-line-mode-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key visual-line-mode-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
+;;; Caddyfile
+(use-package! caddyfile-mode
+  :ensure t
+  :mode (("Caddyfile\\'" . caddyfile-mode)
+         ("caddy\\.conf\\'" . caddyfile-mode)))
+
 ;;; Emacs Lisp
 (add-hook! 'emacs-lisp-mode-hook
   (add-hook! 'before-save-hook #'+format/buffer))
