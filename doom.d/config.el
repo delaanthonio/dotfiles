@@ -38,7 +38,7 @@
 (setq mac-command-modifier 'meta)
 (setq magit-clone-default-directory "~/Git")
 (setq projectile-project-search-path '("~/Git" . 0))
-(setq shell-command-switch "-ic")
+(setq shell-command-switch "-c")
 (setq which-key-add-column-padding 3)
 (setq which-key-max-description-length 30)
 
