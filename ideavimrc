@@ -35,3 +35,5 @@ let g:WhichKey_ShowVimActions = "true"
 let g:WhichKeyDesc_windows = "<Space>w Windows"
 let g:WhichKeyDesc_windows_delete = "<Space>wd delete"
 let g:WhichKeyDesc_goto_file = "<leader><leader> Go to file"
+
+inoremap jk <Esc>
