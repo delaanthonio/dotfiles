@@ -92,6 +92,7 @@
 (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . conf-toml-mode) t)
 (add-to-list 'auto-mode-alist '("zprofile\\'" . sh-mode) t)
 (add-to-list 'auto-mode-alist '("\\.zshenv_local\\'" . sh-mode) t)
+(add-to-list 'auto-mode-alist '("\\.env\\(?:\\..+\\)?\\'" . sh-mode))
 
 (defun modi/lower-case-org-keywords ()
   "Lower case Org keywords and block identifiers.
