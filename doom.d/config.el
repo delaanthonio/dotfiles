@@ -216,13 +216,13 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 ;;; Themes
 (after! (doom-themes org)
   (custom-set-faces!
-    '(org-document-title :foreground "fg" :height 1.25 :background nil :weight semi-bold)
+    '(org-document-title :foreground "fg" :height 1.25 :background unspecified :weight semi-bold)
     '(font-lock-doc-face :italic nil)
     '(org-link :inherit font-lock-constant-face :underline t)
     '(org-level-1 :height 1.1 :weight semi-bold)
     '(org-level-2 :height 1.0 :weight normal)
     '(org-level-3 :height 1.0 :weight normal)
-    '(org-ellipsis :height 1.0 :foreground "#65737E"  :background nil :weight normal))
+    '(org-ellipsis :height 1.0 :foreground "#65737E"  :background unspecified :weight normal))
 
   (custom-theme-set-faces! 'doom-one-light
     '(outline-1 :weight normal)
