@@ -7,8 +7,23 @@ set clipboard+=unnamed
 
 let mapleader="<Space>"
 map <Space> <Leader>
+
+nnoremap <C-g> <Action>(EditorEscape)
 map <leader>s <Action>(GotoSymbol)
+map <leader>fr <Action>(RecentFiles)
+map <leader>fs <Action>(SaveAll)
 map <leader>a <Action>(GotoAction)
+nmap <leader>r <Action>(RenameElement)
 map <Space><Space> <Action>(GotoFile)
+map <leader>wd <Action>(CloseContent)
+map <leader>wv <Action>(SplitVertically)
 map <leader>qr <Action>(RestartIde)
 map <leader>t <Action>(RunClass)
+map <leader>gc <Action>(CheckinProject)
+map <leader>gr <Action>(FindUsages)
+map <leader>k <Action>(SearchEverywhere)
+map <leader>/ <Action>(FindInPath)
+map f6 launch --location=vsplit --cwd=current
+nnoremap <control>d <Action>(EditorEscape)
+nnoremap <leader>si :source ~/.ideavimrc<CR>
+
