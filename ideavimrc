@@ -4,6 +4,10 @@ Plug 'dbakker/vim-paragraph-motion'
 Plug 'michaeljsmith/vim-indent-object'
 
 set clipboard+=unnamed
+set which-key
+set matchit
+set relativenumber
+set timeoutlen=5000
 
 let mapleader="<Space>"
 map <Space> <Leader>
@@ -27,3 +31,7 @@ map f6 launch --location=vsplit --cwd=current
 nnoremap <control>d <Action>(EditorEscape)
 nnoremap <leader>si :source ~/.ideavimrc<CR>
 
+let g:WhichKey_ShowVimActions = "true"
+let g:WhichKeyDesc_windows = "<Space>w Windows"
+let g:WhichKeyDesc_windows_delete = "<Space>wd delete"
+let g:WhichKeyDesc_goto_file = "<leader><leader> Go to file"
