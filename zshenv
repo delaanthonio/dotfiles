@@ -4,7 +4,7 @@
 export PATH="$PATH:/usr/local/bin/:/usr/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR="nvim"
+export EDITOR="emacsclient -t"
 export ALTERNATE_EDITOR="vim"
 
 # ssh
