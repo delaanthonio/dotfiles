@@ -182,8 +182,6 @@ alias reb='systemctl reboot'
 
 alias tg='topgrade'
 
-unalias pip
-
 # Functions
 function reload() {
     exec zsh
