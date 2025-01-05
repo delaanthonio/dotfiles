@@ -4,7 +4,6 @@
 export PATH="$PATH:/usr/local/bin/:/usr/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 
-export TERM="xterm-256color"
 export EDITOR="nvim"
 export ALTERNATE_EDITOR="vim"
 
