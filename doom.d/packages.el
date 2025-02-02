@@ -46,6 +46,7 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! ef-themes)
+(package! org-modern)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
 (package! spacious-padding)

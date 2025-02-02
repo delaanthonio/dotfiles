@@ -196,22 +196,19 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
           ("t" "To-do" entry (file+headline +org-capture-todo-file "Inbox")
            "* TODO %?\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n")
           ("L" "Link" entry (file +org-capture-notes-file)
-           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?")))
+           "* [[%:link][%(transform-brackets-to-parentheses \"%:description\")]]\n:PROPERTIES:\n:Created: %U\n:ID: %(org-id-uuid)\n:END:\n%i\n%?"))))
 
-  (add-hook! org-mode #'+org-pretty-mode))
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode)
+  :config
+  (global-org-modern-mode)
+  (setq org-modern-star '("◉" "○" "◈" "◇" "*"))
+  (setq org-modern-hide-stars nil)
+  (setq org-hide-emphasis-markers t)
+  (setq org-pretty-entities t)
 
-(after! org-superstar
-  (setq org-superstar-headline-bullets-list '("◉")
-        org-superstar-special-todo-items t
-        org-superstar-todo-bullet-alist '(("TODO" . 9675)
-                                          ("STRT" . 9675)
-                                          ("PROJ" . 9675)
-                                          ("GOAL" . 9675)
-                                          ("LOOP" . 9675)
-                                          ("[ ]" . 9675)
-                                          ("DONE" . 9679)
-                                          ("KILL" . 9679)
-                                          ("[X]" . 9679))))
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka"))
+
 
 ;;; Themes
 (after! (doom-themes org)
