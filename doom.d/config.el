@@ -16,6 +16,8 @@
                  (t (font-spec :family "Monospace" :size 20))))
 (setq doom-symbol-font doom-font)
 (setq doom-variable-pitch-font (cond
+                                ((find-font (font-spec :family "Iosevka Aile"))
+                                 (font-spec :family "Iosevka Aile" :size 20))
                                 ((find-font (font-spec :family "SF Pro"))
                                  (font-spec :family "SF Pro" :size 20))
                                 ((find-font (font-spec :family "Roboto"))
