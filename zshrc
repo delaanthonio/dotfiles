@@ -52,18 +52,9 @@ plugins=(
     common-aliases
     extract
     git
-    magic-enter
     pip
     pj
 )
-
-MAGIC_ENTER_GIT_COMMAND='git status -u .'
-
-if (( $+commands[eza] )); then
-    MAGIC_ENTER_OTHER_COMMAND='eza -lh .'
-else
-    MAGIC_ENTER_OTHER_COMMAND='ls -lh .'
-fi
 
 # Project Jump
 PROJECT_PATHS=($HOME/Developer $HOME/Git)
