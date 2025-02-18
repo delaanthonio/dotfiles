@@ -52,6 +52,8 @@
   :config
   (setq doom-modeline-height 10
         doom-modeline-bar-width 0
+        doom-modeline-modal nil
+        doom-modeline-modal-icon nil
         doom-modeline-buffer-state-icon t
         doom-modeline-icon t
         doom-modeline-percent-position nil
