@@ -217,6 +217,9 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 
   (set-face-attribute 'org-modern-symbol nil :family "Iosevka"))
 
+(after! org-roam
+  :config
+  (setq org-roam-node-display-template "${title:80} ${tags:20} ${file:10}"))
 
 ;;; Themes
 (after! (doom-themes org)
