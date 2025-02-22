@@ -10,6 +10,12 @@ disabled = true
 [character] # The name of the module we are configuring is "character"
 success_symbol = "[❯](bold green)"
 
+[direnv]
+format = '[$symbol$allowed]($style) '
+disabled = false
+allowed_msg = "✓"
+not_allowed_msg = "𐄂"
+
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
