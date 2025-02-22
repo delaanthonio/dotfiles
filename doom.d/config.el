@@ -29,6 +29,7 @@
 (setq doom-tokyo-night-comment-bg nil)
 (setq doom-tokyo-night-brighter-modeline nil)
 
+
 (auto-save-visited-mode t)
 (setq auto-save-visited-interval 10)
 (setq confirm-kill-emacs nil)
@@ -57,7 +58,7 @@
         doom-modeline-buffer-state-icon t
         doom-modeline-icon t
         doom-modeline-percent-position nil
-        doom-modeline-buffer-encoding t
+        doom-modeline-buffer-encoding nil
         doom-modeline-check-simple-format t
         doom-modeline-vcs-max-length 20
         doom-modeline-window-width-limit 90
