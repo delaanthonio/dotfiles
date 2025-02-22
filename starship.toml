@@ -16,3 +16,6 @@ disabled = true
 
 [git_branch]
 style = "bold yellow"
+
+[terraform]
+format = '[TF $version]($style) '
