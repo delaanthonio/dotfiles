@@ -36,6 +36,8 @@
 (setq display-line-numbers-type t)
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
+(after! vterm
+  (setq vterm-shell "/bin/zsh"))
 (setq shell-file-name
       (if (file-executable-p "/bin/dash")
           "/bin/dash"
