@@ -31,7 +31,7 @@
 
 
 (auto-save-visited-mode t)
-(setq auto-save-visited-interval 10)
+(setq auto-save-visited-interval 120)
 (setq confirm-kill-emacs nil)
 (setq display-line-numbers-type t)
 (setq evil-escape-unordered-key-sequence t)
