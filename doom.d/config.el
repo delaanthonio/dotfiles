@@ -30,8 +30,8 @@
 (setq doom-tokyo-night-brighter-modeline nil)
 
 
-(auto-save-visited-mode t)
-(setq auto-save-visited-interval 120)
+(super-save-mode +1)
+(setq auto-save-default nil)
 (setq confirm-kill-emacs nil)
 (setq display-line-numbers-type t)
 (setq evil-escape-unordered-key-sequence t)
