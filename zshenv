@@ -39,3 +39,4 @@ fi
 if [[ -d "/opt/homebrew/opt/make/libexec/gnubin" ]]; then
     export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 fi
+
