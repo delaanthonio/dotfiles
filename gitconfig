@@ -65,17 +65,15 @@
 [push]
 	default = simple
 
+[pull]
+    rebase = true
+    autostash = true
+[merge]
+    rebase = true
 [rebase]
     updateRefs = true
+    autostash = true
 
 [user]
 	name = Dela Anthonio
 	email = dela@anthonio.pro
-[pull]
-	rebase = true
-[merge]
-	rebase = true
-[fetch]
-	prune = true
-[init]
-	defaultBranch = main
