@@ -151,6 +151,10 @@ if type brew &>/dev/null; then
   compinit
 fi
 
+if (( $+commands[git-town] )); then
+    source <(git-town completions zsh)
+fi
+
 # Always load syntax highlighting last
 source "$MODULES_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
