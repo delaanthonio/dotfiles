@@ -155,6 +155,10 @@ if (( $+commands[git-town] )); then
     source <(git-town completions zsh)
 fi
 
+if (( $+commands[tailscale] )); then
+    tailscale completion zsh > "${fpath[1]}/_tailscale"
+fi
+
 # Always load syntax highlighting last
 source "$MODULES_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
