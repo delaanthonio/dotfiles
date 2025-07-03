@@ -9,6 +9,9 @@
 
 - link:
     ~/.config/direnv/direnvrc: direnvrc
+    ~/.config/fish/config.fish:
+        path: config/fish/config.fish
+        force: true
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/nvim:
     ~/.config/starship.toml: starship.toml
