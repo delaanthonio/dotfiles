@@ -224,6 +224,16 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   :config
   (setq org-roam-node-display-template "${title:80} ${tags:20} ${file:10}"))
 
+;;; Terraform
+(after! lsp-mode
+  (add-to-list 'lsp-language-id-configuration '(terraform-mode . "terraform"))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection '("terraform-ls" "serve"))
+                    :major-modes '(terraform-mode)
+                    :server-id 'terraform-ls)))
+
+(add-hook 'terraform-mode-hook #'lsp!)
+
 ;;; Themes
 (after! (doom-themes org)
   (custom-set-faces!
