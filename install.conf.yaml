@@ -13,6 +13,9 @@
         path: config/fish/conf.d
         force: true
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/zellij/config.kdl:
+        path: config/zellij/config.kdl
+        force: true
     ~/.config/nvim:
     ~/.config/starship.toml: starship.toml
     ~/.config/topgrade.toml:
