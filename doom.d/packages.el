@@ -46,6 +46,7 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! ef-themes)
+(package! emacs-kdl-mode :recipe (:host github :repo "taquangtrung/emacs-kdl-mode"))
 (package! org-modern)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
