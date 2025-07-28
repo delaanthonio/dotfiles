@@ -24,11 +24,8 @@
                                  (font-spec :family "Roboto" :size 20))
                                 (t (font-spec :family "Sans Serif" :size 20))))
 
-(setq doom-theme 'doom-tokyo-night)
-(setq doom-tokyo-night-brighter-comments t)
-(setq doom-tokyo-night-comment-bg nil)
-(setq doom-tokyo-night-brighter-modeline nil)
-
+(setq doom-theme 'doom-zenburn)
+(setq doom-zenburn-brighter-comments t)
 
 (super-save-mode +1)
 (setq auto-save-default nil)
