@@ -18,6 +18,9 @@
     ~/.config/fish/conf.d:
         path: config/fish/conf.d
         force: true
+    ~/.config/fish/completions/:
+        path: config/fish/completions/**
+        glob: true
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
