@@ -2,11 +2,14 @@ Create a new feature stack for: $ARGUMENTS
 
 Follow these steps:
 1. Analyze the feature requirements
-2. Break down into logical dependent branches using git town hack/append
-3. Create initial branch structure
+2. Present the proposed stack structure and get user confirmation
+3. For each branch in the stack:
+   - Write the code changes first (before creating branch)
+   - Stage changes with git add
+   - Create branch with gt create --message "descriptive commit message"
 4. Generate appropriate branch names following our naming convention
-5. Set up basic file structure for each branch
-6. Create draft PRs for the stack
+5. Ensure each branch has a clear, single responsibility
+6. After all branches created, submit stack with gt submit --no-interactive
 
-Use git town commands for branch management and ensure each branch has a clear, single responsibility.
+The Graphite workflow: write code → stage → create branch → repeat for each PR → submit all.
 

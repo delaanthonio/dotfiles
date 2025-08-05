@@ -1,10 +1,20 @@
-Analyze the current feature I'm working on and help me break it into a logical stack of 3-5 pull requests. 
+Use the Task tool to delegate to agents for planning and implementing a PR stack.
 
-For each PR in the stack:
-1. Define the specific scope and changes
-2. Identify dependencies between PRs
-3. Suggest appropriate branch names using our naming convention
-4. Estimate complexity and review time
-5. Consider our uv/python backend and pnpm/typescript frontend architecture
+Workflow:
+1. If implementation approach is unclear, first invoke implementation-planner agent to:
+   - Analyze feature and propose 3 implementation approaches
+   - Provide recommendation with trade-offs
+   - Get user confirmation on approach
 
-After planning, provide git town commands to create the branch structure.
+2. Then invoke implementation-planner agent to:
+   - Take the chosen approach for: $ARGUMENTS
+   - Break it down into a logical stack of 1-5 focused PRs
+   - Create detailed implementation plan
+   - Present the plan for your confirmation
+
+3. Upon approval, invoke stack-implementer agent to:
+   - Execute the implementation plan
+   - Create branches with Graphite
+   - Submit the stack and provide GitHub PR links
+
+This leverages specialized sub-agents with clear separation of concerns.
