@@ -8,6 +8,9 @@
 - clean: ['~']
 
 - link:
+    ~/.claude/agents/:
+        path: claude/agents/**
+        glob: true
     ~/.claude/commands/:
         path: claude/commands
         force: true
