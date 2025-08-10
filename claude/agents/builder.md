@@ -1,5 +1,5 @@
 ---
-name: stack-implementer
+name: builder
 description: "Executes implementation of planned PR stacks. Takes a detailed plan and implements it branch by branch using Graphite."
 tools: Read, Write, Edit, MultiEdit, Grep, Glob, Bash, LS, TodoWrite
 ---

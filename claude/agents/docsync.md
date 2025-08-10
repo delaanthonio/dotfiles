@@ -1,5 +1,5 @@
 ---
-name: documentation-reviewer
+name: docsync
 description: "Ensures code changes are properly documented, identifies reusable patterns worth documenting, and maintains documentation quality and consistency."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

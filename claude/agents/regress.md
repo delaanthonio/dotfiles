@@ -1,5 +1,5 @@
 ---
-name: regression-reviewer
+name: regress
 description: "Detects potential regressions and unintended breakage from code changes. Focuses on changes that could break existing functionality."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

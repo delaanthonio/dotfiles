@@ -1,5 +1,5 @@
 ---
-name: test-specialist
+name: tests
 description: "Comprehensive test expert covering coverage, quality, reliability, and strategy. Supports both test pyramid and test trophy approaches."
 tools: Read, Grep, Glob, Bash, TodoWrite, WebSearch
 ---

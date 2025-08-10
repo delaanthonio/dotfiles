@@ -1,5 +1,5 @@
 ---
-name: readability-reviewer
+name: clarity
 description: "Reviews code for readability and maintainability issues. Focuses on the most common barriers to code comprehension."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

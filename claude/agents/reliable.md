@@ -1,5 +1,5 @@
 ---
-name: reliability-reviewer
+name: reliable
 description: "Reviews code for operational reliability and resilience patterns. Focuses on preventing production incidents through failure-aware design."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

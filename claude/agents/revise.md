@@ -1,5 +1,5 @@
 ---
-name: stack-reviser
+name: revise
 description: "Handles ad-hoc revisions to existing PR stacks based on feedback, custom instructions, and iterative improvements. Specializes in targeted modifications and stack maintenance."
 tools: Read, Write, Edit, MultiEdit, Grep, Glob, Bash, LS, TodoWrite
 ---

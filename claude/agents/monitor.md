@@ -1,5 +1,5 @@
 ---
-name: workflow-monitor
+name: monitor
 description: "Meta-monitoring agent that tracks workflow performance, agent reliability, and system efficiency. Provides analytics for continuous improvement."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

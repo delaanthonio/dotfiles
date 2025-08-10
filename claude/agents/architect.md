@@ -1,5 +1,5 @@
 ---
-name: implementation-planner  
+name: architect
 description: "Validates requirements and proposes 3 distinct implementation approaches for a given architecture. Focuses on how to build rather than what to build."
 tools: Read, Grep, Glob, LS, WebSearch, WebFetch, Bash, Task, TodoWrite
 ---

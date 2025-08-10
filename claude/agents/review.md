@@ -1,5 +1,5 @@
 ---
-name: stack-reviewer
+name: review
 description: "Reviews PR stack structure, scope, and code consistency. Focuses on the most common issues that break stack quality and project patterns."
 tools: Read, Grep, Glob, Bash, LS, TodoWrite, Task
 ---

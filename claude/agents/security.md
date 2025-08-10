@@ -1,5 +1,5 @@
 ---
-name: security-auditor  
+name: security
 description: "Security specialist that audits code changes for vulnerabilities, exposed secrets, and security best practices. Automatically scans PR stacks for security issues before submission."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

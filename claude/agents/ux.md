@@ -1,5 +1,5 @@
 ---
-name: ux-reviewer
+name: ux
 description: "Reviews frontend changes for user experience, accessibility, and usability issues. Focuses on the most common, high-impact UX problems."
 tools: Read, Grep, Glob, Bash, TodoWrite
 ---

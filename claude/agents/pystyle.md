@@ -1,5 +1,5 @@
 ---
-name: python-style-reviewer
+name: pystyle
 description: "Enforces project-specific Python code style rules including inline imports and pytest patterns. Focuses on high-impact style issues."
 tools: Read, Grep, Glob, Bash, TodoWrite
 dispatch_triggers:

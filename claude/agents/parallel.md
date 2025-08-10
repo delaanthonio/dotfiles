@@ -1,5 +1,5 @@
 ---
-name: parallel-reviewer
+name: parallel
 description: "Orchestrates multiple review agents in parallel for faster, comprehensive stack review. Runs code quality, security, and other checks concurrently."
 tools: Task, TodoWrite, Bash
 ---

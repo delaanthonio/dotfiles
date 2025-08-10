@@ -1,5 +1,5 @@
 ---
-name: performance-analyzer
+name: perf
 description: "Analyzes code changes for performance implications, identifying potential bottlenecks and optimization opportunities."
 tools: Read, Grep, Glob, TodoWrite
 ---

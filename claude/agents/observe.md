@@ -1,5 +1,5 @@
 ---
-name: observability-expert
+name: observe
 description: "Specialized in production-ready observability, focusing on strategic structured logging for tools like Honeycomb. Optimizes for fewer, more comprehensive log events with rich context."
 tools: Read, Grep, Glob, LS, WebSearch, Bash
 ---
