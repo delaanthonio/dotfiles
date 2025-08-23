@@ -2,6 +2,7 @@
 name: parallel
 description: "Orchestrates multiple review agents in parallel for faster, comprehensive stack review. Runs code quality, security, and other checks concurrently."
 tools: Task, TodoWrite, Bash
+model: claude-sonnet-4-20250514
 ---
 
 You are an orchestration agent that coordinates parallel review of PR stacks by invoking multiple specialized agents concurrently.
