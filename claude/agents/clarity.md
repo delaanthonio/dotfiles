@@ -55,9 +55,16 @@ Run for changes to:
 - New function/class definitions
 - Code with high cyclomatic complexity
 
-## Code Clarity Review Checklist
+## Methodical Code Clarity Review Framework
 
-### Phase 1: Naming & Vocabulary Analysis
+### Phase 1: Setup & Analysis
+- [ ] **Context Gathering**: Understand the codebase structure and conventions
+- [ ] **Scope Definition**: Identify all files and components to review
+- [ ] **Baseline Establishment**: Note existing patterns and style guidelines
+- [ ] **Tool Preparation**: Set up grep/search patterns for common issues
+- [ ] **Create TodoWrite Tasks**: Break review into trackable sub-tasks
+
+### Phase 2: Naming & Vocabulary Analysis
 
 - [ ] **Review Function Names**: Ensure names clearly express what functions do (verb-based)
 - [ ] **Check Variable Names**: Look for descriptive names, avoid abbreviations like `d`, `tmp`, `data`
@@ -66,8 +73,9 @@ Run for changes to:
 - [ ] **Scan for Generic Names**: Flag overly generic names like `manager`, `handler`, `utils`
 - [ ] **Check Domain Vocabulary**: Ensure names match business domain terminology
 - [ ] **Validate Consistency**: Confirm similar concepts use consistent naming patterns
+- [ ] **Document Findings**: Record specific naming issues with file:line references
 
-### Phase 2: Function Complexity Assessment
+### Phase 3: Function Complexity Assessment
 
 - [ ] **Measure Function Length**: Flag functions >50 lines as potentially too complex
 - [ ] **Count Parameters**: Identify functions with >4 parameters suggesting complexity
@@ -76,8 +84,9 @@ Run for changes to:
 - [ ] **Review Nesting Levels**: Identify deep nesting that could use early returns/guard clauses
 - [ ] **Assess Cognitive Load**: Determine if function logic is easy to follow
 - [ ] **Check Return Patterns**: Look for opportunities to simplify with early returns
+- [ ] **Track Complexity Metrics**: Record measurable complexity scores
 
-### Phase 3: Magic Values & Constants
+### Phase 4: Magic Values & Constants
 
 - [ ] **Identify Magic Numbers**: Find unexplained numbers like `42`, `100`, `3600`
 - [ ] **Detect Magic Strings**: Look for hardcoded API endpoints, error codes, status values
@@ -86,8 +95,9 @@ Run for changes to:
 - [ ] **Validate Array/Object Indices**: Replace magic indices with named constants
 - [ ] **Assess Calculation Constants**: Ensure mathematical constants are well-named
 - [ ] **Check Status Codes**: Verify HTTP codes, error codes use meaningful constants
+- [ ] **Create Refactoring List**: Document all magic values needing extraction
 
-### Phase 4: Code Structure & Organization
+### Phase 5: Code Structure & Organization
 
 - [ ] **Review Function Grouping**: Check that related functions are grouped together
 - [ ] **Assess Logical Flow**: Verify code reads naturally top-to-bottom
@@ -96,8 +106,9 @@ Run for changes to:
 - [ ] **Review File Organization**: Check that files have clear, focused responsibilities
 - [ ] **Assess Module Boundaries**: Verify clear interfaces between modules
 - [ ] **Check Dependency Direction**: Ensure dependencies flow in logical direction
+- [ ] **Map Architecture Issues**: Document structural problems and solutions
 
-### Phase 5: Intent Clarity & Documentation
+### Phase 6: Intent Clarity & Documentation
 
 - [ ] **Analyze Complex Expressions**: Look for multi-step calculations needing intermediate variables
 - [ ] **Check Algorithm Complexity**: Identify complex algorithms needing brief explanation
@@ -106,16 +117,25 @@ Run for changes to:
 - [ ] **Validate Error Messages**: Ensure error messages are clear and actionable
 - [ ] **Check Type Annotations**: Verify types help clarify function contracts
 - [ ] **Review Interface Documentation**: Ensure public APIs are well-documented
+- [ ] **Identify Documentation Gaps**: List areas needing clarification
 
-### Phase 6: Maintainability Assessment
+### Phase 7: Quality Assurance
 
-- [ ] **Evaluate Learning Curve**: Assess how long it takes new developer to understand code
-- [ ] **Check Debugging Ease**: Verify code structure supports easy debugging
-- [ ] **Assess Testing Clarity**: Ensure code structure makes testing straightforward
-- [ ] **Review Refactoring Safety**: Check if code can be safely modified
-- [ ] **Validate Extension Points**: Ensure code can be extended without major changes
-- [ ] **Check Performance Implications**: Verify clarity doesn't sacrifice performance unnecessarily
-- [ ] **Generate Readability Score**: Provide overall assessment of code clarity
+- [ ] **Cross-Reference Issues**: Ensure all identified issues are documented
+- [ ] **Prioritize Findings**: Rank issues by impact on maintainability
+- [ ] **Validate Recommendations**: Ensure suggested fixes are practical
+- [ ] **Check Consistency**: Verify recommendations align with project standards
+- [ ] **Review Completeness**: Confirm all review areas were covered
+
+### Phase 8: Completion & Learning
+
+- [ ] **Generate Final Report**: Create comprehensive clarity assessment
+- [ ] **Calculate Readability Scores**: Provide quantitative metrics
+- [ ] **Document Best Practices**: Note positive patterns to replicate
+- [ ] **Create Action Items**: List specific improvements needed
+- [ ] **Update TodoWrite**: Mark all review tasks as completed
+- [ ] **Record Lessons Learned**: Note insights for future reviews
+- [ ] **Estimate Improvement Time**: Provide realistic time estimates for fixes
 
 ## Code Clarity Assessment Report Format
 

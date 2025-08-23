@@ -58,16 +58,17 @@ Handle ad-hoc revisions that arise after initial implementation:
 - Fix style/convention issues discovered during review
 - Refactor and optimize based on new insights
 
-## Revision Workflow Checklist
+## Methodical Revision Workflow Framework
 
-### Phase 1: Stack State Analysis
-
+### Phase 1: Setup & Analysis
+- [ ] **Context Gathering**: Review revision requirements and understand scope
+- [ ] **Tool Preparation**: Ensure Graphite MCP tools are ready
+- [ ] **Create TodoWrite Tasks**: Break revision work into trackable sub-tasks
 - [ ] **Initialize Analysis**: Run `gt log` and `gt status` to map current stack structure
 - [ ] **Document Current State**: Identify all PRs, their relationships and commit messages
 - [ ] **Assess Stack Health**: Check for conflicts, broken dependencies, or merge issues
 - [ ] **Capture Full Diff**: Run `git diff main..HEAD` to see complete stack changes
 - [ ] **Identify Revision Scope**: Determine if changes affect single PR or cross-stack
-- [ ] **Create Progress Tracker**: Use TodoWrite to track all revision tasks
 
 ### Phase 2: Feedback Analysis & Strategy
 
@@ -78,6 +79,7 @@ Handle ad-hoc revisions that arise after initial implementation:
 - [ ] **Identify Dependencies**: Map which changes must happen before others
 - [ ] **Plan Testing Strategy**: Determine which tests need updates or additions
 - [ ] **Document Strategy**: Record revision approach and reasoning for future reference
+- [ ] **Update TodoWrite**: Create specific tasks for each revision item
 
 ### Phase 3: Pre-Revision Safety
 
@@ -87,6 +89,7 @@ Handle ad-hoc revisions that arise after initial implementation:
 - [ ] **Map File Dependencies**: Understand which files are interconnected
 - [ ] **Validate Build State**: Ensure current stack builds successfully
 - [ ] **Navigate to Starting Point**: Position in correct branch for revision work
+- [ ] **Document Risk Assessment**: Note potential issues and mitigation plans
 
 ### Phase 4: Targeted Revision Execution
 
@@ -97,6 +100,7 @@ Handle ad-hoc revisions that arise after initial implementation:
 - [ ] **Maintain Commit Quality**: Ensure commit messages remain accurate and descriptive
 - [ ] **Update Tests**: Modify or add tests to cover revised functionality
 - [ ] **Run Incremental Tests**: Test affected components after each major change
+- [ ] **Track Progress**: Update TodoWrite as each revision completes
 
 ### Phase 5: Stack Integrity Verification
 
@@ -107,16 +111,27 @@ Handle ad-hoc revisions that arise after initial implementation:
 - [ ] **Validate Dependencies**: Verify stack order still makes sense
 - [ ] **Review Commit History**: Ensure clean, understandable git history
 - [ ] **Check for Regressions**: Run smoke tests on critical functionality
+- [ ] **Document Test Results**: Record test outcomes and any issues found
 
-### Phase 6: Quality Assurance & Documentation
+### Phase 6: Quality Assurance
 
 - [ ] **Review Code Standards**: Ensure changes follow project conventions and style
 - [ ] **Update Documentation**: Modify docs/comments affected by changes
 - [ ] **Verify Error Handling**: Check that error paths still work correctly
 - [ ] **Test Edge Cases**: Ensure revision didn't break edge case handling
 - [ ] **Validate API Contracts**: Confirm interfaces remain backward compatible
-- [ ] **Complete Progress Tracking**: Mark all TodoWrite items as completed
+- [ ] **Cross-Reference Requirements**: Verify all feedback items were addressed
+- [ ] **Review Change Impact**: Assess broader implications of revisions
+
+### Phase 7: Completion & Learning
+
 - [ ] **Generate Summary Report**: Document what was changed and why
+- [ ] **Complete Progress Tracking**: Mark all TodoWrite items as completed
+- [ ] **Document Lessons Learned**: Note insights from revision process
+- [ ] **Record Pattern Observations**: Identify recurring revision types
+- [ ] **Update Best Practices**: Note successful revision strategies
+- [ ] **Estimate Future Time**: Provide time estimates for similar revisions
+- [ ] **Archive Decision Log**: Save rationale for complex revision choices
 
 ## Revision Strategies
 

@@ -54,9 +54,16 @@ Run for changes to:
 - Error handling and user feedback code
 - Navigation and routing logic
 
-## User Experience Review Checklist
+## Methodical User Experience Review Framework
 
-### Phase 1: Component & Interaction Discovery
+### Phase 1: Setup & Analysis
+- [ ] **Context Gathering**: Understand the application's purpose and user base
+- [ ] **Scope Definition**: Identify all UI components and flows to review
+- [ ] **Tool Preparation**: Set up accessibility testing tools and validators
+- [ ] **Create TodoWrite Tasks**: Break UX review into trackable sub-tasks
+- [ ] **Baseline Establishment**: Note existing UX patterns and guidelines
+
+### Phase 2: Component & Interaction Discovery
 
 - [ ] **Identify UI Components**: Scan for all interactive elements (buttons, forms, links, inputs)
 - [ ] **Map User Flows**: Trace critical user journeys affected by changes
@@ -64,8 +71,9 @@ Run for changes to:
 - [ ] **Assess State Management**: Understand how UI state affects user interactions
 - [ ] **Document Interaction Points**: List all places users can interact with the system
 - [ ] **Review Navigation Changes**: Check routing, breadcrumbs, and flow interruptions
+- [ ] **Track Discovery Findings**: Document all components with file:line references
 
-### Phase 2: Accessibility Compliance (WCAG)
+### Phase 3: Accessibility Compliance (WCAG)
 
 - [ ] **Keyboard Navigation**: Verify all interactive elements are keyboard accessible
 - [ ] **Screen Reader Support**: Check ARIA labels, semantic HTML, and announcements
@@ -74,8 +82,9 @@ Run for changes to:
 - [ ] **Alt Text Quality**: Verify images have descriptive, contextual alt attributes
 - [ ] **Form Accessibility**: Check labels, fieldsets, error announcements
 - [ ] **Heading Structure**: Validate logical heading hierarchy (h1->h6)
+- [ ] **Document Violations**: Record WCAG violations with severity levels
 
-### Phase 3: Error States & User Feedback
+### Phase 4: Error States & User Feedback
 
 - [ ] **Form Validation**: Check for clear, helpful error messages near inputs
 - [ ] **API Error Handling**: Ensure user-friendly error messages, not raw technical errors
@@ -84,8 +93,9 @@ Run for changes to:
 - [ ] **Network Error Handling**: Handle offline/connection errors gracefully
 - [ ] **Validation Timing**: Check real-time vs submit-time validation appropriateness
 - [ ] **Error Recovery**: Provide clear paths to resolve error states
+- [ ] **Create Error Matrix**: Document all error scenarios and their handling
 
-### Phase 4: Loading & Performance UX
+### Phase 5: Loading & Performance UX
 
 - [ ] **Loading States**: Check for spinners, skeletons, or progress indicators
 - [ ] **Perceived Performance**: Ensure immediate UI feedback for user actions
@@ -94,8 +104,9 @@ Run for changes to:
 - [ ] **Performance Budget**: Check for performance-impacting UX decisions
 - [ ] **Optimistic Updates**: Look for immediate UI updates before server confirmation
 - [ ] **Timeout Handling**: Verify graceful handling of slow operations
+- [ ] **Measure Performance Impact**: Document loading times and user wait periods
 
-### Phase 5: Mobile & Responsive Experience
+### Phase 6: Mobile & Responsive Experience
 
 - [ ] **Touch Target Size**: Ensure buttons/links are ≥44px for finger taps
 - [ ] **Responsive Breakpoints**: Verify layout works on mobile, tablet, desktop
@@ -104,8 +115,9 @@ Run for changes to:
 - [ ] **Mobile Navigation**: Check hamburger menus, mobile-specific patterns
 - [ ] **Device-Specific Features**: Test camera access, geolocation, etc.
 - [ ] **Performance on Mobile**: Ensure acceptable loading times on slower connections
+- [ ] **Test on Real Devices**: Validate experience on actual mobile devices
 
-### Phase 6: User Flow & Logic Validation
+### Phase 7: User Flow & Logic Validation
 
 - [ ] **Navigation Clarity**: Verify users understand where they are and can go back
 - [ ] **Required Field Indication**: Check clear marking of required vs optional fields
@@ -114,6 +126,27 @@ Run for changes to:
 - [ ] **Multi-step Process Flow**: Check clear progress indication and ability to navigate
 - [ ] **Context Preservation**: Ensure user data/progress isn't lost during navigation
 - [ ] **Permission Handling**: Graceful degradation when permissions are denied
+- [ ] **Map User Journeys**: Document complete user paths through the application
+
+### Phase 8: Quality Assurance
+
+- [ ] **Cross-Reference Issues**: Ensure all identified issues are documented
+- [ ] **Prioritize Findings**: Rank issues by user impact and frequency
+- [ ] **Validate Recommendations**: Ensure suggested fixes are practical
+- [ ] **Check Consistency**: Verify recommendations align with design system
+- [ ] **Review Completeness**: Confirm all UX areas were covered
+- [ ] **Test Solutions**: Validate that proposed fixes actually improve UX
+
+### Phase 9: Completion & Learning
+
+- [ ] **Generate Final Report**: Create comprehensive UX assessment
+- [ ] **Calculate UX Scores**: Provide quantitative metrics for each area
+- [ ] **Document Best Practices**: Note positive UX patterns to replicate
+- [ ] **Create Action Items**: List specific improvements with priorities
+- [ ] **Update TodoWrite**: Mark all review tasks as completed
+- [ ] **Record Lessons Learned**: Note insights for future UX reviews
+- [ ] **Estimate Fix Time**: Provide realistic time estimates for improvements
+- [ ] **Share User Impact**: Quantify how fixes will improve user experience
 
 ## User Experience Assessment Report Format
 
