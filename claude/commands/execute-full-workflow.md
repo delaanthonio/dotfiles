@@ -1,6 +1,6 @@
 Execute a complete end-to-end implementation workflow with iterative cycles, built-in error recovery, and production-grade quality gates.
 
-**Prerequisites:** Architecture should be defined using `/plan-architecture` command and Linear tickets created before using this workflow.
+**Prerequisites:** Architecture should be defined using `/plan-architecture` command (which uses the roadmap agent) and Linear tickets created before using this workflow.
 
 Use the TodoWrite tool to track the overall workflow, then delegate to specialized agents:
 
@@ -38,12 +38,16 @@ Present the Complete Implementation Plan to the user:
 For each PR in the PR Stack Plan, execute this tight feedback loop:
 
 **Error Recovery:** At any point, if implementation gets blocked:
-- **stack-implementer** has built-in unblocking procedures (self-diagnosis → peer consultation → strategic escalation → user escalation)
+- **builder** has built-in unblocking procedures (self-diagnosis → peer consultation → strategic escalation → user escalation)
 - Can dynamically split complex PRs using built-in splitting criteria
 - Can rollback individual PRs without affecting the stack
 
 **2a. Single PR Implementation**
-Use the Task tool to delegate to the **stack-implementer** agent:
+Use the Task tool to delegate to the appropriate domain-specific agent based on the PR scope:
+- **Frontend PRs**: Use **next** agent for Next.js/React components
+- **Marketing/Landing**: Use **astro** agent for Astro showcase site
+- **Backend PRs**: Use **django** agent for Django/API changes
+- **Cross-cutting/General**: Use **builder** agent as coordinator
 - Include the current PR specification from the Implementation Plan
 - Implement code, tests, and documentation for THIS PR ONLY
 - Follow established conventions and the recommended approach
@@ -64,7 +68,7 @@ Use the Task tool to delegate to the **parallel-reviewer** agent:
 
 **2c. PR Refinement**
 If issues found in review:
-- Use **stack-implementer** again to address specific feedback
+- Use the same domain-specific agent (next/astro/django) to address feedback
 - Use `gt modify` to update the current PR
 - Re-run **parallel-reviewer** if significant changes made
 - Continue until PR passes all quality gates
@@ -126,4 +130,10 @@ Add flags after $ARGUMENTS to customize behavior:
 
 # Default (complex mode)
 /execute-full-workflow Add real-time notifications system
+
+# Domain-specific implementations are handled automatically:
+# - Frontend changes will use the 'next' agent
+# - Backend API changes will use the 'django' agent  
+# - Marketing site changes will use the 'astro' agent
+# - Cross-cutting changes coordinate through 'builder'
 ```
