@@ -33,6 +33,8 @@
 (setq display-line-numbers-type t)
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
+(setq copilot-indent-offset-warning-disable t)
+
 (after! vterm
   (setq vterm-shell "/bin/zsh"))
 (setq shell-file-name
