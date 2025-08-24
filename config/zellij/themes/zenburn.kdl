@@ -1,0 +1,15 @@
+themes {
+    zenburn {
+        fg "#DCDCCC"
+        bg "#3F3F3F"
+        black "#3F3F3F"
+        red "#CC9393"
+        green "#9ECE9E"
+        yellow "#F0DFAF"
+        blue "#8CD0D3"
+        magenta "#C0BED1"
+        cyan "#93E0E3"
+        white "#DCDCCC"
+        orange "#DFAF8F"
+    }
+}
