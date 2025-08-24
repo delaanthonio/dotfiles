@@ -24,8 +24,8 @@
                                  (font-spec :family "Roboto" :size 20))
                                 (t (font-spec :family "Sans Serif" :size 20))))
 
-(setq doom-theme 'doom-zenburn)
-(setq doom-zenburn-brighter-comments t)
+(setq doom-theme 'doom-gruvbox)
+(setq doom-gruvbox-brighter-comments t)
 
 (super-save-mode +1)
 (setq auto-save-default nil)
