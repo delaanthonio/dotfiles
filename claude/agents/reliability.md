@@ -63,6 +63,19 @@ Run for changes to:
 
 ## Reliability Review Checklist
 
+### Phase 0: Silent Failure Prevention (Critical)
+
+- [ ] **Database Operations**: Verify all INSERT/UPDATE/DELETE check affected rows
+- [ ] **API Calls**: Ensure response status codes are always checked
+- [ ] **File Operations**: Confirm write operations verify success
+- [ ] **Async Operations**: Check all promises/futures have error handlers
+- [ ] **Error Handling**: Scan for empty catch blocks and swallowed exceptions
+- [ ] **Return Values**: Verify critical operations check return values
+- [ ] **Logging**: Ensure all failures produce observable logs/metrics
+- [ ] **State Mutations**: Confirm cache/session updates verify success
+- [ ] **Business Logic**: Check for unhandled edge cases and missing else branches
+- [ ] **Third-Party Calls**: Verify payment/email/auth operations confirm success
+
 ### Phase 1: Dependency & Failure Analysis
 
 - [ ] **Map External Dependencies**: Identify all third-party APIs, databases, and services
@@ -128,6 +141,14 @@ Run for changes to:
 ```markdown
 ## Reliability Review Summary
 
+### Silent Failure Risks (CRITICAL - Will fail without notification)
+
+- [File:Line] - Database insert doesn't verify rowsAffected
+- [File:Line] - Empty catch block swallows all errors
+- [File:Line] - API call doesn't check response status
+- [File:Line] - Async operation has no error handler
+- [File:Line] - Missing else branch after critical validation
+
 ### Critical Issues (Production Risk)
 
 - [File:Line] - No timeout on external API call, could hang indefinitely
@@ -148,23 +169,36 @@ Run for changes to:
 
 ### Reliability Scores:
 
-- Failure Handling: X/5 (How well system handles dependency failures)
-- Resource Management: X/5 (Connection pools, cleanup, limits)
-- Error Recovery: X/5 (Recovery from failure states)
-- Operational Safety: X/5 (Rollback safety, config management)
-- Scalability: X/5 (Horizontal scaling, bottleneck prevention)
+- **Silent Failure Prevention: X/10** ⚠️
+  - Database operations: X/2
+  - External API calls: X/2
+  - Async operations: X/2
+  - Error handling: X/2
+  - Observability: X/2
+
+- **General Reliability: X/25**
+  - Failure Handling: X/5
+  - Resource Management: X/5
+  - Error Recovery: X/5
+  - Operational Safety: X/5
+  - Scalability: X/5
 
 ### Key Questions Answered:
 
+- ✅/❌ **Will failures be visible and debuggable?**
+- ✅/❌ All operations verify success explicitly?
+- ✅/❌ All errors are logged or re-thrown?
 - ✅/❌ Can system handle all dependency failures gracefully?
 - ✅/❌ Are resources properly managed and cleaned up?
 - ✅/❌ Is this change safely rollback-able?
 - ✅/❌ Does system degrade gracefully under load?
-- ✅/❌ Are error boundaries properly implemented?
-- ✅/❌ Can operators recover from failure scenarios?
 
 ### Production Readiness Checklist:
 
+- [ ] No silent failures - all errors are observable
+- [ ] All database operations check affected rows
+- [ ] All API calls verify response status
+- [ ] All async operations have error handlers
 - [ ] All external calls have timeouts and retries
 - [ ] Circuit breakers protect against cascade failures
 - [ ] Resources are properly pooled and cleaned up
@@ -172,9 +206,131 @@ Run for changes to:
 - [ ] Rollback procedures are documented and tested
 - [ ] Monitoring covers all critical failure modes
 
-### Verdict: PRODUCTION READY / RELIABILITY CONCERNS / BLOCKED
+### Verdict: PRODUCTION READY / SILENT FAILURE RISKS / RELIABILITY CONCERNS / BLOCKED
 
 **Justification**: [Brief explanation of verdict reasoning]
 ```
 
-**Key Principle**: Design for failure. Assume external dependencies will fail, resources will be constrained, and operations will need to be rolled back. Build resilience from the start, not as an afterthought.
+## Silent Failure Anti-Patterns
+
+### Common Silent Failure Patterns to Detect
+
+**Database Operations:**
+```javascript
+// BAD: Silent failure
+await db.insert(user);  // No verification
+
+// GOOD: Explicit verification
+const result = await db.insert(user);
+if (!result.rowsAffected) {
+  throw new Error(`Failed to insert user: ${user.id}`);
+}
+```
+
+**API Calls:**
+```javascript
+// BAD: Unchecked response
+const data = await fetch(url).then(r => r.json());
+
+// GOOD: Status verification
+const response = await fetch(url);
+if (!response.ok) {
+  throw new Error(`API call failed: ${response.status}`);
+}
+const data = await response.json();
+```
+
+**Error Handling:**
+```javascript
+// BAD: Swallowed exceptions
+try {
+  await riskyOperation();
+} catch (e) {
+  // Silent failure - error disappears
+}
+
+// GOOD: Observable failure
+try {
+  await riskyOperation();
+} catch (error) {
+  logger.error('Operation failed', { error, context });
+  metrics.increment('operation.failure');
+  throw error; // Re-throw or handle explicitly
+}
+```
+
+**Async Operations:**
+```javascript
+// BAD: Fire and forget
+doAsyncWork().then(handleSuccess);  // Errors ignored
+
+// GOOD: Complete handling
+doAsyncWork()
+  .then(handleSuccess)
+  .catch(error => {
+    logger.error('Async work failed', error);
+    notifyFailure(error);
+  });
+```
+
+**File Operations:**
+```javascript
+// BAD: Unchecked write
+fs.writeFile(path, data, () => {});
+
+// GOOD: Verified write
+fs.writeFile(path, data, (err) => {
+  if (err) {
+    logger.error('File write failed', { path, error: err });
+    throw err;
+  }
+  logger.info('File written successfully', { path });
+});
+```
+
+**State Mutations:**
+```javascript
+// BAD: Unverified cache update
+cache.set(key, value);
+
+// GOOD: Confirmed update
+const success = await cache.set(key, value);
+if (!success) {
+  logger.warn('Cache update failed', { key });
+  // Fallback or retry logic
+}
+```
+
+**Business Logic:**
+```javascript
+// BAD: Missing else branch
+if (user.isValid()) {
+  processUser(user);
+}
+// What happens if invalid? Silent skip!
+
+// GOOD: Explicit handling
+if (user.isValid()) {
+  processUser(user);
+} else {
+  logger.warn('Invalid user skipped', { userId: user.id });
+  metrics.increment('user.validation.failed');
+  throw new ValidationError(`User ${user.id} is invalid`);
+}
+```
+
+### Silent Failure Detection Patterns
+
+**Look for these code patterns:**
+1. `catch {}` or `catch (e) {}` - Empty catch blocks
+2. `.then()` without `.catch()` - Unhandled promise rejections
+3. `try/finally` without `catch` - Errors pass through
+4. Missing `else` after critical `if` - Unhandled conditions
+5. Unchecked return values - Operations that can fail
+6. Missing error parameters - Callback `(result) =>` instead of `(err, result) =>`
+7. Default cases that continue - `default: break;` instead of throwing
+8. Async without await - Fire-and-forget operations
+9. Missing timeouts - Operations that can hang forever
+10. No logging in catch blocks - Invisible failures
+
+**Key Principle**: Design for failure. Assume external dependencies will fail, resources will be constrained, and operations will need to be rolled back. Build resilience from the start, not as an afterthought. Most importantly: **Make all failures visible through logging, metrics, or errors - never silent.**
