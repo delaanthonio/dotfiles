@@ -266,5 +266,11 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
       (ansi-color-apply-on-region (point-min) (point-max))))
   (add-hook! 'compilation-filter-hook #'colorize-buffer))
 
+;;; Kitty
+(use-package! kkp
+  :ensure t
+  :config
+  (global-kkp-mode +1))
+
 (load! "kdl.el")
 (message "Loaded config.el")

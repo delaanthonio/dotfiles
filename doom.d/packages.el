@@ -48,6 +48,7 @@
 (package! ef-themes)
 (package! emacs-kdl-mode :recipe (:host github :repo "taquangtrung/emacs-kdl-mode"))
 (package! org-modern)
+(package! kkp)
 (package! visual-fill-column)
 (package! solaire-mode :disable t)
 (package! spacious-padding)
