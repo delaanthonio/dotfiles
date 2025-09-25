@@ -26,17 +26,17 @@ abbr -a gd 'git diff'
 abbr -a glog 'git log --oneline --graph --decorate'
 
 # Git Town
-abbr -a gt 'git town'
-abbr -a gth 'git town hack'
-abbr -a gts 'git town sync'
-abbr -a gtp 'git town propose'
-abbr -a gtsh 'git town ship'
-abbr -a gtk 'git town kill'
-abbr -a gtr 'git town rename-branch'
-abbr -a gtc 'git town continue'
-abbr -a gtu 'git town undo'
-abbr -a gtpr 'git town prepend'
-abbr -a gta 'git town append'
+abbr -a t 'git town'
+abbr -a th 'git town hack'
+abbr -a ts 'git town sync'
+abbr -a tp 'git town propose'
+abbr -a tsh 'git town ship'
+abbr -a tk 'git town kill'
+abbr -a tr 'git town rename-branch'
+abbr -a tc 'git town continue'
+abbr -a tu 'git town undo'
+abbr -a tpr 'git town prepend'
+abbr -a ta 'git town append'
 
 # Docker
 abbr -a d docker
