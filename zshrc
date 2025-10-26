@@ -1,53 +1,33 @@
-# zshrc -*- mode: sh; -*-
+# =============================================================================
+# ZSHRC CONFIGURATION
+# =============================================================================
+# Last updated: $(date +%Y-%m-%d)
+# Description: Personal zsh configuration with oh-my-zsh, starship, and customizations
+
+# =============================================================================
+# ENVIRONMENT SETUP
+# =============================================================================
+
 # Set name of the theme to load.
 ZSH_THEME=""
 
-# You may need to manually set your language environment
+# Language environment
 LANG="en_US.UTF-8"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="mm/dd/yyyy"
-
+# Oh-my-zsh configuration
 MODULES_DIR=$HOME/.dotfiles/modules
-
-# Path to your oh-my-zsh installation.
 export ZSH=$MODULES_DIR/oh-my-zsh
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Oh-my-zsh settings
+DISABLE_AUTO_UPDATE="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="mm/dd/yyyy"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# =============================================================================
+# PLUGIN CONFIGURATION
+# =============================================================================
+
+# Core plugins
 plugins=(
     common-aliases
     extract
@@ -56,9 +36,10 @@ plugins=(
     pj
 )
 
-# Project Jump
+# Project Jump configuration
 PROJECT_PATHS=($HOME/Developer $HOME/Git)
 
+# Conditional plugin loading based on available commands
 if (( $+commands[apt] )); then
     plugins+=(ubuntu)
 fi
@@ -69,35 +50,6 @@ fi
 
 if (( $+commands[direnv] )); then
     plugins+=(direnv)
-fi
-
-if (( $+commands[docker] )); then
-    plugins+=(docker)
-    alias d="docker"
-    alias db="docker build"
-    alias dex="docker exec -it"
-
-    dccmd="docker compose"
-
-    alias dco="$dccmd"
-    alias dcb="$dccmd build"
-    alias dce="$dccmd exec"
-    alias dcps="$dccmd ps"
-    alias dcrestart="$dccmd restart"
-    alias dcrm="$dccmd rm"
-    alias dcr="$dccmd run"
-    alias dcstop="$dccmd stop"
-    alias dcup="$dccmd up"
-    alias dcupb="$dccmd up --build"
-    alias dcupd="$dccmd up -d"
-    alias dcdn="$dccmd down"
-    alias dcl="$dccmd logs"
-    alias dclf="$dccmd logs -f"
-    alias dcpull="$dccmd pull"
-    alias dcstart="$dccmd start"
-    alias dck="$dccmd kill"
-
-    unset dccmd
 fi
 
 if (( $+commands[gh] )); then
@@ -120,6 +72,15 @@ if (( $+commands[yarn] )); then
     plugins+=(yarn)
 fi
 
+if (( $+commands[systemd] )); then
+    plugins+=(systemd)
+fi
+
+# =============================================================================
+# DEVELOPMENT ENVIRONMENT SETUP
+# =============================================================================
+
+# Node.js (NVM)
 if [[ -d "$HOME/.nvm" ]]; then
     export NVM_DIR="$HOME/.nvm"
     export NODE_VERSIONS="$HOME/.nvm/versions/node/"
@@ -128,12 +89,9 @@ if [[ -d "$HOME/.nvm" ]]; then
     zstyle ':omz:plugins:nvm' lazy yes
 fi
 
-if [[ -d "$HOME/.rbenv" ]]; then
-    eval "$(rbenv init - zsh)"
-fi
-
-if (( $+commands[systemd] )); then
-    plugins+=(systemd)
+# Ruby (rbenv)
+if [[ -d "$HOME/.rbenv" ]] && command -v rbenv >/dev/null 2>&1; then
+    eval "$(rbenv init - zsh 2>/dev/null)"
 fi
 
 source "$MODULES_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
