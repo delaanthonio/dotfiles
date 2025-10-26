@@ -138,10 +138,20 @@ fi
 
 source "$MODULES_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-source $ZSH/oh-my-zsh.sh
+# Check if running in a coding agent environment
+# Common indicators: specific environment variables, process names, or parent processes
+is_coding_agent() {
+    [[ -n "$CODING_AGENT" || -n "$CURSOR_AI" || -n "$VSCODE_AI" || -n "$CODESPACE" ]]
+}
 
-# Starship Prompt
-eval "$(starship init zsh)"
+# Only load oh-my-zsh and starship if not in a coding agent environment
+if ! is_coding_agent; then
+    # Load oh-my-zsh
+    source $ZSH/oh-my-zsh.sh
+    
+    # Load Starship Prompt
+    eval "$(starship init zsh)"
+fi
 
 # Homebrew completion
 if type brew &>/dev/null; then
