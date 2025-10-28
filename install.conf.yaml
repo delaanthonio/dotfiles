@@ -21,6 +21,9 @@
     ~/.config/fish/completions/:
         path: config/fish/completions/**
         glob: true
+    ~/.config/fish/functions/:
+        path: config/fish/functions/**
+        glob: true
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
