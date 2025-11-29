@@ -60,7 +60,7 @@
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	editor = code --wait
+	editor = nvim
 
 [diff]
 	# Enable an experimental heuristic that shifts the hunk boundary in an
