@@ -8,6 +8,9 @@
 - clean: ['~']
 
 - link:
+    ~/.claude/settings.json:
+        path: claude/settings.json
+        force: true
     ~/.claude/agents/:
         path: claude/agents/**
         glob: true
