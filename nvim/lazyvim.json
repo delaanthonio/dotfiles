@@ -23,6 +23,7 @@
     "lazyvim.plugins.extras.util.project",
     "lazyvim.plugins.extras.util.startuptime"
   ],
+  "install_version": 7,
   "news": {
     "NEWS.md": "11866"
   },

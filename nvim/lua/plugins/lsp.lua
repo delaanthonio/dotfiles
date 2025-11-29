@@ -1,46 +1,9 @@
 return {
-  -- LSP configuration for TypeScript/React
+  -- LSP configuration
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        tsserver = {
-          -- Disable tsserver formatting in favor of prettier
-          capabilities = {
-            documentFormattingProvider = false,
-            documentRangeFormattingProvider = false,
-          },
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-            },
-          },
-        },
         -- CSS LSP for styling
         cssls = {},
         -- HTML LSP for JSX
@@ -57,7 +20,6 @@ return {
       },
     },
   },
-
 
   -- Better LSP UI
   {
