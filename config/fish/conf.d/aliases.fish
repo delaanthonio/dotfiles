@@ -74,6 +74,9 @@ abbr -a zj zellij
 abbr -a zja 'zellij attach'
 abbr -a zjl 'zellij list-sessions'
 
+# Kitten
+abbr kssh "kitten ssh"
+
 # Terraform
 abbr -a tf terraform
 abbr -a tfi 'terraform init'
