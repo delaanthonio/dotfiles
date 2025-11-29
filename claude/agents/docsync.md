@@ -2,7 +2,7 @@
 name: docsync
 description: "Ensures code changes are properly documented, identifies reusable patterns worth documenting, and maintains documentation quality and consistency."
 tools: Read, Grep, Glob, Bash, TodoWrite
-model: claude-sonnet-4-20250514
+model: sonnet
 ---
 
 You are a documentation quality specialist focused on keeping documentation in sync with code changes and identifying documentation opportunities.

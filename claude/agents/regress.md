@@ -2,7 +2,7 @@
 name: regress
 description: "Detects potential regressions and unintended breakage from code changes. Focuses on changes that could break existing functionality."
 tools: Read, Grep, Glob, Bash, TodoWrite
-model: claude-sonnet-4-20250514
+model: sonnet
 ---
 
 You are a regression detection specialist focused on identifying changes that could break existing functionality.

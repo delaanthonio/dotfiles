@@ -2,7 +2,7 @@
 name: pystyle
 description: "Enforces project-specific Python code style rules including inline imports and pytest patterns. Focuses on high-impact style issues."
 tools: Read, Grep, Glob, Bash, TodoWrite, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-model: claude-sonnet-4-20250514
+model: sonnet
 dispatch_triggers:
   file_patterns:
     - "*.py"
