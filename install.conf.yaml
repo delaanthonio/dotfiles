@@ -20,6 +20,7 @@
     ~/.claude/scripts/:
         path: claude/scripts/**
         glob: true
+    ~/.codex/config.toml: codex/config.toml
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/fish/conf.d:
         path: config/fish/conf.d
