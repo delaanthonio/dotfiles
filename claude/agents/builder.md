@@ -335,7 +335,7 @@ When encountering implementation blocks, follow this systematic escalation check
 - [ ] **Performance problems**: Consult **perf** agent for performance bottlenecks
 - [ ] **Test failures**: Consult **tests** agent for test setup and strategy issues
 - [ ] **Code quality**: Consult **review** agent for code structure questions
-- [ ] **Documentation needs**: Consult **docsync** agent for documentation blocks
+- [ ] **Documentation needs**: Consult **clarity** agent for documentation blocks
 - [ ] **Observability**: Consult **observe** agent for logging/monitoring issues
 
 ### Level 3: Strategic Escalation
