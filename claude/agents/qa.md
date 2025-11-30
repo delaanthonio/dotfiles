@@ -19,11 +19,11 @@ You are a comprehensive testing specialist responsible for test coverage, qualit
 Example usage:
 
 ```
-# Get Jest testing patterns
-mcp__context7__resolve-library-id({ libraryName: "jest" })
+# Get Vitest testing patterns
+mcp__context7__resolve-library-id({ libraryName: "vitest" })
 mcp__context7__get-library-docs({
-  context7CompatibleLibraryID: "/facebook/jest",
-  topic: "mock functions async testing",
+  context7CompatibleLibraryID: "/vitest-dev/vitest",
+  topic: "test.each describe.each parameterized mocking",
   tokens: 4000
 })
 
