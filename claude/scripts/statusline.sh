@@ -27,6 +27,10 @@ git_info=""
 if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
   branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null || \
            git -C "$cwd" --no-optional-locks rev-parse --short HEAD 2>/dev/null)
+  # Truncate branch name if longer than 20 chars
+  if [[ ${#branch} -gt 20 ]]; then
+    branch="${branch:0:20}…"
+  fi
   if [[ -n "$branch" ]]; then
     if ! git -C "$cwd" --no-optional-locks diff --quiet 2>/dev/null || \
        ! git -C "$cwd" --no-optional-locks diff --cached --quiet 2>/dev/null; then
