@@ -11,7 +11,8 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model=$(echo "$input" | jq -r '.model // empty')
 
 # Base info
-user=$(whoami)
+current_user=$(whoami)
+logged_in_user=$(stat -f '%Su' /dev/console 2>/dev/null || echo "$current_user")
 host=$(hostname -s)
 dir=$(basename "$cwd")
 
