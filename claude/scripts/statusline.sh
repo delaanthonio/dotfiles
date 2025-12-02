@@ -8,6 +8,7 @@ set -euo pipefail
 # Read JSON input from Claude Code
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
+model=$(echo "$input" | jq -r '.model // empty')
 
 # Base info
 user=$(whoami)
@@ -60,10 +61,28 @@ if [[ -n "${AWS_PROFILE:-}" ]]; then
   fi
 fi
 
+# Claude model
+if [[ -n "$model" ]]; then
+  case "$model" in
+    claude-sonnet-4-*) short_model="sonnet" ;;
+    claude-opus-4-*)   short_model="opus" ;;
+    *sonnet*)          short_model="sonnet" ;;
+    *opus*)            short_model="opus" ;;
+    *haiku*)           short_model="haiku" ;;
+    *)                 short_model="$model" ;;
+  esac
+  ctx="$ctx ${MAGENTA}🤖 ${short_model}${RESET}"
+fi
+
 # Add separator if we have context
 if [[ -n "$ctx" ]]; then
   ctx=" |$ctx"
 fi
 
 # Output the status line
-printf "%s%s@%s%s in %s%s%s%s%s" "$GREEN" "$user" "$host" "$RESET" "$CYAN" "$dir" "$RESET" "$git_info" "$ctx"
+# Only show user@ if running as different user than logged in
+if [[ "$current_user" != "$logged_in_user" ]]; then
+  printf "%s%s@%s%s in %s%s%s%s%s" "$GREEN" "$current_user" "$host" "$RESET" "$CYAN" "$dir" "$RESET" "$git_info" "$ctx"
+else
+  printf "%s%s%s in %s%s%s%s%s" "$GREEN" "$host" "$RESET" "$CYAN" "$dir" "$RESET" "$git_info" "$ctx"
+fi
