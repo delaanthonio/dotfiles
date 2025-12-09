@@ -31,6 +31,7 @@
 (setq auto-save-default nil)
 (setq confirm-kill-emacs nil)
 (setq display-line-numbers-type t)
+(setq evil-escape-key-sequence "jk")
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
 (setq copilot-indent-offset-warning-disable t)
