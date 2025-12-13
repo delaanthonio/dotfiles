@@ -1,0 +1,8 @@
+description: "Software architecture specialist for design patterns, testing strategies, code quality, performance optimization, security best practices (OWASP), and architectural decision-making across languages and frameworks."
+mode: main
+model: opus
+temperature: 0.3
+tools:
+  write: true
+  edit: true
+  bash: true

@@ -1,0 +1,8 @@
+description: "Reviews frontend changes for user experience, accessibility, and usability issues. Can test live applications and research UX solutions."
+mode: subagent
+model: sonnet
+temperature: 0.2
+tools:
+  write: false
+  edit: false
+  bash: true

@@ -1,0 +1,8 @@
+description: "Enforces project-specific Python code style rules including inline imports and pytest patterns. Focuses on high-impact style issues."
+mode: subagent
+model: sonnet
+temperature: 0.0
+tools:
+  write: false
+  edit: false
+  bash: false

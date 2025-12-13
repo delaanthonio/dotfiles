@@ -1,0 +1,8 @@
+description: "User story specialist. Transforms requirements into well-crafted user stories with clear acceptance criteria and implementation details."
+mode: main
+model: sonnet
+temperature: 0.3
+tools:
+  write: false
+  edit: false
+  bash: false

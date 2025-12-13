@@ -1,0 +1,8 @@
+description: "Security specialist that audits code changes for vulnerabilities, exposed secrets, and security best practices. Automatically scans PR stacks for security issues before submission."
+mode: subagent
+model: opus
+temperature: 0.0
+tools:
+  write: false
+  edit: false
+  bash: true

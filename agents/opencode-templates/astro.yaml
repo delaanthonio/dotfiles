@@ -1,0 +1,8 @@
+description: "Astro specialist for building performant, SEO-optimized static and server-rendered marketing sites."
+mode: main
+model: sonnet
+temperature: 0.2
+tools:
+  write: true
+  edit: true
+  bash: true

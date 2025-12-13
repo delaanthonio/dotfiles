@@ -1,0 +1,8 @@
+description: "Frontend specialist for AgendaCraft web application, focused on Next.js 15, TypeScript, and Ant Design 5 for performant React applications."
+mode: main
+model: sonnet
+temperature: 0.2
+tools:
+  write: true
+  edit: true
+  bash: true

@@ -1,0 +1,8 @@
+description: "Comprehensive test expert covering coverage, quality, reliability, and strategy. Supports both test pyramid and test trophy approaches."
+mode: subagent
+model: sonnet
+temperature: 0.1
+tools:
+  write: false
+  edit: false
+  bash: true

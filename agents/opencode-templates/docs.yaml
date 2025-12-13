@@ -1,0 +1,8 @@
+description: "Knowledge management specialist who maintains and organizes the Notion workspace for maximum clarity and discoverability."
+mode: main
+model: sonnet
+temperature: 0.3
+tools:
+  write: true
+  edit: true
+  bash: false

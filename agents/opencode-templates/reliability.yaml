@@ -1,0 +1,8 @@
+description: "Reviews code for operational reliability, resilience patterns, and performance issues. Focuses on preventing production incidents through failure-aware design and identifying bottlenecks."
+mode: subagent
+model: opus
+temperature: 0.1
+tools:
+  write: false
+  edit: false
+  bash: false

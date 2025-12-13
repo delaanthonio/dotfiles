@@ -1,0 +1,8 @@
+description: "Reviews code for readability, maintainability, and documentation quality. Ensures code changes are properly documented and identifies reusable patterns worth documenting."
+mode: subagent
+model: sonnet
+temperature: 0.1
+tools:
+  write: false
+  edit: false
+  bash: false

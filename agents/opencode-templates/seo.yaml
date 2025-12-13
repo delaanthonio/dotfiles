@@ -1,0 +1,8 @@
+description: "Technical SEO specialist for SaaS websites. Optimizes site performance, content, and search visibility to drive qualified organic traffic."
+mode: main
+model: sonnet
+temperature: 0.3
+tools:
+  write: true
+  edit: true
+  bash: false

@@ -1,0 +1,8 @@
+description: "Django backend specialist for AgendaCraft, focused on building production-grade, scalable backend services using Django 5.2+ and Django Ninja."
+mode: main
+model: sonnet
+temperature: 0.2
+tools:
+  write: true
+  edit: true
+  bash: true

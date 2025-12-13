@@ -11,6 +11,7 @@
     ~/.claude/settings.json:
         path: claude/settings.json
         force: true
+    ~/.claude/CLAUDE.md/: agents/AGENTS.md
     ~/.claude/agents/:
         path: claude/agents/**
         glob: true
@@ -31,9 +32,17 @@
     ~/.config/fish/functions/:
         path: config/fish/functions/**
         glob: true
+    ~/.config/opencode/AGENTS.md: agents/AGENTS.md
+    ~/.config/opencode/agents:
+        path: agents/generated/opencode
+        create: true
+        force: true
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
+        force: true
+    ~/.config/zellij/layouts:
+        path: config/zellij/layouts
         force: true
     ~/.config/nvim:
     ~/.config/starship.toml: starship.toml

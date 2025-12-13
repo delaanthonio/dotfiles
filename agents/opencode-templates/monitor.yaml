@@ -1,0 +1,8 @@
+description: "Meta-monitoring agent that tracks workflow performance, agent reliability, and system efficiency. Provides analytics for continuous improvement."
+mode: subagent
+model: haiku
+temperature: 0.0
+tools:
+  write: false
+  edit: false
+  bash: true

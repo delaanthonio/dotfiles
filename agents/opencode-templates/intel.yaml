@@ -1,0 +1,8 @@
+description: "Competitive intelligence analyst specializing in SaaS products, providing actionable insights to help solo founders position strategically."
+mode: main
+model: sonnet
+temperature: 0.2
+tools:
+  write: false
+  edit: false
+  bash: true
