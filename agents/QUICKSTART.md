@@ -6,7 +6,7 @@ A system that maintains agents for both **Claude Code** and **OpenCode** platfor
 
 - **Single source of truth**: `claude/agents/*.md` (27 agents)
 - **Platform-specific config**: `agents/opencode-templates/*.yaml` (27 templates)
-- **Auto-generated agents**: `agents/generated/opencode/*.md` (27 files)
+- **Auto-generated agents**: `config/opencode/agents/*.md` (27 files)
 - **Automatic syncing**: Git hook rebuilds agents on commit
 - **Symlinked to OpenCode**: `~/.config/opencode/agents/` (27 files)
 
@@ -23,7 +23,7 @@ git add claude/agents/reviewer.md
 git commit -m "Update reviewer agent checklist"
 
 # → Git hook AUTOMATICALLY:
-#   • Rebuilds agents/generated/opencode/review.md
+#   • Rebuilds config/opencode/agents/review.md
 #   • Stages the generated file
 #   • Includes both in commit
 
@@ -76,7 +76,7 @@ git commit -m "Lower reliability agent temperature"
 - Format: description, mode, model, temperature, tools
 
 ### Generated Agents (27 files, auto-created)
-- `agents/generated/opencode/*.md` - Combined frontmatter + body
+- `config/opencode/agents/*.md` - Combined frontmatter + body
 - Tracked in git for consistency across machines
 
 ## Directory Layout
@@ -106,8 +106,8 @@ git commit -m "Lower reliability agent temperature"
     └── pre-commit                    # Auto-rebuild trigger
 
 ~/.config/opencode/agents/            # SYMLINKED - Used by OpenCode
-├── review.md -> ~/.dotfiles/agents/generated/opencode/review.md
-├── security.md -> ~/.dotfiles/agents/generated/opencode/security.md
+├── review.md -> ~/.dotfiles/config/opencode/agents/review.md
+├── security.md -> ~/.dotfiles/config/opencode/agents/security.md
 └── ... (27 symlinks)
 ```
 
@@ -157,7 +157,7 @@ vim agents/opencode-templates/new-agent.yaml
 # Commit all files
 git add claude/agents/new-agent.md \
         agents/opencode-templates/new-agent.yaml \
-        agents/generated/opencode/new-agent.md
+        config/opencode/agents/new-agent.md
 git commit -m "feat: add new-agent"
 ```
 
@@ -171,10 +171,10 @@ ls -lh agents/scripts/build-agents.sh
 ls -lh .git/hooks/pre-commit
 
 # See all generated OpenCode agents
-ls -la agents/generated/opencode/
+ls -la config/opencode/agents/
 
 # Verify agent count
-ls agents/generated/opencode/ | wc -l
+ls config/opencode/agents/ | wc -l
 
 # Check OpenCode symlinks
 ls ~/.config/opencode/agents/ | wc -l
@@ -205,7 +205,7 @@ $ git commit -m "Fix: update reviewer checklist"
 ✅ OpenCode agents rebuilt and staged
 [main abc1234] Fix: update reviewer checklist
  2 files changed, 50 insertions(+)
- create mode 100644 agents/generated/opencode/review.md
+ create mode 100644 config/opencode/agents/review.md
 ```
 
 ## Troubleshooting

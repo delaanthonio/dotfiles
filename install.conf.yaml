@@ -34,7 +34,7 @@
         glob: true
     ~/.config/opencode/AGENTS.md: agents/AGENTS.md
     ~/.config/opencode/agents:
-        path: agents/generated/opencode
+        path: config/opencode/agents
         create: true
         force: true
     ~/.config/kitty/kitty.conf: kitty.conf

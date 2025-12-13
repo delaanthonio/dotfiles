@@ -16,7 +16,7 @@ This system manages agents for both **Claude Code** and **OpenCode** platforms, 
   - Example: `agents/opencode-templates/reviewer.yaml`
 
 ### Generated Artifacts
-- **`agents/generated/opencode/*.md`** - Generated OpenCode agents
+- **`config/opencode/agents/*.md`** - Generated OpenCode agents
   - Auto-created by build script: frontmatter + body
   - Tracked in git for consistency across machines
   - Symlinked to `~/.config/opencode/agents/`
@@ -133,7 +133,7 @@ git add claude/agents/security.md
 git commit -m "Update security checklist"
 
 # → Pre-commit hook automatically:
-#   - Rebuilds agents/generated/opencode/security.md
+#   - Rebuilds config/opencode/agents/security.md
 #   - Stages the generated file
 #   - Both files included in commit
 ```
@@ -249,7 +249,7 @@ vim agents/opencode-templates/my-agent.yaml
 # 5. Commit all files
 git add claude/agents/my-agent.md \
         agents/opencode-templates/my-agent.yaml \
-        agents/generated/opencode/my-agent.md
+        config/opencode/agents/my-agent.md
 git commit -m "feat: add my-agent"
 ```
 
@@ -272,13 +272,13 @@ git commit -m "feat: add my-agent"
 
 ```bash
 # List all generated OpenCode agents
-ls -la agents/generated/opencode/
+ls -la config/opencode/agents/
 
 # View agent count
-ls agents/generated/opencode/ | wc -l
+ls config/opencode/agents/ | wc -l
 
 # Check specific agent
-head -15 agents/generated/opencode/review.md
+head -15 config/opencode/agents/review.md
 ```
 
 ### Verify Symlinks
@@ -324,7 +324,7 @@ ls -L ~/.config/opencode/agents/review.md
 - **Fix:** Address any build errors, then retry commit
 
 **Issue:** Generated files not staged
-- **Solution:** Manually run `git add agents/generated/opencode/*.md`
+- **Solution:** Manually run `git add config/opencode/agents/*.md`
 
 ### OpenCode Agent Issues
 
@@ -335,7 +335,7 @@ ls -L ~/.config/opencode/agents/review.md
 **Issue:** Agent has wrong settings
 - **Fix:** Edit `agents/opencode-templates/{agent}.yaml`
 - **Rebuild:** Run `./agents/scripts/build-agents.sh {agent}`
-- **Stage:** `git add agents/generated/opencode/{agent}.md`
+- **Stage:** `git add config/opencode/agents/{agent}.md`
 
 ## Complete Agent Configuration
 
@@ -361,7 +361,7 @@ ls -L ~/.config/opencode/agents/review.md
 - **Dotbot Config:** `install.conf.yaml` (OpenCode symlink section)
 - **Claude Agents:** `claude/agents/` directory
 - **OpenCode Templates:** `agents/opencode-templates/` directory
-- **Generated Agents:** `agents/generated/opencode/` directory
+- **Generated Agents:** `config/opencode/agents/` directory
 
 ## Summary
 

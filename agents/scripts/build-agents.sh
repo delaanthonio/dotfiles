@@ -9,7 +9,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 CLAUDE_AGENTS_DIR="${DOTFILES_DIR}/claude/agents"
 TEMPLATES_DIR="${DOTFILES_DIR}/agents/opencode-templates"
-GENERATED_DIR="${DOTFILES_DIR}/agents/generated/opencode"
+GENERATED_DIR="${DOTFILES_DIR}/config/opencode/agents"
 
 # Model mapping
 declare -A MODEL_MAP=(
