@@ -21,6 +21,10 @@
     ~/.claude/scripts/:
         path: claude/scripts/**
         glob: true
+    ~/.claude/skills/:
+        path: claude/skills
+        create: true
+        force: true
     ~/.codex/config.toml: codex/config.toml
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/fish/conf.d:
