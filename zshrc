@@ -8,6 +8,16 @@
 # ENVIRONMENT SETUP
 # =============================================================================
 
+# Check if running in a coding agent environment
+# Common indicators: specific environment variables, process names, or parent processes
+is_coding_agent() {
+    [[ -n "$CODING_AGENT" || -n "$CURSOR_AI" || -n "$VSCODE_AI" || -n "$CODESPACE" ]]
+}
+
+if is_coding_agent; then
+   exit 0
+fi
+
 # Set name of the theme to load.
 ZSH_THEME=""
 
@@ -86,6 +96,7 @@ if [[ -d "$HOME/.nvm" ]]; then
     export NODE_VERSIONS="$HOME/.nvm/versions/node/"
     plugins+=(npm)
     plugins+=(nvm)
+
     zstyle ':omz:plugins:nvm' lazy yes
 fi
 
@@ -96,27 +107,16 @@ fi
 
 source "$MODULES_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Check if running in a coding agent environment
-# Common indicators: specific environment variables, process names, or parent processes
-is_coding_agent() {
-    [[ -n "$CODING_AGENT" || -n "$CURSOR_AI" || -n "$VSCODE_AI" || -n "$CODESPACE" ]]
-}
+source $ZSH/oh-my-zsh.sh
 
-# Only load oh-my-zsh and starship if not in a coding agent environment
-if ! is_coding_agent; then
-    # Load oh-my-zsh
-    source $ZSH/oh-my-zsh.sh
-    
-    # Load Starship Prompt
-    eval "$(starship init zsh)"
-fi
+eval "$(starship init zsh)"
 
 # Homebrew completion
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
-  autoload -Uz compinit
-  compinit
+    autoload -Uz compinit
+    compinit
 fi
 
 if (( $+commands[git-town] )); then
