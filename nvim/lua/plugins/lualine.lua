@@ -1,4 +1,3 @@
--- ~/.config/nvim/lua/plugins/lualine.lua
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -21,11 +20,6 @@ return {
       lualine_z = { "location" },
     }
 
-    -- Add custom components
-    table.insert(opts.sections.lualine_x, {
-      function()
-        return "😄"
-      end,
-    })
+    return opts
   end,
 }
