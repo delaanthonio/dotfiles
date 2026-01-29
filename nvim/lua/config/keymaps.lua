@@ -40,6 +40,10 @@ map("n", "<leader>re", "i{error && <div>Error: {error}</div>}<Esc>hi", { desc = 
 
 -- Testing keymaps
 map("n", "<leader>tt", function()
+  require("neotest").run.run({ suite = true })
+end, { desc = "Run Test Suite" })
+
+map("n", "<leader>t.", function()
   require("neotest").run.run()
 end, { desc = "Run Test" })
 
