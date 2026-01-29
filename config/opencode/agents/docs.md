@@ -1,7 +1,7 @@
 ---
 description: "Knowledge management specialist who maintains and organizes the Notion workspace for maximum clarity and discoverability."
 mode: main
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.3
 tools:
   write: true

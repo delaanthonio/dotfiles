@@ -1,7 +1,7 @@
 ---
 description: "Production confidence orchestrator that coordinates specialized agents to detect breaking changes, regressions, and production risks. Gates PRs from shipping until confidence criteria are met."
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.1
 tools:
   write: false

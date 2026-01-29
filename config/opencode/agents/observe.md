@@ -1,7 +1,7 @@
 ---
 description: "Specialized in production-ready structured logging and product analytics. Focuses on loguru for Python and PostHog for user behavior tracking."
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.1
 tools:
   write: false

@@ -1,7 +1,7 @@
 ---
 description: "Frontend specialist for AgendaCraft web application, focused on Next.js 15, TypeScript, and Ant Design 5 for performant React applications."
 mode: main
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.2
 tools:
   write: true

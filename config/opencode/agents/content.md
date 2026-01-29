@@ -1,7 +1,7 @@
 ---
 description: "Content strategist for SaaS marketing. Creates high-converting content that drives organic traffic and engages target audiences."
 mode: main
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.4
 tools:
   write: true

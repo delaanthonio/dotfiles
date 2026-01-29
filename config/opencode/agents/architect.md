@@ -1,7 +1,7 @@
 ---
 description: "Validates requirements and proposes 3 distinct implementation approaches for a given architecture. Focuses on how to build rather than what to build."
 mode: main
-model: anthropic/claude-opus-4-20250514
+model: claude-opus-4-5
 temperature: 0.3
 tools:
   write: false

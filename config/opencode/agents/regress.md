@@ -1,7 +1,7 @@
 ---
 description: "Detects potential regressions and unintended breakage from code changes. Focuses on changes that could break existing functionality."
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 tools:
   write: false

@@ -1,7 +1,7 @@
 ---
 description: "Security specialist that audits code changes for vulnerabilities, exposed secrets, and security best practices. Automatically scans PR stacks for security issues before submission."
 mode: subagent
-model: anthropic/claude-opus-4-20250514
+model: anthropic/claude-opus-4-5
 temperature: 0.0
 tools:
   write: false
