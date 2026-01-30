@@ -65,3 +65,7 @@ if [[ -d "/opt/homebrew/opt/make/libexec/gnubin" ]]; then
     export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 fi
 
+if [[ -d "/opt/homebrew/opt/nvm" ]]; then
+    export NVM_HOMEBREW=/opt/homebrew/opt/nvm
+fi
+
