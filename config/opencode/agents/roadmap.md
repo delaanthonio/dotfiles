@@ -1,6 +1,6 @@
 ---
 description: "Product roadmap strategist. Helps prioritize features, plan releases, and align development with business objectives using data-driven insights."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.3
 tools:

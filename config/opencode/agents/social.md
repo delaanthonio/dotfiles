@@ -1,6 +1,6 @@
 ---
 description: "B2B SaaS social media strategist. Builds authority and drives product awareness through strategic content and engagement."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.5
 tools:

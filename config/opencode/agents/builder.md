@@ -1,6 +1,6 @@
 ---
 description: "Executes implementation of planned PR stacks. Takes a detailed plan and implements it branch by branch using Graphite. Acts as coordinator for cross-cutting changes that span multiple domains."
-mode: main
+mode: primary
 model: claude-sonnet-4-5
 temperature: 0.2
 tools:

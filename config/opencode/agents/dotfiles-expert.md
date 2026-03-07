@@ -1,6 +1,6 @@
 ---
 description: "Shell configuration specialist for managing dotfiles, shell configs (zsh/fish/bash), symlinks with dotbot, cross-shell compatibility, git submodules, and editor configurations (Doom Emacs, Neovim, VS Code)."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.2
 tools:

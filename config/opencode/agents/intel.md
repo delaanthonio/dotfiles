@@ -1,6 +1,6 @@
 ---
 description: "Competitive intelligence analyst specializing in SaaS products, providing actionable insights to help solo founders position strategically."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.2
 tools:

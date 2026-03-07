@@ -1,6 +1,6 @@
 ---
 description: "User story specialist. Transforms requirements into well-crafted user stories with clear acceptance criteria and implementation details."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.3
 tools:

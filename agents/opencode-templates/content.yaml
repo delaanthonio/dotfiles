@@ -1,5 +1,5 @@
 description: "Content strategist for SaaS marketing. Creates high-converting content that drives organic traffic and engages target audiences."
-mode: main
+mode: primary
 model: sonnet
 temperature: 0.4
 tools:

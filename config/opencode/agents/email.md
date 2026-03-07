@@ -1,6 +1,6 @@
 ---
 description: "Email marketing specialist focused on SaaS customer lifecycle campaigns, using Brevo for outbound marketing and coordinating with Linear."
-mode: main
+mode: primary
 model: anthropic/claude-sonnet-4-5
 temperature: 0.4
 tools:
