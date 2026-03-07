@@ -1,5 +1,5 @@
 // Triple-pane auto-populating layout
-// Left: nvim, Middle: empty shell, Right: droid
+// Left: nvim, Middle: empty shell, Right: claude
 
 layout {
     default_tab_template {
