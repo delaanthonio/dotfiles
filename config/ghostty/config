@@ -1,0 +1,11 @@
+font-family = Iosevka SS04
+font-size = 18
+adjust-cell-height = 1
+
+theme = GruvboxDark
+scrollback-limit = 50000000
+copy-on-select = clipboard
+
+macos-option-as-alt = true
+split-divider-color = #3e4451
+working-directory = /Users/dela.anthonio/Developer

@@ -42,6 +42,20 @@
         create: true
         force: true
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/ghostty/config:
+        path: config/ghostty/config
+        force: true
+    ~/Library/Application Support/com.mitchellh.ghostty/config:
+        if: '[ `uname` = Darwin ]'
+        path: config/ghostty/config
+        force: true
+    ~/Library/Application Support/com.cmuxterm.app/config.ghostty:
+        if: '[ `uname` = Darwin ]'
+        path: config/ghostty/config
+        force: true
+    ~/.config/cmux/cmux.json:
+        path: config/cmux/cmux.json
+        force: true
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
         force: true

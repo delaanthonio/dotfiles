@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+
+  "app": {
+    "appearance": "system",
+    "newWorkspacePlacement": "afterCurrent",
+    "workspaceInheritWorkingDirectory": true,
+    "confirmQuit": "dirty-only",
+    "preferredEditor": "emacsclient -t"
+  },
+
+  "terminal": {
+    "showScrollBar": false,
+    "copyOnSelect": true,
+    "autoResumeAgentSessions": false
+  },
+
+  "browser": {
+    "defaultSearchEngine": "duckduckgo",
+    "openTerminalLinksInCmuxBrowser": true,
+    "hostsToOpenInEmbeddedBrowser": ["localhost", "127.0.0.1"]
+  },
+
+  "notifications": {
+    "dockBadge": true,
+    "showInMenuBar": true,
+    "sound": "none"
+  },
+
+  "automation": {
+    "suppressSubagentNotifications": true
+  },
+
+  "sidebarAppearance": {
+    "matchTerminalBackground": true,
+    "tintOpacity": 0.03
+  }
+}
