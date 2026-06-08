@@ -69,3 +69,20 @@ if [[ -d "/opt/homebrew/opt/nvm" ]]; then
     export NVM_HOMEBREW=/opt/homebrew/opt/nvm
 fi
 
+# Emacs native-comp linker fix (Homebrew libgccjit/gcc on macOS)
+_emacs_libgccjit_root="/opt/homebrew/opt/libgccjit/lib/gcc/current"
+_emacs_gcc_root="/opt/homebrew/opt/gcc/lib/gcc/current/gcc"
+_emacs_native_comp_paths=()
+if [[ -d "$_emacs_libgccjit_root" ]]; then
+    _emacs_native_comp_paths+=("$_emacs_libgccjit_root")
+fi
+if [[ -d "$_emacs_gcc_root" ]]; then
+    _emacs_native_comp_paths+=("${_emacs_gcc_root}"/aarch64-apple-darwin*/<->(N/) "$_emacs_gcc_root")
+fi
+for _emacs_native_comp_path in "${_emacs_native_comp_paths[@]}"; do
+    case ":${LIBRARY_PATH:-}:" in
+        *":${_emacs_native_comp_path}:"*) ;;
+        *) export LIBRARY_PATH="${_emacs_native_comp_path}${LIBRARY_PATH:+:$LIBRARY_PATH}" ;;
+    esac
+done
+unset _emacs_libgccjit_root _emacs_gcc_root _emacs_native_comp_paths _emacs_native_comp_path

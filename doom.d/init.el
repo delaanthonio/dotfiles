@@ -1,5 +1,19 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+(when (eq system-type 'darwin)
+  (let* ((libgccjit-dir "/opt/homebrew/opt/libgccjit/lib/gcc/current")
+         (gcc-root "/opt/homebrew/opt/gcc/lib/gcc/current/gcc")
+         (gcc-arch-dir (car (file-expand-wildcards
+                             (expand-file-name "aarch64-apple-darwin*/[0-9]*" gcc-root))))
+         (library-paths (delq nil (list libgccjit-dir gcc-arch-dir gcc-root))))
+    (when (seq-some #'file-directory-p library-paths)
+      (setenv "LIBRARY_PATH"
+              (mapconcat #'identity
+                         (delete-dups
+                          (append (seq-filter #'file-directory-p library-paths)
+                                  (split-string (or (getenv "LIBRARY_PATH") "") ":" t)))
+                         ":")))))
+
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
