@@ -44,6 +44,7 @@
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
 
+
 (after! vterm
   (setq vterm-shell "/bin/zsh"))
 (setq shell-file-name
@@ -51,6 +52,7 @@
           "/bin/dash"
         "/bin/sh"))
 (global-auto-revert-mode t)
+(setq auto-revert-interval 5)
 (setq-default line-spacing 3)
 (setq mac-command-modifier 'meta)
 (setq magit-clone-default-directory "~/Developer")
@@ -211,7 +213,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
   :config
-  (global-org-modern-mode)
   (setq org-modern-star '("◉" "○" "◈" "◇" "*"))
   (setq org-modern-hide-stars nil)
   (setq org-hide-emphasis-markers t)
@@ -221,7 +222,9 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 
 (after! org-roam
   :config
-  (setq org-roam-node-display-template "${title:80} ${tags:20} ${file:10}"))
+  (setq org-roam-node-display-template "${title:80} ${tags:20} ${file:10}"
+        org-roam-db-update-method 'idle
+        org-roam-db-gc-threshold most-positive-fixnum))
 
 ;;; Terraform
 (after! lsp-mode
@@ -270,7 +273,8 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 (use-package! kkp
   :ensure t
   :config
-  (global-kkp-mode +1))
+  (unless (display-graphic-p)
+    (global-kkp-mode +1)))
 
 (load! "kdl.el")
 (message "Loaded config.el")
