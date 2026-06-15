@@ -10,7 +10,7 @@
 # =============================================================================
 
 # Editor configuration
-export EDITOR="emacs -nw"
+export EDITOR="emacsclient -t"
 export ALTERNATE_EDITOR="vim"
 
 # SSH configuration
