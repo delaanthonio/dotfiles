@@ -68,7 +68,7 @@
         doom-modeline-modal nil
         doom-modeline-modal-icon nil
         doom-modeline-buffer-state-icon t
-        doom-modeline-icon t
+        doom-modeline-icon (display-graphic-p)
         doom-modeline-percent-position nil
         doom-modeline-buffer-encoding nil
         doom-modeline-check-simple-format t
@@ -78,7 +78,8 @@
         doom-modeline-minor-modes nil
         doom-modeline-major-mode-icon t
         doom-modeline-major-mode-color-icon t
-        doom-modeline-workspace-name t)
+        doom-modeline-workspace-name t
+        doom-modeline-battery nil)
 
   (doom-modeline-def-modeline 'minimal
     '(bar matches buffer-info-simple)
@@ -239,7 +240,7 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 ;;; Themes
 (after! (doom-themes org)
   (custom-set-faces!
-    '(org-document-title :foreground "fg" :height 1.25 :background unspecified :weight semi-bold)
+    '(org-document-title :height 1.25 :weight semi-bold)
     '(font-lock-doc-face :italic nil)
     '(org-link :inherit font-lock-constant-face :underline t)
     '(org-level-1 :height 1.1 :weight semi-bold)
