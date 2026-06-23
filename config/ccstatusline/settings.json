@@ -1,0 +1,130 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "model",
+        "type": "model",
+        "rawValue": true,
+        "bold": true,
+        "color": "hex:282828",
+        "backgroundColor": "hex:d79921"
+      },
+      {
+        "id": "cwd",
+        "type": "current-working-dir",
+        "rawValue": true,
+        "bold": true,
+        "color": "hex:ebdbb2",
+        "backgroundColor": "hex:3c3836",
+        "metadata": {
+          "fishStyle": "true"
+        }
+      },
+      {
+        "id": "git-branch",
+        "type": "git-branch",
+        "rawValue": true,
+        "bold": true,
+        "color": "hex:282828",
+        "backgroundColor": "hex:458588"
+      },
+      {
+        "id": "git-changes",
+        "type": "git-changes",
+        "bold": true,
+        "color": "hex:282828",
+        "backgroundColor": "hex:8ec07c"
+      },
+      {
+        "id": "flex",
+        "type": "flex-separator"
+      },
+      {
+        "id": "context-bar",
+        "type": "context-bar",
+        "rawValue": true,
+        "metadata": {
+          "display": "slider"
+        },
+        "color": "hex:ebdbb2",
+        "backgroundColor": "hex:504945"
+      },
+      {
+        "id": "session-clock",
+        "type": "session-clock",
+        "rawValue": true,
+        "bold": true,
+        "color": "hex:282828",
+        "backgroundColor": "hex:689d6a"
+      },
+      {
+        "id": "session-cost",
+        "type": "session-cost",
+        "rawValue": true,
+        "bold": true,
+        "color": "hex:282828",
+        "backgroundColor": "hex:d65d0e"
+      }
+    ],
+    [
+      {
+        "id": "session-usage",
+        "type": "session-usage",
+        "bold": true,
+        "color": "hex:83a598",
+        "backgroundColor": "hex:3c3836",
+        "metadata": {
+          "display": "slider",
+          "cursor": "true"
+        }
+      },
+      {
+        "id": "reset-timer",
+        "type": "reset-timer",
+        "bold": true,
+        "color": "hex:83a598",
+        "backgroundColor": "hex:3c3836",
+        "rawValue": true
+      },
+      {
+        "id": "weekly-usage",
+        "type": "weekly-usage",
+        "bold": true,
+        "color": "hex:fe8019",
+        "backgroundColor": "hex:3c3836",
+        "metadata": {
+          "display": "slider",
+          "cursor": "true"
+        }
+      },
+      {
+        "id": "weekly-reset-timer",
+        "type": "weekly-reset-timer",
+        "bold": true,
+        "color": "hex:fe8019",
+        "backgroundColor": "hex:3c3836",
+        "rawValue": true
+      }
+    ]
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 3,
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "defaultSeparator": " ",
+  "defaultPadding": " ",
+  "powerline": {
+    "enabled": false,
+    "separators": [],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "theme": "gruvbox",
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}

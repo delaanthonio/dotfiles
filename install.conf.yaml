@@ -56,6 +56,9 @@
     ~/.config/cmux/cmux.json:
         path: config/cmux/cmux.json
         force: true
+    ~/.config/ccstatusline/settings.json:
+        path: config/ccstatusline/settings.json
+        force: true
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
         force: true
