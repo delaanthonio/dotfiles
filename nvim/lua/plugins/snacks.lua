@@ -46,6 +46,10 @@ return {
       layout = {
         preset = "telescope",
       },
+      sources = {
+        files = { hidden = true },
+        grep = { hidden = true },
+      },
     },
 
     -- Scroll animation

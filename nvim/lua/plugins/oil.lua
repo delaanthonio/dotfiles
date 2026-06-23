@@ -64,6 +64,10 @@ return {
         ["g\\"] = "actions.toggle_trash",
       },
 
+      view_options = {
+        show_hidden = true,
+      },
+
       -- Set to false to disable all of the above keymaps
       use_default_keymaps = false,
 
