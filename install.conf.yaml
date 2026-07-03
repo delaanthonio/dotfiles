@@ -59,6 +59,36 @@
     ~/.config/ccstatusline/settings.json:
         path: config/ccstatusline/settings.json
         force: true
+    ~/.config/tmux/tmux.conf:
+      path: config/tmux/tmux.conf
+      force: true
+    ~/.config/tmux/options.conf:
+      path: config/tmux/options.conf
+      force: true
+    ~/.config/tmux/bindings.conf:
+      path: config/tmux/bindings.conf
+      force: true
+    ~/.config/tmux/theme.conf:
+      path: config/tmux/theme.conf
+      force: true
+    ~/.config/tmux/status.conf:
+      path: config/tmux/status.conf
+      force: true
+    ~/.config/tmux/host-status.sh:
+      path: config/tmux/host-status.sh
+      force: true
+    ~/.config/tmux/cheatsheet.sh:
+      path: config/tmux/cheatsheet.sh
+      force: true
+    ~/.config/tmux/clipboard.sh:
+      path: config/tmux/clipboard.sh
+      force: true
+    ~/.config/tmux/sessionizer.sh:
+      path: config/tmux/sessionizer.sh
+      force: true
+    ~/.config/tmux/health-check.sh:
+      path: config/tmux/health-check.sh
+      force: true
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
         force: true
