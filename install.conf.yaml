@@ -105,3 +105,5 @@
     ~/.gitignore_global:
     ~/.zshenv:
     ~/.zshrc:
+
+- shell: [bash config/npm/install.sh] # install ccstatusline and other managed npm packages after symlinks are in place
