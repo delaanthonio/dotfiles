@@ -9,9 +9,13 @@
 cat <<'EOF'
                        tmux keybindings
   ───────────────────────────────────────────────────────────
-  Panes (no prefix)
+  Panes (no prefix) — i3 style
     Alt+h/j/k/l ........ focus pane (left/down/up/right)
-    Alt+n .............. new pane (split right)
+    Alt+v .............. split vertical  (side-by-side, like i3 Mod+v)
+    Alt+s .............. split horizontal (stacked, like i3 Mod+s)
+    Alt+n .............. new pane (split right; legacy single-direction)
+    Alt+q .............. close pane (confirms)
+    Alt+f .............. fullscreen (zoom toggle)
     Alt+= / Alt+- ...... grow / shrink pane
   Panes (prefix C-b)
     " / % .............. split down / right
