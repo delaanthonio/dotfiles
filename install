@@ -1,14 +1,17 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 
-set -e
+# POSIX sh (not bash/zsh) so `./install` works no matter which shell invokes it.
+# $0 resolves the script location when executed as ./install or via absolute path.
+
+set -eu
 
 CONFIG="install.conf.yaml"
 DOTBOT_DIR="modules/dotbot"
 
 DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 
-cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+cd "$BASEDIR"
+git submodule update --init --recursive "$DOTBOT_DIR"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+"$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" -d "$BASEDIR" -c "$CONFIG" "$@"

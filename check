@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+base_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+run() {
+  echo "==> $*"
+  "$@"
+}
+
+run sh -n "$base_dir/install"
+run bash -n "$base_dir/check"
+run bash -n "$base_dir/config/npm/install.sh"
+run bash -n "$base_dir/agents/scripts/build-agents.sh"
+
+run ruby -e "require 'yaml'; YAML.load_file('$base_dir/install.conf.yaml')"
+run node -e "JSON.parse(require('fs').readFileSync('$base_dir/config/npm/package.json', 'utf8'))"
+
+run "$base_dir/agents/scripts/build-agents.sh" --check
+
+if command -v ansible-playbook >/dev/null 2>&1; then
+  run ansible-playbook --syntax-check "$base_dir/homebrew.yaml" -e install_homebrew_if_missing=false
+  run ansible-playbook --syntax-check "$base_dir/homebrew.labcorp.yaml"
+else
+  echo "==> ansible-playbook not found; skipping Homebrew playbook syntax checks"
+fi
+
+if command -v shellcheck >/dev/null 2>&1; then
+  run shellcheck "$base_dir/check" "$base_dir/install" "$base_dir/config/npm/install.sh"
+else
+  echo "==> shellcheck not found; skipping shell lint"
+fi
+
+echo "All checks passed."
