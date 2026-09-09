@@ -13,21 +13,22 @@ run sh -n "$base_dir/install"
 run bash -n "$base_dir/check"
 run bash -n "$base_dir/config/npm/install.sh"
 run bash -n "$base_dir/agents/scripts/build-agents.sh"
+run bash -n "$base_dir/config/homebrew/install.sh"
 
 run ruby -e "require 'yaml'; YAML.load_file('$base_dir/install.conf.yaml')"
 run node -e "JSON.parse(require('fs').readFileSync('$base_dir/config/npm/package.json', 'utf8'))"
 
 run "$base_dir/agents/scripts/build-agents.sh" --check
 
-if command -v ansible-playbook >/dev/null 2>&1; then
-  run ansible-playbook --syntax-check "$base_dir/homebrew.yaml" -e install_homebrew_if_missing=false
-  run ansible-playbook --syntax-check "$base_dir/homebrew.labcorp.yaml"
+if command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ]; then
+  # Parse-validation only: exits 0 even when packages are not yet installed.
+  run brew bundle list --file="$base_dir/Brewfile"
 else
-  echo "==> ansible-playbook not found; skipping Homebrew playbook syntax checks"
+  echo "==> brew not found; skipping Brewfile syntax check"
 fi
 
 if command -v shellcheck >/dev/null 2>&1; then
-  run shellcheck "$base_dir/check" "$base_dir/install" "$base_dir/config/npm/install.sh"
+  run shellcheck "$base_dir/check" "$base_dir/install" "$base_dir/config/npm/install.sh" "$base_dir/config/homebrew/install.sh"
 else
   echo "==> shellcheck not found; skipping shell lint"
 fi

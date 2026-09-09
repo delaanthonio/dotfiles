@@ -1,0 +1,22 @@
+# Work (Labcorp) machine packages, on top of Brewfile.
+# Activate via: DOTFILES_BREWFILE=labcorp ./install
+
+cask "multipass", args: { appdir: "/Applications" }
+cask "spotify", args: { appdir: "/Applications" }
+
+brew "openssl"
+brew "readline"
+brew "sqlite3"
+brew "xz"
+brew "zlib"
+brew "yq"
+brew "wget"
+brew "sshuttle"
+brew "hugo"
+brew "helm"
+brew "kind"
+brew "kubectx"
+brew "stern"
+brew "terraform"
+brew "tfenv"
+brew "jsonnet"

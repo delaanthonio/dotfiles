@@ -141,10 +141,14 @@
     ~/.config/topgrade.toml:
     ~/.doom.d:
     ~/.emacs.d:
+    ~/Applications/Emacs Client.app:
+        path: config/emacs-client/Emacs Client.app
+        force: true
     ~/.ideavimrc:
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.zshenv:
     ~/.zshrc:
 
+- shell: [bash config/homebrew/install.sh] # install Homebrew packages from Brewfile (set DOTFILES_BREWFILE=labcorp for work machines)
 - shell: [bash config/npm/install.sh] # install ccstatusline and other managed npm packages after symlinks are in place
