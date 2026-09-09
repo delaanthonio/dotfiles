@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+"""Read-only dotfiles validation. Never source configs or execute Dotbot actions."""
+
+import argparse
+import glob
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
+
+ROOT = Path(__file__).resolve().parents[1]
+EXCLUDED = {
+    ".git", ".claude", ".lavish", ".factory", "modules", "emacs.d",
+    "node_modules", ".venv", "__pycache__",
+}
+
+
+class Report:
+    """Collect failures and warnings while allowing all checks to finish."""
+
+    def __init__(self):
+        self.passed = 0
+        self.failed = 0
+        self.warned = 0
+
+    def emit(self, status, message):
+        """Print a diagnostic without configuration contents or secret values."""
+        attribute = {"PASS": "passed", "FAIL": "failed", "WARN": "warned"}[status]
+        setattr(self, attribute, getattr(self, attribute) + 1)
+        print(f"{status}: {message}")
+
+
+def run(command):
+    """Run a fixed validator without shell expansion or startup environment hooks."""
+    environment = os.environ.copy()
+    for key in ("BASH_ENV", "ENV", "ZDOTDIR", "SHELLOPTS", "BASHOPTS"):
+        environment.pop(key, None)
+    return subprocess.run(
+        command, capture_output=True, text=True, env=environment, timeout=30,
+        cwd=ROOT,
+    )
+
+
+def files(root):
+    """Enumerate owned files without following symlinks or entering dependencies."""
+    for directory, names, filenames in os.walk(root, followlinks=False):
+        names[:] = sorted(
+            name for name in names
+            if name not in EXCLUDED and not Path(directory, name).is_symlink()
+        )
+        for name in sorted(filenames):
+            path = Path(directory, name)
+            if not path.is_symlink():
+                yield path
+
+
+def check_files(root, report):
+    """Check data syntax and shell scripts without evaluating their contents."""
+    available = {name: shutil.which(name) for name in ("bash", "zsh", "fish", "shellcheck")}
+    for name, executable in available.items():
+        if not executable:
+            report.emit("WARN", f"{name} unavailable; its checks are skipped")
+    for path in files(root):
+        relative = path.relative_to(root)
+        suffix = path.suffix
+        if suffix in (".json", ".yaml", ".yml"):
+            if suffix != ".json" and yaml is None:
+                continue
+            try:
+                text = path.read_text()
+                if suffix == ".json":
+                    json.loads(text)
+                else:
+                    # Compose checks syntax, including Ansible custom tags, without
+                    # constructing arbitrary Python objects.
+                    list(yaml.compose_all(text, Loader=yaml.SafeLoader))
+                report.emit("PASS", f"data syntax: {relative}")
+            except (ValueError, UnicodeError, OSError, yaml.YAMLError if yaml else ValueError):
+                report.emit("FAIL", f"invalid/unreadable data: {relative}")
+            continue
+        shell = None
+        if suffix == ".fish":
+            shell = "fish"
+        elif path.name in ("install", "zshrc", "zshenv") and path.parent == root:
+            shell = "zsh"
+        elif suffix == ".sh" or suffix == ".bash":
+            shell = "bash"
+        elif suffix == ".zsh":
+            shell = "zsh"
+        elif not suffix:
+            try:
+                with path.open("rb") as stream:
+                    first = stream.readline(256).decode("utf-8", errors="replace")
+                match = re.match(r"#!.*\b(bash|zsh|fish|sh)\b", first)
+                if match:
+                    shell = "bash" if match[1] == "sh" else match[1]
+            except OSError:
+                report.emit("FAIL", f"unreadable file: {relative}")
+        if shell and available[shell]:
+            flags = {"bash": ["--noprofile", "--norc", "-n"],
+                     "zsh": ["-f", "-n"], "fish": ["--no-config", "-n"]}[shell]
+            result = run([available[shell], *flags, str(path)])
+            report.emit("PASS" if result.returncode == 0 else "FAIL",
+                        f"{shell} syntax: {relative}")
+        if shell == "bash" and available["shellcheck"]:
+            result = run([available["shellcheck"], "--format=json", str(path)])
+            if result.returncode == 0:
+                report.emit("PASS", f"shellcheck: {relative}")
+            elif result.returncode == 1:
+                for issue in json.loads(result.stdout):
+                    report.emit("FAIL", f"shellcheck: {relative}:{issue['line']} SC{issue['code']}")
+            else:
+                report.emit("FAIL", f"shellcheck could not check: {relative}")
+
+
+def check_links(root, home, report):
+    """Inspect Dotbot sources and installed links; never evaluate conditions."""
+    if yaml is None:
+        return
+    try:
+        config = yaml.safe_load((root / "install.conf.yaml").read_text())
+        if not isinstance(config, list):
+            raise ValueError
+        for block in config:
+            for target, specification in block.get("link", {}).items():
+                options = specification if isinstance(specification, dict) else {}
+                source = options.get("path") if options else specification
+                if source is None:
+                    source = Path(target.rstrip("/")).name.lstrip(".")
+                pattern = root / source
+                matches = sorted(glob.glob(str(pattern))) if options.get("glob") else [str(pattern)]
+                if not matches:
+                    report.emit("FAIL", f"Dotbot source glob has no matches: {source}")
+                for match in matches:
+                    if not Path(match).exists():
+                        report.emit("FAIL", f"missing Dotbot source: {source}")
+                if options.get("if"):
+                    report.emit("WARN", f"conditional link not inspected: {target}")
+                    continue
+                # Only the forms used in this manifest are interpreted. Never
+                # guess at unsupported mappings or execute shell conditions.
+                if options.get("glob") and any(
+                    key in options for key in ("exclude", "prefix", "suffix")
+                ):
+                    report.emit("WARN", f"unsupported glob options: {target}")
+                    continue
+                destination = home / target[2:] if target.startswith("~/") else Path(target)
+                if not destination.is_absolute():
+                    report.emit("WARN", f"unsupported link target: {target}")
+                    continue
+                for match in matches:
+                    expected = Path(match)
+                    link = destination / expected.name if options.get("glob") else destination
+                    label = str(link).replace(str(home), "~", 1)
+                    if link.is_symlink():
+                        if not link.exists():
+                            report.emit("FAIL", f"broken managed symlink: {label}")
+                        elif link.resolve() != expected.resolve():
+                            report.emit("FAIL", f"managed symlink points elsewhere: {label}")
+                        else:
+                            report.emit("PASS", f"managed symlink: {label}")
+                    elif link.exists():
+                        report.emit("WARN", f"managed target is not a symlink: {label}")
+                    else:
+                        report.emit("WARN", f"managed target not installed: {label}")
+    except (OSError, ValueError, TypeError, AttributeError, yaml.YAMLError):
+        report.emit("FAIL", "cannot interpret install.conf.yaml")
+
+
+def mapping(script, name):
+    """Read literal associative-array mappings from the existing agent builder."""
+    section = re.search(rf"declare -A {name}=\((.*?)\n\)", script, re.S)
+    if not section:
+        raise ValueError(f"missing {name}")
+    return dict(re.findall(r'\[([\w-]+)\]="([^"]*)"', section[1]))
+
+
+def expected_agent(source, template, models):
+    """Produce the builder's output in memory, including Bash echo -e semantics."""
+    separators = [match for match in re.finditer(r"^---$", source, re.M)]
+    if len(separators) < 2:
+        raise ValueError("missing frontmatter")
+    body = source[separators[1].end() + 1:].rstrip("\n")
+    if not body:
+        raise ValueError("empty agent")
+    template = template.rstrip("\n")
+    model = re.search(r"^model: *(.*)$", template, re.M)
+    if model:
+        short = model[1].removeprefix("anthropic/")
+        full = models.get(short, short)
+        template = re.sub(r"^model: .*$", lambda _: f"model: {full}", template, flags=re.M)
+    result = run(["bash", "--noprofile", "--norc", "-c",
+                  'builtin echo -e "$1"', "check-dotfiles", f"---\n{template}\n---\n{body}"])
+    if result.returncode:
+        raise ValueError("cannot render expected output")
+    return result.stdout
+
+
+def check_agents(root, report):
+    """Compare generated files with source/template content without building."""
+    if not shutil.which("bash"):
+        report.emit("FAIL", "bash required for agent content comparison")
+        return
+    try:
+        script = (root / "agents/scripts/build-agents.sh").read_text()
+        names, models = mapping(script, "AGENT_NAMES"), mapping(script, "MODEL_MAP")
+        for source in sorted((root / "claude/agents").glob("*.md")):
+            name = source.stem
+            template = root / "agents/opencode-templates" / f"{name}.yaml"
+            if name not in names or not template.exists():
+                report.emit("WARN", f"agent not covered by builder/template: {name}")
+                continue
+            output = root / "config/opencode/agents" / f"{names[name]}.md"
+            try:
+                expected = expected_agent(source.read_text(), template.read_text(), models)
+                matches = output.is_file() and output.read_text() == expected
+                report.emit("PASS" if matches else "FAIL", f"generated agent content: {name}")
+            except (OSError, ValueError):
+                report.emit("FAIL", f"cannot compare agent: {name}")
+    except (OSError, ValueError):
+        report.emit("FAIL", "cannot read agent builder mappings")
+
+
+def main():
+    """Run all checks and return nonzero on failures, or warnings in strict mode."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--strict", action="store_true", help="also fail on warnings")
+    args = parser.parse_args()
+    report = Report()
+    if yaml is None:
+        report.emit("FAIL", "PyYAML unavailable; YAML and Dotbot checks skipped")
+    for command in ("git", "nvim", "emacs", "mise", "starship", "direnv", "tmux", "zellij"):
+        if not shutil.which(command):
+            report.emit("WARN", f"optional configured command unavailable: {command}")
+    for check in (
+        lambda: check_files(ROOT, report),
+        lambda: check_links(ROOT, Path.home(), report),
+        lambda: check_agents(ROOT, report),
+    ):
+        try:
+            check()
+        except (OSError, subprocess.TimeoutExpired):
+            report.emit("FAIL", "validator could not run or timed out")
+    print(f"\n{report.passed} passed, {report.failed} failed, {report.warned} warnings")
+    return int(bool(report.failed or (args.strict and report.warned)))
+
+
+if __name__ == "__main__":
+    sys.exit(main())
