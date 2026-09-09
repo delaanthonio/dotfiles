@@ -51,6 +51,13 @@ if [[ -d "$HOME/Library/pnpm" ]]; then
     export PATH="$PNPM_HOME:$PATH"
 fi
 
+# Shims make mise-managed tools available to non-interactive shells too.
+_mise_shims="${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims"
+if [[ -d "$_mise_shims" ]]; then
+    export PATH="$_mise_shims:$PATH"
+fi
+unset _mise_shims
+
 # =============================================================================
 # APPLICATION-SPECIFIC SETUP
 # =============================================================================
@@ -63,10 +70,6 @@ fi
 # GNU Utils for macOS (via Homebrew)
 if [[ -d "/opt/homebrew/opt/make/libexec/gnubin" ]]; then
     export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
-fi
-
-if [[ -d "/opt/homebrew/opt/nvm" ]]; then
-    export NVM_HOMEBREW=/opt/homebrew/opt/nvm
 fi
 
 # Emacs native-comp linker fix (Homebrew libgccjit/gcc on macOS)

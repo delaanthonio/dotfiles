@@ -90,14 +90,10 @@ fi
 # DEVELOPMENT ENVIRONMENT SETUP
 # =============================================================================
 
-# Node.js (NVM)
-if [[ -d "$HOME/.nvm" ]]; then
-    export NVM_DIR="$HOME/.nvm"
-    export NODE_VERSIONS="$HOME/.nvm/versions/node/"
+# Runtime versions (mise)
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
     plugins+=(npm)
-    plugins+=(nvm)
-
-    zstyle ':omz:plugins:nvm' lazy yes
 fi
 
 # Ruby (rbenv)
