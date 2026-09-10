@@ -150,6 +150,25 @@ function reload() {
     exec zsh
 }
 
+# Brewfile helpers: install a package and record it in ~/.dotfiles/Brewfile
+# in one step, so ad-hoc installs never drift from the manifest.
+_brewfile_record() {
+    local type="$1"
+    shift
+    local brewfile="$HOME/.dotfiles/Brewfile"
+    local pkg
+    for pkg in "$@"; do
+        [[ "$pkg" == -* ]] && continue
+        grep -qE "^$type \"$pkg\"" "$brewfile" 2>/dev/null || echo "$type \"$pkg\"" >> "$brewfile"
+    done
+}
+function bi() {
+    brew install "$@" && _brewfile_record brew "$@"
+}
+function bci() {
+    brew install --cask "$@" && _brewfile_record cask "$@"
+}
+
 # pnpm
 # tabtab source for packages
 # uninstall by removing these lines
