@@ -227,6 +227,12 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
         org-roam-db-update-method 'idle
         org-roam-db-gc-threshold most-positive-fixnum))
 
+;; Larger GC heap: the 16MB default triggers a collection roughly every few
+;; seconds under heavy use (LSP, large buffers); each pause costs 100ms+.
+;; 128MB cuts GC frequency ~8x at the cost of some idle memory.
+(setq gc-cons-threshold (* 128 1024 1024)
+      gc-cons-percentage 0.2)
+
 ;;; Terraform
 (after! lsp-mode
   (add-to-list 'lsp-language-id-configuration '(terraform-mode . "terraform"))
