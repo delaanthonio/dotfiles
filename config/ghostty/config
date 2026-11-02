@@ -2,7 +2,7 @@ font-family = Iosevka SS04
 font-size = 18
 adjust-cell-height = 1
 
-theme = GruvboxDark
+theme = Gruvbox Dark
 scrollback-limit = 50000000
 copy-on-select = clipboard
 

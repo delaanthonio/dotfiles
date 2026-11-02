@@ -4,7 +4,7 @@ sidebar-font-size = 18
 surface-tab-bar-font-size = 14
 adjust-cell-height = 1
 
-theme = GruvboxDark
+theme = Gruvbox Dark
 scrollback-limit = 50000000
 copy-on-select = clipboard
 
