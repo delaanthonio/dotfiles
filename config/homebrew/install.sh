@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Install Homebrew packages from a Brewfile via `brew bundle`.
 #
-# Usage (invoked by ./install as a dotbot shell step, or by hand):
+# Usage (invoked by ./install --profile workstation --packages, or by hand):
 #   ./config/homebrew/install.sh                      # personal Brewfile
 #   DOTFILES_BREWFILE=labcorp ./config/homebrew/install.sh  # work machine
 #
@@ -16,9 +16,9 @@ set -euo pipefail
 dir="$(cd "$(dirname "$0")" && pwd)"
 name="${DOTFILES_BREWFILE:-}"
 if [ -n "$name" ]; then
-  brewfile="$dir/Brewfile.$name"
+  brewfile="$dir/../../Brewfile.$name"
 else
-  brewfile="$dir/Brewfile"
+  brewfile="$dir/../../Brewfile"
 fi
 
 if ! command -v brew >/dev/null 2>&1; then
@@ -32,7 +32,7 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 if ! command -v brew >/dev/null 2>&1; then
   echo "WARNING: brew not found; skipping Brewfile packages."
-  echo "WARNING: Install Homebrew from https://brew.sh then re-run ./install."
+  echo "WARNING: Install Homebrew from https://brew.sh then re-run with --packages."
   exit 0
 fi
 
@@ -41,5 +41,5 @@ if [ ! -f "$brewfile" ]; then
   exit 0
 fi
 
-echo "==> brew bundle --file=$brewfile"
-brew bundle --file="$brewfile"
+echo "==> brew bundle --no-upgrade --file=$brewfile"
+brew bundle --no-upgrade --file="$brewfile"

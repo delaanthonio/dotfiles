@@ -5,11 +5,13 @@ import argparse
 import glob
 import json
 import os
-from pathlib import Path
+import platform
 import re
+import runpy
 import shutil
 import subprocess
 import sys
+from pathlib import Path
 
 try:
     import yaml
@@ -90,7 +92,9 @@ def check_files(root, report):
         shell = None
         if suffix == ".fish":
             shell = "fish"
-        elif path.name in ("install", "zshrc", "zshenv") and path.parent == root:
+        elif path.name == "install" and path.parent == root:
+            shell = "bash"
+        elif path.name in ("zshrc", "zshenv") and path.parent == root:
             shell = "zsh"
         elif suffix == ".sh" or suffix == ".bash":
             shell = "bash"
@@ -124,6 +128,16 @@ def check_files(root, report):
 
 def check_links(root, home, report):
     """Inspect Dotbot sources and installed links; never evaluate conditions."""
+    try:
+        manifest = json.loads((root / "install.conf.yaml").read_text())
+    except (OSError, ValueError):
+        manifest = []
+    if isinstance(manifest, list) and all(isinstance(block, dict) for block in manifest) and any(
+        "profiles" in options for block in manifest
+        for options in block.get("link", {}).values() if isinstance(options, dict)
+    ):
+        check_profile_links(root, home, report)
+        return
     if yaml is None:
         return
     try:
@@ -174,6 +188,35 @@ def check_links(root, home, report):
                         report.emit("WARN", f"managed target not installed: {label}")
     except (OSError, ValueError, TypeError, AttributeError, yaml.YAMLError):
         report.emit("FAIL", "cannot interpret install.conf.yaml")
+
+
+def check_profile_links(root, home, report):
+    """Inspect only the last selected profile, using the installer's link plan."""
+    installer = runpy.run_path(str(ROOT / "bin/install-dotfiles.py"))
+    profiles = ["minimal"]
+    state = home / installer["STATE"]
+    if state.exists():
+        try:
+            saved = json.loads(state.read_text())
+            if saved["managed_by"] != "dotfiles":
+                raise ValueError
+            profiles = installer["select_profiles"](",".join(saved["profiles"]))
+        except (OSError, ValueError, KeyError, TypeError):
+            report.emit("FAIL", "invalid active profile record")
+            return
+    report.emit("PASS", "active profile: " + ",".join(profiles)
+                + ("" if state.exists() else " (default; no install record)"))
+    for target, source, _agent in installer["links"](root, profiles, platform.system()):
+        path = home / target[2:]
+        status = installer["link_status"](path, source, home, False)
+        if status == "unchanged":
+            report.emit("PASS", f"managed symlink: {target}")
+        elif status == "skip: missing source":
+            report.emit("WARN", f"missing Dotbot source: {source.relative_to(root)}")
+        elif path.is_symlink():
+            report.emit("FAIL", f"managed symlink points elsewhere or is broken: {target}")
+        else:
+            report.emit("WARN", f"managed target not installed or skipped: {target}")
 
 
 def mapping(script, name):
