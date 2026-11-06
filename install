@@ -5,13 +5,5 @@
 
 set -eu
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="modules/dotbot"
-
-DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "$0")" && pwd)"
-
-cd "$BASEDIR"
-git submodule update --init --recursive "$DOTBOT_DIR"
-
-"$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" -d "$BASEDIR" -c "$CONFIG" "$@"
+exec python3 "$BASEDIR/bin/install-dotfiles.py" "$@"

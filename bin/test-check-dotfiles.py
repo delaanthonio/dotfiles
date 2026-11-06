@@ -2,6 +2,7 @@
 
 import contextlib
 import io
+import json
 from pathlib import Path
 import runpy
 import tempfile
@@ -12,6 +13,37 @@ CHECK = runpy.run_path(str(Path(__file__).with_name("check-dotfiles")))
 
 
 class CheckerTests(unittest.TestCase):
+    def test_active_profile_checks_only_selected_links(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            home = root / "home"
+            (home / ".config/dotfiles").mkdir(parents=True)
+            (home / ".config/dotfiles/profile.json").write_text(json.dumps({
+                "managed_by": "dotfiles", "profiles": ["agents"],
+            }))
+            (root / "source").write_text("data")
+            (home / "agent").symlink_to(root / "source")
+            (root / "install.conf.yaml").write_text(json.dumps([{"link": {
+                "~/agent": {"path": "source", "profiles": ["agents"]},
+                "~/shell": {"path": "missing", "profiles": ["minimal"]},
+            }}]))
+            report = CHECK["Report"]()
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                CHECK["check_links"](root, home, report)
+            self.assertIn("active profile: agents", output.getvalue())
+            self.assertEqual((report.passed, report.failed, report.warned), (2, 0, 0))
+
+    def test_invalid_profile_record_is_reported(self):
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            state = home / ".config/dotfiles/profile.json"
+            state.parent.mkdir(parents=True)
+            state.write_text('{"managed_by": "dotfiles", "profiles": ["unknown"]}')
+            report = CHECK["Report"]()
+            with contextlib.redirect_stdout(io.StringIO()):
+                CHECK["check_profile_links"](home, home, report)
+            self.assertEqual(report.failed, 1)
+
     def test_agent_render_matches_builder_format(self):
         expected = CHECK["expected_agent"](
             "---\nname: sample\n---\n\nBody\n",

@@ -11,24 +11,36 @@ run() {
 
 run sh -n "$base_dir/install"
 run bash -n "$base_dir/check"
-run bash -n "$base_dir/config/npm/install.sh"
+if [ -f "$base_dir/config/npm/install.sh" ]; then
+  run bash -n "$base_dir/config/npm/install.sh"
+else
+  echo "==> config/npm/install.sh absent; skipping optional npm checks"
+fi
 run bash -n "$base_dir/agents/scripts/build-agents.sh"
 run bash -n "$base_dir/config/homebrew/install.sh"
 
 run ruby -e "require 'yaml'; YAML.load_file('$base_dir/install.conf.yaml')"
-run node -e "JSON.parse(require('fs').readFileSync('$base_dir/config/npm/package.json', 'utf8'))"
+if [ -f "$base_dir/config/npm/package.json" ]; then
+  run node -e "JSON.parse(require('fs').readFileSync('$base_dir/config/npm/package.json', 'utf8'))"
+fi
+
+run python3 -B "$base_dir/bin/test-install-dotfiles.py"
+run python3 -B "$base_dir/bin/test-check-dotfiles.py"
 
 run "$base_dir/agents/scripts/build-agents.sh" --check
 
 if command -v brew >/dev/null 2>&1 || [ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ]; then
   # Parse-validation only: exits 0 even when packages are not yet installed.
-  run brew bundle list --file="$base_dir/Brewfile"
+  run env HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_ANALYTICS=1 brew bundle list --file="$base_dir/Brewfile"
 else
   echo "==> brew not found; skipping Brewfile syntax check"
 fi
 
 if command -v shellcheck >/dev/null 2>&1; then
-  run shellcheck "$base_dir/check" "$base_dir/install" "$base_dir/config/npm/install.sh" "$base_dir/config/homebrew/install.sh"
+  run shellcheck "$base_dir/check" "$base_dir/install" "$base_dir/config/homebrew/install.sh"
+  if [ -f "$base_dir/config/npm/install.sh" ]; then
+    run shellcheck "$base_dir/config/npm/install.sh"
+  fi
 else
   echo "==> shellcheck not found; skipping shell lint"
 fi
