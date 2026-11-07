@@ -4,8 +4,17 @@ onboarding = false
 name = "gruvbox"
 auto_switch = false
 
+[keys]
+previous_workspace = "prefix+shift+left"
+next_workspace = "prefix+shift+right"
+last_pane = "prefix+tab"
+focus_agent = "prefix+alt+1..9"
+
 [ui.toast]
 delivery = "herdr"
 
 [ui]
 show_agent_labels_on_pane_borders = true
+status_indicators = "symbols"
+agent_panel_sort = "priority"
+hide_tab_bar_when_single_tab = true
