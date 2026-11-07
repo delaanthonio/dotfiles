@@ -1,8 +1,0 @@
-description: "Detects potential regressions and unintended breakage from code changes. Focuses on changes that could break existing functionality."
-mode: subagent
-model: sonnet
-temperature: 0.0
-tools:
-  write: false
-  edit: false
-  bash: true

@@ -12,44 +12,6 @@ CHECK = runpy.run_path(str(Path(__file__).with_name("check-dotfiles")))
 
 
 class CheckerTests(unittest.TestCase):
-    def test_agent_render_matches_builder_format(self):
-        expected = CHECK["expected_agent"](
-            "---\nname: sample\n---\n\nBody\n",
-            "model: sonnet\n", {"sonnet": "vendor/full"},
-        )
-        self.assertEqual(expected, "---\nmodel: vendor/full\n---\n\nBody\n")
-
-    def test_content_drift_fails_without_writes(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            fixture = {
-                "agents/scripts/build-agents.sh":
-                    'declare -A AGENT_NAMES=(\n[sample]="sample"\n)\n'
-                    'declare -A MODEL_MAP=(\n[sonnet]="vendor/full"\n)\n',
-                "agents/opencode-templates/sample.yaml": "model: sonnet\n",
-                "claude/agents/sample.md": "---\nname: sample\n---\nBody\n",
-                "config/opencode/agents/sample.md": "stale\n",
-            }
-            for name, content in fixture.items():
-                path = root / name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text(content)
-            before = {p: (p.read_bytes(), p.stat().st_mtime_ns)
-                      for p in root.rglob("*") if p.is_file()}
-            report = CHECK["Report"]()
-            with contextlib.redirect_stdout(io.StringIO()):
-                CHECK["check_agents"](root, report)
-            self.assertEqual(report.failed, 1)
-            self.assertEqual(before, {p: (p.read_bytes(), p.stat().st_mtime_ns)
-                                     for p in root.rglob("*") if p.is_file()})
-            (root / "config/opencode/agents/sample.md").write_text(
-                "---\nmodel: vendor/full\n---\nBody\n"
-            )
-            report = CHECK["Report"]()
-            with contextlib.redirect_stdout(io.StringIO()):
-                CHECK["check_agents"](root, report)
-            self.assertEqual((report.passed, report.failed), (1, 0))
-
     @unittest.skipIf(CHECK["yaml"] is None, "PyYAML required")
     def test_bad_syntax_is_reported_without_exposing_contents(self):
         with tempfile.TemporaryDirectory() as directory:

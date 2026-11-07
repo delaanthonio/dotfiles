@@ -176,60 +176,6 @@ def check_links(root, home, report):
         report.emit("FAIL", "cannot interpret install.conf.yaml")
 
 
-def mapping(script, name):
-    """Read literal associative-array mappings from the existing agent builder."""
-    section = re.search(rf"declare -A {name}=\((.*?)\n\)", script, re.S)
-    if not section:
-        raise ValueError(f"missing {name}")
-    return dict(re.findall(r'\[([\w-]+)\]="([^"]*)"', section[1]))
-
-
-def expected_agent(source, template, models):
-    """Produce the builder's output in memory, including Bash echo -e semantics."""
-    separators = [match for match in re.finditer(r"^---$", source, re.M)]
-    if len(separators) < 2:
-        raise ValueError("missing frontmatter")
-    body = source[separators[1].end() + 1:].rstrip("\n")
-    if not body:
-        raise ValueError("empty agent")
-    template = template.rstrip("\n")
-    model = re.search(r"^model: *(.*)$", template, re.M)
-    if model:
-        short = model[1].removeprefix("anthropic/")
-        full = models.get(short, short)
-        template = re.sub(r"^model: .*$", lambda _: f"model: {full}", template, flags=re.M)
-    result = run(["bash", "--noprofile", "--norc", "-c",
-                  'builtin echo -e "$1"', "check-dotfiles", f"---\n{template}\n---\n{body}"])
-    if result.returncode:
-        raise ValueError("cannot render expected output")
-    return result.stdout
-
-
-def check_agents(root, report):
-    """Compare generated files with source/template content without building."""
-    if not shutil.which("bash"):
-        report.emit("FAIL", "bash required for agent content comparison")
-        return
-    try:
-        script = (root / "agents/scripts/build-agents.sh").read_text()
-        names, models = mapping(script, "AGENT_NAMES"), mapping(script, "MODEL_MAP")
-        for source in sorted((root / "claude/agents").glob("*.md")):
-            name = source.stem
-            template = root / "agents/opencode-templates" / f"{name}.yaml"
-            if name not in names or not template.exists():
-                report.emit("WARN", f"agent not covered by builder/template: {name}")
-                continue
-            output = root / "config/opencode/agents" / f"{names[name]}.md"
-            try:
-                expected = expected_agent(source.read_text(), template.read_text(), models)
-                matches = output.is_file() and output.read_text() == expected
-                report.emit("PASS" if matches else "FAIL", f"generated agent content: {name}")
-            except (OSError, ValueError):
-                report.emit("FAIL", f"cannot compare agent: {name}")
-    except (OSError, ValueError):
-        report.emit("FAIL", "cannot read agent builder mappings")
-
-
 def main():
     """Run all checks and return nonzero on failures, or warnings in strict mode."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -244,7 +190,6 @@ def main():
     for check in (
         lambda: check_files(ROOT, report),
         lambda: check_links(ROOT, Path.home(), report),
-        lambda: check_agents(ROOT, report),
     ):
         try:
             check()

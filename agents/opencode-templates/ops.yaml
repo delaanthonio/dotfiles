@@ -1,8 +1,0 @@
-description: "Startup coordination specialist who orchestrates work across product, marketing, and growth functions for solo founders."
-mode: primary
-model: sonnet
-temperature: 0.3
-tools:
-  write: false
-  edit: false
-  bash: false
