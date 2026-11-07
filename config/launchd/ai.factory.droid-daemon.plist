@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Factory Droid daemon as a per-user launchd service.
+
+  Machine-independent: every path is derived from $HOME at launch, so the same
+  file is linked from the dotfiles repo on any Mac (macOS only -- launchd).
+  Requirements on each machine: the Droid CLI installed (ideally
+  ~/.local/bin/droid, otherwise on PATH) and Factory login done once.
+
+  install.conf.yaml links this to
+  ~/Library/LaunchAgents/ai.factory.droid-daemon.plist. Enable:
+
+    launchctl bootstrap gui/"$(id -u)" ~/Library/LaunchAgents/ai.factory.droid-daemon.plist
+
+  Restart / inspect:
+
+    launchctl kickstart -k gui/"$(id -u)"/ai.factory.droid-daemon
+    launchctl print gui/"$(id -u)"/ai.factory.droid-daemon
+
+  Logs: ~/.factory/logs/droid-daemon.log (launchd wrapper output) plus Droid's
+  own rotated logs in the same directory.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.factory.droid-daemon</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/sh</string>
+        <string>-c</string>
+        <string>cd "$HOME" || exit 1; mkdir -p "$HOME/.factory/logs"; DROID_BIN="$(command -v droid || echo "$HOME/.local/bin/droid")"; exec "$DROID_BIN" daemon --remote-control --droid-path "$DROID_BIN" &gt;&gt;"$HOME/.factory/logs/droid-daemon.log" 2&gt;&amp;1</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+    <key>ProcessType</key>
+    <string>Interactive</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+</dict>
+</plist>
