@@ -52,6 +52,9 @@
         path: config/fish/functions/**
         glob: true
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/herdr/config.toml:
+        path: config/herdr/config.toml
+        force: true
     ~/.config/ghostty/config:
         path: config/ghostty/config
         force: true
