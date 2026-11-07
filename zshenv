@@ -89,3 +89,14 @@ for _emacs_native_comp_path in "${_emacs_native_comp_paths[@]}"; do
     esac
 done
 unset _emacs_libgccjit_root _emacs_gcc_root _emacs_native_comp_paths _emacs_native_comp_path
+
+
+export UV_CACHE_DIR="$HOME/.cache/uv"
+export UV_LINK_MODE=copy
+
+# Machine-local overrides (per-machine, outside the repo) — mirror of
+# ~/.gitconfig_local. Put volume-specific or device-specific exports in
+# ~/.zshenv_local so they don't leak into the tracked dotfiles.
+if [ -f "$HOME/.zshenv_local" ]; then
+    source "$HOME/.zshenv_local"
+fi
