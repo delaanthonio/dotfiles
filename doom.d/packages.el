@@ -43,8 +43,6 @@
 (package! anaconda-mode :disable t)
 (package! caddyfile-mode)
 (package! company-anaconda :disable t)
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! ef-themes)
 (package! emacs-kdl-mode :recipe (:host github :repo "taquangtrung/emacs-kdl-mode"))
 (package! org-modern)

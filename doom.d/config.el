@@ -34,7 +34,6 @@
 (setq evil-escape-key-sequence "jk")
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
-(setq copilot-indent-offset-warning-disable t)
 
 (after! vterm
   (setq vterm-shell "/bin/zsh"))
@@ -154,15 +153,6 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
 ;;; Git Commit
 (after! git-commit
   (setq-default git-commit-summary-max-length 70))
-
-;;; GitHub Copilot
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
 ;;; Org
 (after! org
