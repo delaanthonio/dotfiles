@@ -10,19 +10,28 @@
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-(setq doom-font (cond
-                 ((find-font (font-spec :family "Iosevka SS04"))
-                  (font-spec :family "Iosevka SS04" :size 20))
-                 (t (font-spec :family "Monospace" :size 20))))
-(setq doom-symbol-font doom-font)
-(setq doom-variable-pitch-font (cond
-                                ((find-font (font-spec :family "Iosevka Aile"))
-                                 (font-spec :family "Iosevka Aile" :size 20))
-                                ((find-font (font-spec :family "SF Pro"))
-                                 (font-spec :family "SF Pro" :size 20))
-                                ((find-font (font-spec :family "Roboto"))
-                                 (font-spec :family "Roboto" :size 20))
-                                (t (font-spec :family "Sans Serif" :size 20))))
+;; Font selection must run when a frame exists: `find-font' cannot query the
+;; window system during daemon startup (no frame yet), so load-time selection
+;; silently falls back to Monospace/Courier. Doom applies fonts per frame on
+;; `server-after-make-frame-hook' (depth -100); we select just before that.
+(defun dela/set-fonts ()
+  "Set Doom fonts based on what is actually installed."
+  (setq doom-font (cond
+                   ((find-font (font-spec :family "Iosevka SS04"))
+                    (font-spec :family "Iosevka SS04" :size 20))
+                   (t (font-spec :family "Monospace" :size 20)))
+        doom-symbol-font doom-font
+        doom-variable-pitch-font (cond
+                                  ((find-font (font-spec :family "Iosevka Aile"))
+                                   (font-spec :family "Iosevka Aile" :size 20))
+                                  ((find-font (font-spec :family "SF Pro"))
+                                   (font-spec :family "SF Pro" :size 20))
+                                  ((find-font (font-spec :family "Roboto"))
+                                   (font-spec :family "Roboto" :size 20))
+                                  (t (font-spec :family "Sans Serif" :size 20)))))
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook #'dela/set-fonts -110)
+  (add-hook 'after-init-hook #'dela/set-fonts -110))
 
 (setq doom-theme 'doom-gruvbox)
 (setq doom-gruvbox-brighter-comments t)
