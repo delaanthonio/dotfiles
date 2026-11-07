@@ -44,7 +44,6 @@
 (setq evil-escape-unordered-key-sequence t)
 (setq-default explicit-shell-file-name "/bin/zsh")
 
-
 (after! vterm
   (setq vterm-shell "/bin/zsh"))
 (setq shell-file-name
@@ -227,11 +226,28 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
         org-roam-db-update-method 'idle
         org-roam-db-gc-threshold most-positive-fixnum))
 
+;;; Performance — keep file-scanning subsystems out of huge monorepo trees.
+;; In repos like ~/Developer/agendacraft there are ~3k tracked files but >1M
+;; total (node_modules 2.6G, .turbo, etc.). Walking those freezes the UI.
+
 ;; Larger GC heap: the 16MB default triggers a collection roughly every few
 ;; seconds under heavy use (LSP, large buffers); each pause costs 100ms+.
 ;; 128MB cuts GC frequency ~8x at the cost of some idle memory.
 (setq gc-cons-threshold (* 128 1024 1024)
       gc-cons-percentage 0.2)
+(after! lsp-mode
+  ;; LSP recursively walks the project tree on file-open to install watchers;
+  ;; on a million-file tree that hangs Emacs. Disable the watchers entirely.
+  ;; Trade-off: the server isn't auto-notified of files changed *outside* Emacs
+  ;; (e.g. git pull, branch switch) — re-run `lsp-workspace-restart` if needed.
+  (setq lsp-enable-file-watchers nil))
+
+(after! projectile
+  ;; Alien indexing shells out to `git ls-files`, so ignored dirs are never
+  ;; walked — find-file in a project lists 3k files, not 1.2M.
+  (setq projectile-indexing-method 'alien)
+  (dolist (dir '("node_modules" ".turbo" ".next" "dist" "build" "coverage" ".cache"))
+    (add-to-list 'projectile-globally-ignored-directories dir)))
 
 ;;; Terraform
 (after! lsp-mode
