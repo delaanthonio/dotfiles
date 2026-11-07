@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+# doctor-dotfiles - sanity checks for the ~/.dotfiles-managed environment.
+#
+# Catches the failure modes that have bitten before:
+#   - config symlinks pointing at a stale dotfiles checkout
+#   - uninitialized nested submodules (e.g. emacs.d/sources/doom+)
+#   - Doom package state out of sync with the config
+#   - a long-running Emacs daemon still holding stale state in memory
+#
+# Usage: bin/doctor-dotfiles [--full]
+#   --full  also runs `doom doctor` (slow, ~30s)
+
+set -u
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+FULL=0
+[[ "${1:-}" == "--full" ]] && FULL=1
+
+PASS=0; WARN=0; FAIL=0
+
+ok()   { printf '  ok   %s\n' "$1"; PASS=$((PASS+1)); }
+warn() { printf '  warn %s\n' "$1"; WARN=$((WARN+1)); }
+fail() { printf '  FAIL %s\n' "$1"; FAIL=$((FAIL+1)); }
+
+section() { printf '\n%s\n' "$1"; }
+
+# ---------------------------------------------------------------------------
+section "Config symlinks"
+# Core managed paths (see install.conf.yaml for the full set). These are the
+# ones where a stale target is catastrophic or easy to miss.
+LINKS=(
+  "$HOME/.doom.d"
+  "$HOME/.emacs.d"
+  "$HOME/.config/nvim"
+  "$HOME/.zshenv"
+  "$HOME/.zshrc"
+  "$HOME/.gitconfig"
+  "$HOME/.config/tmux/tmux.conf"
+  "$HOME/.config/ghostty/config"
+  "$HOME/.config/fish/conf.d"
+)
+for link in "${LINKS[@]}"; do
+  if [[ ! -e "$link" && ! -L "$link" ]]; then
+    fail "$link does not exist (run install to create it)"
+    continue
+  fi
+  if [[ ! -L "$link" ]]; then
+    warn "$link is not a symlink (real file/dir shadows the managed one)"
+    continue
+  fi
+  target="$(readlink "$link")"
+  case "$target" in
+    "$DOTFILES"/*|"$HOME/.dotfiles"/*)
+      if [[ -e "$link" ]]; then
+        ok "$link -> $target"
+      else
+        fail "$link -> $target (target is missing)"
+      fi
+      ;;
+    *)
+      fail "$link -> $target (points outside $DOTFILES - stale checkout?)"
+      ;;
+  esac
+done
+
+if [[ -e "$HOME/Developer/dotfiles" ]]; then
+  warn "$HOME/Developer/dotfiles still exists (old checkout; archive or delete it)"
+fi
+
+# ---------------------------------------------------------------------------
+section "Submodules"
+if ! git -C "$DOTFILES" rev-parse --is-inside-work-tree &>/dev/null; then
+  fail "$DOTFILES is not a git repository"
+else
+  while IFS= read -r line; do
+    status="${line:0:1}"; path="$(echo "$line" | awk '{print $2}')"
+    case "$status" in
+      -) fail "submodule not initialized: $path (git submodule update --init --recursive)" ;;
+      +) fail "submodule checked out at a different commit than recorded: $path
+         './install' would reset it and lose this version. Record the version you
+         want with 'git -C $DOTFILES add $path', or accept the recorded one with
+         'git -C $DOTFILES submodule update --recursive'." ;;
+      U) fail "submodule has merge conflicts: $path" ;;
+    esac
+  done < <(git -C "$DOTFILES" submodule status --recursive)
+  ok "submodule scan complete"
+fi
+
+# ---------------------------------------------------------------------------
+section "Doom Emacs"
+EMACSD="$DOTFILES/emacs.d"
+if [[ ! -d "$EMACSD" ]]; then
+  fail "$EMACSD missing"
+elif [[ ! -x "$EMACSD/bin/doom" ]]; then
+  fail "$EMACSD/bin/doom missing (Doom checkout incomplete)"
+else
+  ok "doom CLI present"
+  # Upstream moved the module tree into the nested doomemacs/modules submodule.
+  # If it is missing, doom sync silently registers only a fraction of packages
+  # and startup fails with opaque `file-missing` errors.
+  if [[ -d "$EMACSD/sources/doom+/modules" ]]; then
+    ok "sources/doom+ module tree initialized"
+  elif [[ -f "$EMACSD/.gitmodules" ]] && grep -q "sources/doom+" "$EMACSD/.gitmodules"; then
+    fail "emacs.d/sources/doom+ submodule not initialized (git -C $EMACSD submodule update --init --recursive)"
+  fi
+  if [[ -d "$EMACSD/.local/straight" ]]; then
+    ok "straight package state exists"
+  else
+    warn "no straight state in $EMACSD/.local (run 'doom sync' after first install)"
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+section "Emacs daemon"
+if pgrep -f "Emacs.*--fg-daemon|emacs .*--daemon" &>/dev/null; then
+  pid="$(pgrep -f "Emacs.*--fg-daemon|emacs .*--daemon" | head -1)"
+  etime="$(ps -o etime= -p "$pid" 2>/dev/null | tr -d ' ')"
+  days="${etime%%-*}"
+  if [[ "$etime" == *-* && "$days" -ge 7 ]] 2>/dev/null; then
+    warn "emacs daemon (pid $pid) has been up ~${days} days; restart it to pick up config changes (brew services restart emacs-plus@30)"
+  else
+    ok "emacs daemon running (pid $pid, uptime ${etime:-unknown})"
+  fi
+else
+  ok "no emacs daemon running (nothing to go stale)"
+fi
+
+# ---------------------------------------------------------------------------
+if [[ "$FULL" -eq 1 ]]; then
+  section "doom doctor (--full)"
+  if [[ -x "$EMACSD/bin/doom" ]]; then
+    if "$EMACSD/bin/doom doctor" &>/dev/null; then
+      ok "doom doctor passed"
+    else
+      fail "doom doctor reported problems (run 'doom doctor' for details)"
+    fi
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+printf '\n%d passed, %d warnings, %d failures\n' "$PASS" "$WARN" "$FAIL"
+[[ "$FAIL" -eq 0 ]] || exit 1
+exit 0

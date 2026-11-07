@@ -138,3 +138,8 @@
 
 - shell: [bash config/homebrew/install.sh] # install Homebrew packages from Brewfile (set DOTFILES_BREWFILE=labcorp for work machines)
 - shell: [bash config/npm/install.sh] # install ccstatusline and other managed npm packages after symlinks are in place
+- shell:
+    - command: bin/doctor-dotfiles
+      description: Running dotfiles doctor (checks symlinks, submodules, Doom state)
+      stdout: true
+      stderr: true
