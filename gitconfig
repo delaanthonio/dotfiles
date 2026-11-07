@@ -92,3 +92,16 @@
 [user]
 	name = Dela Anthonio
 	email = dela@anthonio.pro
+
+# Use gh for GitHub credentials; the empty helper line first clears any
+# previously-configured helpers (e.g. osxkeychain) so gh auth wins.
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+# Route SSH-style remotes over HTTPS so gh credentials apply everywhere.
+[url "https://github.com/"]
+	insteadOf = git@github.com:
