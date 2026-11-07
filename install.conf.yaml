@@ -74,6 +74,19 @@
     - ~/.claude
     - ~/.config/opencode
 
+- shell:
+    # Enable the droid-daemon LaunchAgent if it is linked but not loaded.
+    # Idempotent: bootstrap fails harmlessly when already loaded.
+    command: |
+      if [ "$(uname)" = Darwin ]; then
+        PLIST="$HOME/Library/LaunchAgents/ai.factory.droid-daemon.plist"
+        SERVICE="gui/$(id -u)/ai.factory.droid-daemon"
+        if [ -f "$PLIST" ] && ! launchctl print "$SERVICE" >/dev/null 2>&1; then
+          launchctl bootstrap "gui/$(id -u)" "$PLIST" 2>/dev/null ||
+            echo "droid-daemon: bootstrap failed (enable manually with launchctl)"
+        fi
+      fi
+
 - link:
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/fish/conf.d:
@@ -97,7 +110,6 @@
     ~/Library/LaunchAgents/ai.factory.droid-daemon.plist:
         if: '[ `uname` = Darwin ]'
         path: config/launchd/ai.factory.droid-daemon.plist
-        force: true
     ~/.config/cmux/cmux.json:
         path: config/cmux/cmux.json
     ~/.config/ccstatusline/settings.json:
