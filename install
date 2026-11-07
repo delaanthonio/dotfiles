@@ -14,6 +14,10 @@ BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$BASEDIR"
 git submodule update --init --recursive "$DOTBOT_DIR"
 
+# Silence "modified: emacs.d (untracked content)" noise from Doom-generated
+# files inside the submodule; real pin changes still show in git status.
+git config submodule.emacs.d.ignore untracked || true
+
 # SHELL=/bin/sh: dotbot runs shell blocks with $SHELL, which may be fish —
 # the config blocks are POSIX sh and would fail under fish.
 SHELL=/bin/sh "$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" -d "$BASEDIR" -c "$CONFIG" "$@"
