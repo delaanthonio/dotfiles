@@ -6,14 +6,29 @@ warn() { printf 'WARN: %s\n' "$*"; }
 fail() { printf 'FAIL: %s\n' "$*"; failures=$((failures + 1)); }
 ok() { printf 'OK: %s\n' "$*"; }
 
-command -v tmux >/dev/null 2>&1 && ok "tmux found: $(tmux -V)" || fail "tmux is not installed"
+if command -v tmux >/dev/null 2>&1; then
+  ok "tmux found: $(tmux -V)"
+else
+  fail "tmux is not installed"
+fi
 
 for script in clipboard.sh host-status.sh cheatsheet.sh sessionizer.sh; do
   path="$HOME/.config/tmux/$script"
   [ -f "$path" ] || path="$(dirname "$0")/$script"
-  [ -f "$path" ] && ok "$script exists" || { fail "$script missing"; continue; }
-  [ -x "$path" ] && ok "$script is executable" || fail "$script is not executable"
-  bash -n "$path" && ok "$script syntax" || fail "$script syntax failed"
+  if [ ! -f "$path" ]; then
+    fail "$script missing"
+    continue
+  fi
+  if [ -x "$path" ]; then
+    ok "$script is executable"
+  else
+    fail "$script is not executable"
+  fi
+  if bash -n "$path"; then
+    ok "$script syntax"
+  else
+    fail "$script syntax failed"
+  fi
 done
 
 if [ -n "${COLORTERM:-}" ] && [[ "$COLORTERM" == *truecolor* || "$COLORTERM" == *24bit* ]]; then
