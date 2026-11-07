@@ -26,6 +26,7 @@
       for path in \
           "$HOME/.config/fish/conf.d" \
           "$HOME/.config/fish/functions" \
+          "$HOME/.config/tmux" \
           "$HOME/.config/zellij/layouts"; do
         [ -e "$path" ] || continue
         [ -L "$path" ] && continue
@@ -37,8 +38,7 @@
       #    dotfiles counterpart exists are backed up. Local-only files stay
       #    put.
       for pair in \
-          "$HOME/.config/fish/completions:$DOTFILES/config/fish/completions" \
-          "$HOME/.config/tmux:$DOTFILES/config/tmux"; do
+          "$HOME/.config/fish/completions:$DOTFILES/config/fish/completions"; do
         home="${pair%%:*}"; src="${pair#*:}"
         [ -d "$home" ] || continue
         for entry in "$home"/*; do
@@ -114,26 +114,8 @@
         path: config/cmux/cmux.json
     ~/.config/ccstatusline/settings.json:
         path: config/ccstatusline/settings.json
-    ~/.config/tmux/tmux.conf:
-      path: config/tmux/tmux.conf
-    ~/.config/tmux/options.conf:
-      path: config/tmux/options.conf
-    ~/.config/tmux/bindings.conf:
-      path: config/tmux/bindings.conf
-    ~/.config/tmux/theme.conf:
-      path: config/tmux/theme.conf
-    ~/.config/tmux/status.conf:
-      path: config/tmux/status.conf
-    ~/.config/tmux/host-status.sh:
-      path: config/tmux/host-status.sh
-    ~/.config/tmux/cheatsheet.sh:
-      path: config/tmux/cheatsheet.sh
-    ~/.config/tmux/clipboard.sh:
-      path: config/tmux/clipboard.sh
-    ~/.config/tmux/sessionizer.sh:
-      path: config/tmux/sessionizer.sh
-    ~/.config/tmux/health-check.sh:
-      path: config/tmux/health-check.sh
+    ~/.config/tmux:
+      path: config/tmux
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
     ~/.config/zellij/layouts:
