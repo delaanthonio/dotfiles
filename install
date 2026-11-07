@@ -14,4 +14,6 @@ BASEDIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$BASEDIR"
 git submodule update --init --recursive "$DOTBOT_DIR"
 
-"$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" -d "$BASEDIR" -c "$CONFIG" "$@"
+# SHELL=/bin/sh: dotbot runs shell blocks with $SHELL, which may be fish —
+# the config blocks are POSIX sh and would fail under fish.
+SHELL=/bin/sh "$BASEDIR/$DOTBOT_DIR/$DOTBOT_BIN" -d "$BASEDIR" -c "$CONFIG" "$@"

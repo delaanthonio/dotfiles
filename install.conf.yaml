@@ -6,11 +6,12 @@
 - shell: [git submodule update --init --recursive]
 
 - shell:
-  # Backup-and-link: pre-emptively move aside any existing regular file at a
-  # dotbot symlink-target path so the link step can create a fresh symlink
-  # without needing force:true (which would clobber user edits silently).
-  # Backups are created as <path>.bak.<unix-ts>; once symlinked, subsequent
-  # runs are no-ops since dotbot is no longer in conflict with regular files.
+  # Backup-and-link: pre-emptively move aside any existing regular file (or
+  # whole directory) at a dotbot symlink-target path so the link step can
+  # create a fresh symlink without needing force:true (which would clobber
+  # user edits silently). Backups are created as <path>.bak.<unix-ts>; once
+  # symlinked, subsequent runs are no-ops since dotbot is no longer in
+  # conflict with regular files.
   # ~/.codex/config.toml is intentionally NOT in this list — the dotfile
   # is the empty template and the home copy carries rich local config.
   - command: |
@@ -18,11 +19,26 @@
       DOTFILES="${DOTBOT_DIR:-$(pwd)}"
       TS=$(date +%s)
 
-      # home-glob-dir : dotfiles-source-dir pairs; only files whose dotfiles
-      # counterpart exists will be backed up. Local-only files stay put.
+
+      # 1) Whole-path backup: real files or directories at these symlink
+      #    target paths are moved aside entirely (these paths are linked
+      #    as a whole, not per-entry).
+      for path in \
+          "$HOME/.config/fish/conf.d" \
+          "$HOME/.config/fish/functions" \
+          "$HOME/.config/zellij/layouts"; do
+        [ -e "$path" ] || continue
+        [ -L "$path" ] && continue
+        mv "$path" "$path.bak.$TS"
+        echo "preserved $path -> $path.bak.$TS"
+      done
+
+      # 2) Per-file backup inside shared home dirs: only regular files whose
+      #    dotfiles counterpart exists are backed up. Local-only files stay
+      #    put.
       for pair in \
           "$HOME/.config/fish/completions:$DOTFILES/config/fish/completions" \
-          "$HOME/.config/fish/functions:$DOTFILES/config/fish/functions"; do
+          "$HOME/.config/tmux:$DOTFILES/config/tmux"; do
         home="${pair%%:*}"; src="${pair#*:}"
         [ -d "$home" ] || continue
         for entry in "$home"/*; do
@@ -36,6 +52,24 @@
         done
       done
 
+      # 3) Single-file backup: same rule for standalone config files.
+      for pair in \
+          "$HOME/.config/herdr/config.toml:$DOTFILES/config/herdr/config.toml" \
+          "$HOME/.config/ghostty/config:$DOTFILES/config/ghostty/config" \
+          "$HOME/Library/Application Support/com.mitchellh.ghostty/config:$DOTFILES/config/ghostty/config" \
+          "$HOME/Library/Application Support/com.cmuxterm.app/config.ghostty:$DOTFILES/config/cmux/config.ghostty" \
+          "$HOME/.config/cmux/cmux.json:$DOTFILES/config/cmux/cmux.json" \
+          "$HOME/.config/ccstatusline/settings.json:$DOTFILES/config/ccstatusline/settings.json"; do
+        home="${pair%%:*}"; src="${pair#*:}"
+        [ -e "$home" ] || continue
+        [ -L "$home" ] && continue
+        [ -f "$home" ] || continue
+        [ -e "$src" ] || continue
+        mv "$home" "$home.bak.$TS"
+        echo "preserved $home -> $home.bak.$TS"
+      done
+    stderr: true
+
 - clean:
     - ~/.claude
     - ~/.config/opencode
@@ -44,74 +78,54 @@
     ~/.config/direnv/direnvrc: direnvrc
     ~/.config/fish/conf.d:
         path: config/fish/conf.d
-        force: true
     ~/.config/fish/completions/:
         path: config/fish/completions/**
         glob: true
-    ~/.config/fish/functions/:
-        path: config/fish/functions/**
-        glob: true
+    ~/.config/fish/functions:
+        path: config/fish/functions
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.config/herdr/config.toml:
         path: config/herdr/config.toml
-        force: true
     ~/.config/ghostty/config:
         path: config/ghostty/config
-        force: true
     ~/Library/Application Support/com.mitchellh.ghostty/config:
         if: '[ `uname` = Darwin ]'
         path: config/ghostty/config
-        force: true
     ~/Library/Application Support/com.cmuxterm.app/config.ghostty:
         if: '[ `uname` = Darwin ]'
         path: config/cmux/config.ghostty
-        force: true
     ~/Library/LaunchAgents/ai.factory.droid-daemon.plist:
         if: '[ `uname` = Darwin ]'
         path: config/launchd/ai.factory.droid-daemon.plist
         force: true
     ~/.config/cmux/cmux.json:
         path: config/cmux/cmux.json
-        force: true
     ~/.config/ccstatusline/settings.json:
         path: config/ccstatusline/settings.json
-        force: true
     ~/.config/tmux/tmux.conf:
       path: config/tmux/tmux.conf
-      force: true
     ~/.config/tmux/options.conf:
       path: config/tmux/options.conf
-      force: true
     ~/.config/tmux/bindings.conf:
       path: config/tmux/bindings.conf
-      force: true
     ~/.config/tmux/theme.conf:
       path: config/tmux/theme.conf
-      force: true
     ~/.config/tmux/status.conf:
       path: config/tmux/status.conf
-      force: true
     ~/.config/tmux/host-status.sh:
       path: config/tmux/host-status.sh
-      force: true
     ~/.config/tmux/cheatsheet.sh:
       path: config/tmux/cheatsheet.sh
-      force: true
     ~/.config/tmux/clipboard.sh:
       path: config/tmux/clipboard.sh
-      force: true
     ~/.config/tmux/sessionizer.sh:
       path: config/tmux/sessionizer.sh
-      force: true
     ~/.config/tmux/health-check.sh:
       path: config/tmux/health-check.sh
-      force: true
     ~/.config/zellij/config.kdl:
         path: config/zellij/config.kdl
-        force: true
     ~/.config/zellij/layouts:
         path: config/zellij/layouts
-        force: true
     ~/.config/nvim:
     ~/.config/starship.toml: starship.toml
     ~/.config/topgrade.toml:
