@@ -111,3 +111,5 @@ venv
 # VSCode
 .vscode
 .idea/
+
+**/.claude/settings.local.json
