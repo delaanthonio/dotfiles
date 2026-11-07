@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Commit submodule updates after topgrade or manual submodule updates
+
+set -e
+
+DOTFILES_DIR="${HOME}/.dotfiles"
+
+cd "${DOTFILES_DIR}"
+
+# Check if there are any submodule changes
+if git diff --quiet HEAD -- emacs.d modules; then
+  echo "✓ No submodule changes to commit"
+  exit 0
+fi
+
+echo "Submodule changes detected:"
+git diff --stat HEAD -- emacs.d modules
+
+# Stage submodule changes
+git add emacs.d modules
+
+# Create commit with date
+COMMIT_MSG="chore: update submodules ($(date +%Y-%m-%d))"
+
+# Show what will be committed
+echo ""
+echo "Creating commit: ${COMMIT_MSG}"
+
+# Commit
+git commit -m "${COMMIT_MSG}"
+
+echo ""
+echo "✓ Submodules committed successfully"
+echo ""
+echo "Tip: Run 'git push' to sync with remote"

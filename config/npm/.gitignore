@@ -1,0 +1,4 @@
+# This dir holds only a manifest (package.json) + bootstrap (install.sh).
+# Packages are installed GLOBALLY, never here — ignore any local install output.
+node_modules/
+package-lock.json

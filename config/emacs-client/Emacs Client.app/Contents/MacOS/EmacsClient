@@ -1,0 +1,11 @@
+#!/bin/bash
+EMACSCLIENT="/opt/homebrew/bin/emacsclient"
+BREW="/opt/homebrew/bin/brew"
+if ! pgrep -f "Emacs.*--fg-daemon" >/dev/null 2>&1; then
+    "$BREW" services start emacs-plus@30 >/dev/null 2>&1
+    for _ in $(seq 1 60); do
+        pgrep -f "Emacs.*--fg-daemon" >/dev/null 2>&1 && break
+        sleep 0.5
+    done
+fi
+exec "$EMACSCLIENT" -c "$@"
