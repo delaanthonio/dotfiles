@@ -3,5 +3,8 @@ custom.el
 # Local agent settings (machine-specific, never committed)
 .claude/settings.local.json
 
+# Fish secrets (exported in conf.d on shell startup, never committed)
+config/fish/conf.d/secrets.fish
+
 # Local Environment Variables
 *.env
