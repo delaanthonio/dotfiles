@@ -68,11 +68,11 @@ return {
       height = 30,
       preset = {
         keys = {
-          { icon = " ", key = "f", desc = "Find File", action = ":Snacks picker files" },
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-          { icon = " ", key = "g", desc = "Find Text", action = ":Snacks picker grep" },
-          { icon = " ", key = "r", desc = "Recent Files", action = ":Snacks picker recent" },
-          { icon = " ", key = "c", desc = "Config", action = ":Snacks picker files cwd=~/.config/nvim" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('recent')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
