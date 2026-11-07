@@ -54,6 +54,7 @@
 
       # 3) Single-file backup: same rule for standalone config files.
       for pair in \
+          "$HOME/.config/kitty/current-theme.conf:$DOTFILES/kitty-current-theme.conf" \
           "$HOME/.config/herdr/config.toml:$DOTFILES/config/herdr/config.toml" \
           "$HOME/.config/ghostty/config:$DOTFILES/config/ghostty/config" \
           "$HOME/Library/Application Support/com.mitchellh.ghostty/config:$DOTFILES/config/ghostty/config" \
@@ -97,6 +98,7 @@
     ~/.config/fish/functions:
         path: config/fish/functions
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.config/kitty/current-theme.conf: kitty-current-theme.conf
     ~/.config/herdr/config.toml:
         path: config/herdr/config.toml
     ~/.config/ghostty/config:
