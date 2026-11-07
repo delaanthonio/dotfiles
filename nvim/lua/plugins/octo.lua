@@ -54,7 +54,7 @@ return {
     reaction_viewer_hint_icon = " ", -- Reaction hint icon
     user_icon = " ", -- User icon
     timeline_marker = " ", -- Timeline marker
-    timeline_indent = "2", -- Timeline indentation
+    timeline_indent = 2, -- Timeline indentation
     right_bubble_delimiter = "", -- Right bubble delimiter
     left_bubble_delimiter = "", -- Left bubble delimiter
     github_hostname = "", -- GitHub Enterprise hostname (leave empty for github.com)
@@ -80,7 +80,7 @@ return {
     },
     file_panel = {
       size = 10, -- Height of file panel
-      use_icons = true, -- Use devicons in file panel
+      icons = true, -- Use devicons in file panel
     },
     colors = {
       -- Use your theme's colors
