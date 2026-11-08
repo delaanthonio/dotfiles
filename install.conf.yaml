@@ -26,6 +26,7 @@
       for path in \
           "$HOME/.config/fish/conf.d" \
           "$HOME/.config/fish/functions" \
+          "$HOME/.config/gh-dash" \
           "$HOME/.config/tmux" \
           "$HOME/.config/zellij/layouts"; do
         [ -e "$path" ] || continue
@@ -116,6 +117,8 @@
         path: config/cmux/cmux.json
     ~/.config/ccstatusline/settings.json:
         path: config/ccstatusline/settings.json
+    ~/.config/gh-dash:
+      path: config/gh-dash
     ~/.config/tmux:
       path: config/tmux
     ~/.config/zellij/config.kdl:
@@ -138,6 +141,13 @@
 
 - shell: [bash config/homebrew/install.sh] # install Homebrew packages from Brewfile (set DOTFILES_BREWFILE=labcorp for work machines)
 - shell: [bash config/npm/install.sh] # install ccstatusline and other managed npm packages after symlinks are in place
+- shell:
+  # gh-dash (PR review dashboard) ships as a gh extension, not a Homebrew
+  # formula. Install if missing; upgrades are handled by `gh extension upgrade`.
+  - command: |
+      command -v gh >/dev/null || exit 0
+      gh extension list 2>/dev/null | grep -q dlvhdr/gh-dash ||
+        gh extension install dlvhdr/gh-dash
 - shell:
     - command: bin/doctor-dotfiles
       description: Running dotfiles doctor (checks symlinks, submodules, Doom state)

@@ -65,6 +65,9 @@ abbr -a y yarn
 abbr -a p pnpm
 abbr -a n npm
 
+# GitHub
+abbr -a prs 'gh dash'
+
 # System
 abbr -a tg topgrade
 abbr -a reload 'source ~/.config/fish/config.fish'

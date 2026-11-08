@@ -1,0 +1,25 @@
+# gh-dash - GitHub PR dashboard for review work.
+# Launch with: gh dash (or `prs` in fish).
+# NOTE: the global config file MUST be named config.yml - config.yaml is
+# ignored outside of repo-level .gh-dash.yaml files.
+# Docs: https://github.com/dlvhdr/gh-dash
+
+# Sections are GitHub search queries (no is:pr needed, it's added for you).
+# Multiple repos in one section: repeat repo:owner/name, one per line.
+prSections:
+  - title: Waiting for my review
+    filters: is:open review-requested:@me
+  - title: Authored by me
+    filters: is:open author:@me
+  - title: Assigned to me
+    filters: is:open assignee:@me
+  - title: Mentioned
+    filters: is:open mentions:@me
+
+# Full-screen diffs opened from gh-dash pipe through this pager.
+# Requires delta (installed via Brewfile). Note: top-level key, not under defaults.
+pager:
+  diff: delta
+
+defaults:
+  view: prs
