@@ -61,7 +61,9 @@
           "$HOME/Library/Application Support/com.mitchellh.ghostty/config:$DOTFILES/config/ghostty/config" \
           "$HOME/Library/Application Support/com.cmuxterm.app/config.ghostty:$DOTFILES/config/cmux/config.ghostty" \
           "$HOME/.config/cmux/cmux.json:$DOTFILES/config/cmux/cmux.json" \
-          "$HOME/.config/ccstatusline/settings.json:$DOTFILES/config/ccstatusline/settings.json"; do
+          "$HOME/.config/ccstatusline/settings.json:$DOTFILES/config/ccstatusline/settings.json" \
+          "$HOME/.bashrc:$DOTFILES/bashrc" \
+          "$HOME/.bash_profile:$DOTFILES/bash_profile"; do
         home="${pair%%:*}"; src="${pair#*:}"
         [ -e "$home" ] || continue
         [ -L "$home" ] && continue
@@ -133,6 +135,8 @@
     ~/Applications/Emacs Client.app:
         path: config/emacs-client/Emacs Client.app
         force: true
+    ~/.bashrc: bashrc
+    ~/.bash_profile: bash_profile
     ~/.ideavimrc:
     ~/.gitconfig:
     ~/.gitignore_global:
