@@ -107,6 +107,11 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(starship init zsh)"
 
+# Smarter cd with frecency (zoxide): use `z` like cd.
+if (( $+commands[zoxide] )); then
+    eval "$(zoxide init zsh)"
+fi
+
 # Homebrew completion
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
