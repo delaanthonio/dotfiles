@@ -4,6 +4,7 @@
   "description": "Canonical list of globally-installed npm CLIs, tracked for reproducibility. A fresh machine reinstalls these via ./install. Only package names are pinned here, not versions. Versions stay current through topgrade's node step, matching the global-install model. The installer resolves the installed Node selected by mise.",
   "globals": [
     "@openai/codex",
+    "acpx",
     "ccstatusline",
     "vercel"
   ]
