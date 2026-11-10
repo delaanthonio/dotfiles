@@ -8,7 +8,17 @@ auto_switch = false
 previous_workspace = "prefix+shift+left"
 next_workspace = "prefix+shift+right"
 last_pane = "prefix+tab"
-focus_agent = "prefix+alt+1..9"
+# Agents: direct ctrl+alt+1..9 jumps to agent N without the prefix
+# (alt+shift+digit would compose to punctuation on macOS, so ctrl+alt is the
+# reliable digit chord; prefix+alt+1..9 stays as an alternative).
+focus_agent = ["prefix+alt+1..9", "ctrl+alt+1..9"]
+
+# Agents: the sidebar agent list is vertical, so alt+j / alt+k step through
+# agents; alt+g opens the Goto picker (search names/kinds/branches, filter
+# blocked/working/idle/done with b/w/i/d) to jump straight to any agent.
+previous_agent = "alt+k"
+next_agent = "alt+j"
+goto = ["prefix+g", "alt+g"]
 
 # Tabs mirror tmux window muscle memory: chordless Alt, no prefix.
 #   alt+1..9  jump to tab N (tmux M-1..9)
