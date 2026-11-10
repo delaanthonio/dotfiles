@@ -10,6 +10,37 @@ next_workspace = "prefix+shift+right"
 last_pane = "prefix+tab"
 focus_agent = "prefix+alt+1..9"
 
+# Tabs mirror tmux window muscle memory: chordless Alt, no prefix.
+#   alt+1..9  jump to tab N (tmux M-1..9)
+#   alt+[ / alt+]  previous/next tab (tmux M-[ / M-])
+#   alt+t     new tab (tmux M-t new-window)
+previous_tab = "alt+["
+next_tab = "alt+]"
+switch_tab = "alt+1..9"
+new_tab = "alt+t"
+
+# Confirm-then-close: herdr's close_tab action closes instantly (ui.confirm_close
+# only guards the last tab of a workspace), so alt+w mirrors tmux's M-w by running
+# a popup that asks before closing the active tab via the socket API.
+[[keys.command]]
+key = "alt+w"
+type = "popup"
+description = "Close tab (with confirmation)"
+command = '''
+tab="$HERDR_ACTIVE_TAB_ID"
+bin="${HERDR_BIN_PATH:-herdr}"
+if [ -z "$tab" ]; then echo "No active tab."; sleep 1; exit 0; fi
+label=$("$bin" tab get "$tab" 2>/dev/null | sed -n 's/.*"label":"\([^"]*\)".*/\1/p')
+[ -n "$label" ] || label="$tab"
+printf 'Close tab "%s"? [y/N] ' "$label"
+read -r answer
+case "$answer" in
+  y|Y) "$bin" tab close "$tab" >/dev/null 2>&1 && echo "Closed." || echo "Failed to close." ;;
+  *) echo "Cancelled." ;;
+esac
+sleep 1
+'''
+
 [ui.toast]
 delivery = "herdr"
 
