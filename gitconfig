@@ -62,15 +62,23 @@
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 	editor = nvim
 
+	# delta pager (git-delta in the Brewfile); also used by gh-dash's
+	# full-screen diffs.
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
 [diff]
 	# Enable an experimental heuristic that shifts the hunk boundary in an
 	# attempt to make the resulting patch easier to read.
 	indentHeuristic = true
 	colorMoved = zebra
 
-# Allow local customizations in the .gitconfig_local file
-[include]
-	path = ~/.gitconfig_local
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
 
 [pretty]
 	line = "%C(auto)%h%d %s %C(yellow)by %C(blue)%an %C(green)%ar"
@@ -94,14 +102,22 @@
 	email = dela@anthonio.pro
 
 # Use gh for GitHub credentials; the empty helper line first clears any
-# previously-configured helpers (e.g. osxkeychain) so gh auth wins.
+# previously-configured helpers (e.g. osxkeychain) so gh auth wins. Bare
+# `gh` resolves from PATH — /opt/homebrew/bin on macOS, /usr/bin on Linux.
 [credential "https://github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 # Route SSH-style remotes over HTTPS so gh credentials apply everywhere.
 [url "https://github.com/"]
 	insteadOf = git@github.com:
+
+# Machine-local overrides (device identity, pager, credential paths) are
+# included LAST so ~/.gitconfig_local wins over everything above — e.g. a
+# Linux box needs /usr/bin/gh, not the Homebrew path, and may carry a work
+# email. Nothing changes on machines without a ~/.gitconfig_local.
+[include]
+	path = ~/.gitconfig_local
