@@ -51,6 +51,13 @@ if [[ -d "$HOME/Library/pnpm" ]]; then
     export PATH="$PNPM_HOME:$PATH"
 fi
 
+# npm global packages (managed prefix, installs via config/npm/install.sh).
+# Existence-guarded so it's a no-op where the prefix isn't used (e.g. macOS,
+# where npm globals live under the Homebrew/Homebrew-node prefixes).
+if [[ -d "$HOME/.npm-global/bin" ]]; then
+    export PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
 # Shims make mise-managed tools available to non-interactive shells too.
 _mise_shims="${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims"
 if [[ -d "$_mise_shims" ]]; then
