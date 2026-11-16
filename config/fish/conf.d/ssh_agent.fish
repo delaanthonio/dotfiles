@@ -27,11 +27,25 @@ if test -z "$SSH_AUTH_SOCK" -a (uname) = Darwin
     end
 end
 
-# Fallback: start an agent if still no socket
+# Fallback: share one agent at a fixed socket instead of starting a new agent
+# for every shell. Each `ssh host <cmd>` starts a fresh shell, so a per-shell
+# agent leaks one process per command. Start the shared agent only when nothing
+# answers on its socket; the lock stops two shells from starting it at once.
 if test -z "$SSH_AUTH_SOCK"
-    set -l agent_output (ssh-agent -s)
-    for line in $agent_output
-        __ssh_parse_agent_output $line
+    set -l agent_sock $HOME/.ssh/agent.sock
+    set -l start_agent 'SSH_AUTH_SOCK="$1" ssh-add -l >/dev/null 2>&1
+if [ $? -eq 2 ]; then
+    rm -f "$1"
+    ssh-agent -a "$1" >/dev/null
+fi'
+    command mkdir -p $HOME/.ssh
+    if type -q flock
+        command flock -o $HOME/.ssh/agent.lock sh -c $start_agent sh $agent_sock
+    else
+        command sh -c $start_agent sh $agent_sock
+    end
+    if test -S $agent_sock
+        __ssh_export_to_session SSH_AUTH_SOCK $agent_sock
     end
 end
 
